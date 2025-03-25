@@ -16,6 +16,7 @@
         <module>domain/dk.sdu.mmmi.pms.domain.booking</module>
         <module>domain/dk.sdu.mmmi.pms.domain.parkingspot</module>
         <module>domain/dk.sdu.mmmi.pms.domain.parkinglot</module>
+        <module>domain/dk.sdu.mmmi.pms.domain.vehicle</module>
     </modules>
 
     <properties>
