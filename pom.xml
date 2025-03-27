@@ -12,11 +12,11 @@
     </repositories>
 
     <modules>
-        <module>domain/dk.sdu.mmmi.pms.core.account</module>
-        <module>domain/dk.sdu.mmmi.pms.core.booking</module>
-        <module>domain/dk.sdu.mmmi.pms.core.parkingspot</module>
-        <module>domain/dk.sdu.mmmi.pms.core.parkinglot</module>
-        <module>domain/dk.sdu.mmmi.pms.core.vehicle</module>
+        <module>core/dk.sdu.mmmi.pms.core.account</module>
+        <module>core/dk.sdu.mmmi.pms.core.booking</module>
+        <module>core/dk.sdu.mmmi.pms.core.parkingspot</module>
+        <module>core/dk.sdu.mmmi.pms.core.parkinglot</module>
+        <module>core/dk.sdu.mmmi.pms.core.vehicle</module>
     </modules>
 
     <properties>
