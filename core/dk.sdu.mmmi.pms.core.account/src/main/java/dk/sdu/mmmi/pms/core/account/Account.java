@@ -9,6 +9,15 @@ public class Account {
     private final String password;
     private final AccountRole accountRole;
 
+    /**
+     * Constructor for creating a new account.
+     *
+     * @param id          Unique identifier for the account.
+     * @param name        Name of the account holder.
+     * @param email       Email address of the account holder.
+     * @param password    Password for the account.
+     * @param accountRole Role of the account (e.g., USER, ADMIN).
+     */
     public Account(UUID id, String name, String email, String password, AccountRole accountRole) {
         this.id = id;
         this.name = name;
