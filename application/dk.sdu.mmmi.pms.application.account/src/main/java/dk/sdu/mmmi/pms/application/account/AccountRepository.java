@@ -3,6 +3,7 @@ package dk.sdu.mmmi.pms.application.account;
 import dk.sdu.mmmi.pms.core.account.Account;
 
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * This interface defines the methods for managing accounts in the application.
@@ -29,14 +30,14 @@ public interface AccountRepository {
      * @param id the ID of the account to find
      * @return an Optional containing the found account, or empty if not found
      */
-    Optional<Account> findById(String id);
+    Optional<Account> findById(UUID id);
 
     /**
      * Deletes an account by its ID.
      *
      * @param id the ID of the account to delete
      */
-    void deleteById(String id);
+    void deleteById(UUID id);
 
     /**
      * Finds an account by its email address.

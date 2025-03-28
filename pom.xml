@@ -5,7 +5,7 @@
     <name>ParkingManagementSystem</name>
     <groupId>dk.sdu.mmmi.pms</groupId>
     <artifactId>pms</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>${project.version}</version>
     <packaging>pom</packaging>
 
     <repositories>
@@ -19,14 +19,21 @@
         <module>core/dk.sdu.mmmi.pms.core.vehicle</module>
         <module>application/dk.sdu.mmmi.pms.application.account</module>
         <module>application/dk.sdu.mmmi.pms.application.shared</module>
+        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>
     </modules>
 
     <properties>
+        <project.version>1.0.1-SNAPSHOT</project.version>
         <java>java</java>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+
+        <spring-context.version>6.2.5</spring-context.version>
+        <spring-security.version>6.4.4</spring-security.version>
+        <spring-data.version>3.4.4</spring-data.version>
+        <jakarta.persistence-api.version>3.2.0</jakarta.persistence-api.version>
     </properties>
 
     <dependencyManagement>
