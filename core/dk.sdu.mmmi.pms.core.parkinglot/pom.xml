@@ -9,7 +9,7 @@
     </parent>
 
     <packaging>jar</packaging>
-    <artifactId>parkinglot</artifactId>
+    <artifactId>core.parkinglot</artifactId>
     <name>dk.sdu.mmmi.pms.core.parkinglot</name>
 
     <dependencies>

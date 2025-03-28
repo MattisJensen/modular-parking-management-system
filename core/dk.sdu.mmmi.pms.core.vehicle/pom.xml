@@ -9,7 +9,7 @@
     </parent>
 
     <packaging>jar</packaging>
-    <artifactId>vehicle</artifactId>
+    <artifactId>core.vehicle</artifactId>
     <name>dk.sdu.mmmi.pms.core.vehicle</name>
 
     <dependencies>

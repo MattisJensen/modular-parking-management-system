@@ -9,7 +9,7 @@
     </parent>
 
     <packaging>jar</packaging>
-    <artifactId>account</artifactId>
+    <artifactId>core.account</artifactId>
     <name>dk.sdu.mmmi.pms.core.account</name>
 
     <dependencies>

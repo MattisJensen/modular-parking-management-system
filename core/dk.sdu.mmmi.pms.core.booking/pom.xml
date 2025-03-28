@@ -9,7 +9,7 @@
     </parent>
 
     <packaging>jar</packaging>
-    <artifactId>booking</artifactId>
+    <artifactId>core.booking</artifactId>
     <name>dk.sdu.mmmi.pms.core.booking</name>
 
     <dependencies>
