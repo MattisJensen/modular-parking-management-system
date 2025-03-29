@@ -21,6 +21,7 @@
         <module>application/dk.sdu.mmmi.pms.application.shared</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>
+        <module>presentation/dk.sdu.mmmi.pms.presentation.account</module>
     </modules>
 
     <properties>
@@ -31,7 +32,9 @@
         <maven.compiler.target>21</maven.compiler.target>
 
         <spring-context.version>6.2.5</spring-context.version>
+        <spring-boot-starter-web.version>3.4.4</spring-boot-starter-web.version>
         <spring-security.version>6.4.4</spring-security.version>
+        <spring-boot-starter-security.version>3.4.4</spring-boot-starter-security.version>
         <spring-data.version>3.4.4</spring-data.version>
         <jakarta.persistence-api.version>3.2.0</jakarta.persistence-api.version>
     </properties>
