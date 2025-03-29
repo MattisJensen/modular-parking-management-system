@@ -5,7 +5,7 @@
     <name>ParkingManagementSystem</name>
     <groupId>dk.sdu.mmmi.pms</groupId>
     <artifactId>pms</artifactId>
-    <version>${project.version}</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <repositories>
@@ -14,14 +14,15 @@
     <modules>
         <module>core/dk.sdu.mmmi.pms.core.account</module>
         <module>core/dk.sdu.mmmi.pms.core.booking</module>
-        <module>core/dk.sdu.mmmi.pms.core.parkingspot</module>
         <module>core/dk.sdu.mmmi.pms.core.parkinglot</module>
+        <module>core/dk.sdu.mmmi.pms.core.parkingspot</module>
         <module>core/dk.sdu.mmmi.pms.core.vehicle</module>
         <module>application/dk.sdu.mmmi.pms.application.account</module>
         <module>application/dk.sdu.mmmi.pms.application.shared</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>
         <module>presentation/dk.sdu.mmmi.pms.presentation.account</module>
+        <module>presentation/dk.sdu.mmmi.pms.presentation.main</module>
     </modules>
 
     <properties>
@@ -86,7 +87,7 @@
                         <argument>--module-path=mods-mvn</argument>
                         <argument>--class-path=libs/*</argument>
 <!--                        <argument>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=127.0.0.1:8000</argument>-->
-<!--                        <argument>&#45;&#45;module=Core/dk.sdu.mmmi.cbse.main.Main</argument>-->
+                        <argument>--module=dk.sdu.mmmi.pms.presentation.main</argument>
                     </arguments>
                 </configuration>
             </plugin>
