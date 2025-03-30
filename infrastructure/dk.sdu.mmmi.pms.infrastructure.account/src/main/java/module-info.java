@@ -9,6 +9,7 @@ module dk.sdu.mmmi.pms.infrastructure.account {
     requires spring.data.jpa;
     requires jakarta.persistence;
     requires spring.orm;
+    requires spring.tx;
 
     exports dk.sdu.mmmi.pms.infrastructure.account;
 

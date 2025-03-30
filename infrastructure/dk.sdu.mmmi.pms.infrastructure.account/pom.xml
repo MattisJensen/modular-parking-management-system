@@ -14,6 +14,7 @@
     <name>dk.sdu.mmmi.pms.infrastructure.account</name>
 
     <dependencies>
+        <!-- Core dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>core.account</artifactId>
@@ -21,6 +22,7 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- Application dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>application.account</artifactId>
@@ -28,10 +30,23 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring-context.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring-tx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
 
         <dependency>
@@ -40,10 +55,11 @@
             <version>${spring-data.version}</version>
         </dependency>
 
+        <!-- JPA dependencies -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <version>${jakarta.persistence-api.version}</version>
+            <version>${jakarta.persistence.version}</version>
         </dependency>
     </dependencies>
 
@@ -62,9 +78,9 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-context,spring-data-jpa,jakarta.persistence-api,
-                                spring-orm
+                                spring-context,spring-data-jpa,jakarta.persistence-api,spring-orm,spring-tx
                             </includeArtifactIds>
+                            <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
                         </configuration>
                     </execution>

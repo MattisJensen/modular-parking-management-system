@@ -13,6 +13,7 @@
     <name>dk.sdu.mmmi.pms.infrastructure.database</name>
 
     <dependencies>
+        <!-- Application dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>application.shared</artifactId>
@@ -20,16 +21,69 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- Postgres dependencies -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
         </dependency>
 
+        <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-context.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring-beans.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring-context.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring-tx.version}</version>
+        </dependency>
     </dependencies>
+
+    <!--adds external dependencies to the compiled modules folder-->
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeArtifactIds>
+                                spring-boot,spring-beans,spring-orm,spring-tx,spring-data-commons,spring-context,spring-jdbc
+                            </includeArtifactIds>
+                            <overWriteReleases>false</overWriteReleases>
+                            <outputDirectory>../../compiled-modules</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

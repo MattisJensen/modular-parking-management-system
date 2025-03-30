@@ -13,6 +13,7 @@
     <name>dk.sdu.mmmi.pms.presentation.account</name>
 
     <dependencies>
+        <!-- Core dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>core.account</artifactId>
@@ -20,6 +21,7 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- Application dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>application.account</artifactId>
@@ -27,6 +29,15 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- Infrastructure dependencies -->
+        <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>infrastructure.security</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -51,6 +62,7 @@
                             <includeArtifactIds>
                                 spring-web
                             </includeArtifactIds>
+                            <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
                         </configuration>
                     </execution>

@@ -13,12 +13,15 @@
     <name>dk.sdu.mmmi.pms.application.account</name>
 
     <dependencies>
+        <!-- Core dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>core.account</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- Application dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>application.shared</artifactId>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>dk.sdu.mmmi.pms</groupId>
@@ -13,22 +14,35 @@
     <name>dk.sdu.mmmi.pms.presentation.main</name>
 
     <dependencies>
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>infrastructure.account</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
+        <!-- Core dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>core.account</artifactId>
             <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
 
+        <!-- Application dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>application.account</artifactId>
             <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Infrastructure dependencies -->
+        <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>infrastructure.account</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>infrastructure.database</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -38,9 +52,24 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- Presentation dependencies -->
+        <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>presentation.account</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
@@ -57,47 +86,28 @@
         </dependency>
 
         <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.2</version> <!-- Check for compatible version -->
-        </dependency>
-
-        <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-observation</artifactId>
-            <version>1.12.5</version>
+            <version>${io.micrometer.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-commons</artifactId>
-            <version>1.12.5</version>
+            <version>${io.micrometer.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>presentation.account</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>infrastructure.database</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging.version}</version>
         </dependency>
     </dependencies>
 
-
-    <!--adds external dependencies to the compiled modules folder-->
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.3.0</version>
                 <executions>
@@ -109,13 +119,17 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-context,spring-core,spring-boot,spring-boot-autoconfigure,spring-beans,
-                                commons-logging,spring-aop,spring-expression,micrometer-observation,micrometer-commons,spring-web
-<!--                                spring-context,spring-core,spring-beans,spring-boot,spring-boot-autoconfigure,spring-aop,spring-expression,spring-jcl-->
+                                spring-context,spring-core,spring-boot,spring-boot-autoconfigure,
+                                spring-beans,spring-aop,spring-expression,spring-web,
+                                tomcat-embed-el,tomcat-embed-websocket,
+                                micrometer-observation,micrometer-commons
                             </includeArtifactIds>
+                            <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
                         </configuration>
                     </execution>
+
+
                     <execution>
                         <id>copy</id>
                         <phase>package</phase>
@@ -127,8 +141,28 @@
                                 <artifactItem>
                                     <groupId>org.springframework.boot</groupId>
                                     <artifactId>spring-boot-starter</artifactId>
-                                    <overWrite>true</overWrite>
                                     <version>${spring-boot.version}</version>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>../../libs</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+
+
+                    <execution>
+                        <id>copy-commons-logging</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>commons-logging</groupId>
+                                    <artifactId>commons-logging</artifactId>
+                                    <version>${commons-logging.version}</version>
+                                    <overWrite>true</overWrite>
                                     <outputDirectory>../../libs</outputDirectory>
                                 </artifactItem>
                             </artifactItems>

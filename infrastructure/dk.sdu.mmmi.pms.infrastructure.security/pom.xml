@@ -13,6 +13,7 @@
     <name>dk.sdu.mmmi.pms.infrastructure.security</name>
 
     <dependencies>
+        <!-- Application dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>application.shared</artifactId>
@@ -20,14 +21,13 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Spring Context for @Component -->
+        <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring-context.version}</version>
         </dependency>
 
-        <!-- Spring Security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-crypto</artifactId>
@@ -38,6 +38,20 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
             <version>${spring-boot.version}</version>
+        </dependency>
+
+        <!-- jakarta dependencies -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>${jakarta.servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>${jakarta.annotation.version}</version>
         </dependency>
     </dependencies>
 
@@ -56,8 +70,11 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-context,spring-security-crypto,spring-security-config,
+                                spring-context,spring-beans,spring-core,spring-security-core,spring-security-crypto,spring-security-config,spring-security-web,
+                                jakarta.annotation-api
                             </includeArtifactIds>
+                            <excludeArtifactIds>jakarta.servlet-api</excludeArtifactIds>
+                            <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
                         </configuration>
                     </execution>
