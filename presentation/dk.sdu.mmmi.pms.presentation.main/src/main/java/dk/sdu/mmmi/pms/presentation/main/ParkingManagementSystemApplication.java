@@ -6,9 +6,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan({
-        "dk.sdu.mmmi.pms.infrastructure.account",
-        "dk.sdu.mmmi.pms.infrastructure.database",
-        "dk.sdu.mmmi.pms.infrastructure.security",
+//        "dk.sdu.mmmi.pms.infrastructure.account",
+//        "dk.sdu.mmmi.pms.infrastructure.database",
+//        "dk.sdu.mmmi.pms.infrastructure.security",
         "dk.sdu.mmmi.pms.presentation.account",
 })
 public class ParkingManagementSystemApplication {

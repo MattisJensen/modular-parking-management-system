@@ -4,7 +4,6 @@ module dk.sdu.mmmi.pms.presentation.account {
     requires spring.web;
     requires spring.context;
     requires dk.sdu.mmmi.pms.application.shared;
-    requires dk.sdu.mmmi.pms.infrastructure.security;
 
     // Make Spring able to find the controller
     opens dk.sdu.mmmi.pms.presentation.account to spring.core, spring.beans, spring.context, spring.web;

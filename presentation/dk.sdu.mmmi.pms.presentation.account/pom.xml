@@ -29,14 +29,6 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Infrastructure dependencies -->
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>infrastructure.security</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
         <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
