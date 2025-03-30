@@ -5,6 +5,8 @@ module dk.sdu.mmmi.pms.presentation.main {
     requires spring.web;
     requires spring.data.jpa;
 
+    requires org.apache.tomcat.embed.core;
+
     requires transitive dk.sdu.mmmi.pms.infrastructure.account;
     requires transitive dk.sdu.mmmi.pms.infrastructure.database;
     requires transitive dk.sdu.mmmi.pms.infrastructure.security;

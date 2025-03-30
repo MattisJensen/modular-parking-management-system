@@ -13,14 +13,6 @@
     <name>dk.sdu.mmmi.pms.infrastructure.database</name>
 
     <dependencies>
-        <!-- Application dependencies -->
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>application.shared</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
         <!-- Postgres dependencies -->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -59,6 +51,24 @@
             <artifactId>spring-tx</artifactId>
             <version>${spring-tx.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${com.zaxxer.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${ch.qos.logback.version}</version>
+        </dependency>
     </dependencies>
 
     <!--adds external dependencies to the compiled modules folder-->
@@ -76,7 +86,10 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-boot,spring-beans,spring-orm,spring-tx,spring-data-commons,spring-context,spring-jdbc
+                                spring-boot,spring-context,spring-beans,spring-orm,spring-tx,
+                                spring-data-commons,spring-jdbc,
+                                postgresql,HikariCP,slf4j-api,logback-classic,logback-core
+
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>

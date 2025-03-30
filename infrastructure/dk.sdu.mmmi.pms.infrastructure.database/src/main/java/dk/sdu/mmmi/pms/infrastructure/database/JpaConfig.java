@@ -29,6 +29,7 @@ public class JpaConfig {
                 .url(url)
                 .username(username)
                 .password(password)
+                .driverClassName("org.postgresql.Driver")
                 .build();
     }
 
@@ -39,7 +40,7 @@ public class JpaConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("dk.sdu.mmmi.pms.infrastructure.shared.database");
+        factory.setPackagesToScan("dk.sdu.mmmi.pms.infrastructure.account.jpa");
         factory.setDataSource(dataSource());
         return factory;
     }
