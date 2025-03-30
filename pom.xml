@@ -45,20 +45,24 @@
     <dependencyManagement>
         <dependencies>
             <!--Dependency Name-->
-<!--            <dependency>-->
-<!--                <groupId>org.example</groupId>-->
-<!--                <artifactId>example-context</artifactId>-->
-<!--                <version>${example.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.example</groupId>-->
+            <!--                <artifactId>example-context</artifactId>-->
+            <!--                <version>${example.version}</version>-->
+            <!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
     <build>
         <plugins>
+            <!-- Enables 'mvn clean' command to delete generated build files
+                 By default, removes the 'target' directory in each module -->
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.2.0</version>
             </plugin>
+
+            <!-- Compiles Java source code across all modules -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
@@ -66,44 +70,64 @@
                     <fork>true</fork>
                 </configuration>
             </plugin>
-            <!-- execute the resulting project -->
+
+            <!-- Plugin for executing the application from Maven command line (mvn exec:exec) -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
+                <!-- Prevents this configuration from being inherited by child modules -->
                 <inherited>false</inherited>
                 <executions>
                     <execution>
                         <goals>
+                            <!-- Uses the exec goal which executes programs and Java applications -->
                             <goal>exec</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
+                    <!-- Uses the java executable defined in properties (${java}) -->
                     <executable>${java}</executable>
+                    <!-- Sets working directory to project root -->
                     <workingDirectory>.</workingDirectory>
+                    <!-- Suppresses full path output when displaying module path -->
                     <longModulepath>false</longModulepath>
                     <arguments>
-                        <argument>-Dorg.lwjgl.util.Debug=true</argument>
+                        <!-- Sets directory where native libraries (JNI) will be searched -->
                         <argument>-Djava.library.path=libs</argument>
+                        <!-- Specifies directory containing compiled Java modules -->
                         <argument>--module-path=compiled-modules</argument>
+                        <!-- Adds all JAR files in libs directory to application classpath -->
                         <argument>--class-path=libs/*</argument>
-<!--                        <argument>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=127.0.0.1:8000</argument>-->
-                        <argument>--module=dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication</argument>                    </arguments>
+                        <!-- Defines the main module and class to run the application -->
+                        <argument>
+                            --module=dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication
+                        </argument>
+                    </arguments>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
     <profiles>
+        <!-- Profile: Parent Project Cleanup -->
+        <!--
+             Extends the Maven Clean Plugin for the parent project only
+             - Automatically activated when there is no 'src' folder (parent POM only)
+             - Ensures that shared build directories are cleaned during 'mvn clean'
+             - Works together with the child-project profile which populates these directories
+        -->
         <profile>
-            <!-- parent project should delete 'compiled-modules' -->
             <id>parent-project</id>
             <activation>
                 <file>
+                    <!-- Activates only for the parent project which typically has no src directory -->
                     <missing>src</missing>
                 </file>
             </activation>
+
             <build>
                 <plugins>
                     <plugin>
@@ -111,9 +135,11 @@
                         <version>3.2.0</version>
                         <configuration>
                             <filesets>
+                                <!-- Removes the compiled modules directory where built artifacts are collected -->
                                 <fileset>
                                     <directory>compiled-modules</directory>
                                 </fileset>
+                                <!-- Removes the libs directory -->
                                 <fileset>
                                     <directory>libs</directory>
                                 </fileset>
@@ -123,14 +149,23 @@
                 </plugins>
             </build>
         </profile>
+
+        <!-- Profile: Module Integration -->
+        <!--
+             Ensures each module's JAR is collected in the shared execution environment
+             - Automatically activated when there is no 'src' folder (modules)
+             - Copies each module's compiled JAR to the central 'compiled-modules' directory
+             - Critical for modular application execution via exec-maven-plugin
+        -->
         <profile>
-            <!-- child projects should copy artifact into 'compiled-modules' -->
             <id>child-project</id>
             <activation>
                 <file>
+                    <!-- Activates for any module containing source code (all modules) -->
                     <exists>src</exists>
                 </file>
             </activation>
+
             <build>
                 <plugins>
                     <plugin>
@@ -139,12 +174,14 @@
                         <executions>
                             <execution>
                                 <id>copy-installed</id>
+                                <!-- Runs during install phase after module is built -->
                                 <phase>install</phase>
                                 <goals>
                                     <goal>copy</goal>
                                 </goals>
                                 <configuration>
                                     <artifactItems>
+                                        <!-- Copies the module's JAR to the compiled-modules directory -->
                                         <artifactItem>
                                             <groupId>${project.groupId}</groupId>
                                             <artifactId>${project.artifactId}</artifactId>
@@ -152,6 +189,7 @@
                                             <type>jar</type>
                                         </artifactItem>
                                     </artifactItems>
+                                    <!-- Specifies where to copy the JAR -->
                                     <outputDirectory>../../compiled-modules</outputDirectory>
                                 </configuration>
                             </execution>
