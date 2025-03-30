@@ -1,6 +1,7 @@
 package dk.sdu.mmmi.pms.infrastructure.account.jpa;
 
 import dk.sdu.mmmi.pms.core.account.AccountRole;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -12,10 +13,19 @@ import java.util.UUID;
 public class AccountJpaEntity {
     @Id
     private UUID id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
     private AccountRole accountRole;
+
 
     public AccountJpaEntity() {}
 

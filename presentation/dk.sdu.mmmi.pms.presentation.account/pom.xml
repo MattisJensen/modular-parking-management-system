@@ -30,7 +30,32 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot-starter-web.version}</version>
+            <version>${spring-boot.version}</version>
         </dependency>
     </dependencies>
+
+    <!--adds external dependencies to the compiled modules folder-->
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeArtifactIds>
+                                spring-web
+                            </includeArtifactIds>
+                            <outputDirectory>../../compiled-modules</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

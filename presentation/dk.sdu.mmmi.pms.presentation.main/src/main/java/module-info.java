@@ -2,13 +2,15 @@ module dk.sdu.mmmi.pms.presentation.main {
     requires spring.boot;
     requires spring.boot.autoconfigure;
     requires spring.context;
+    requires spring.web;
+    requires spring.data.jpa;
 
-    // Open packages for Spring's component scanning
+    requires transitive dk.sdu.mmmi.pms.infrastructure.account;
+    requires transitive dk.sdu.mmmi.pms.infrastructure.database;
+    requires transitive dk.sdu.mmmi.pms.infrastructure.security;
+    requires transitive dk.sdu.mmmi.pms.presentation.account;
+
     opens dk.sdu.mmmi.pms.presentation.main to spring.core, spring.beans, spring.context;
 
-    // Account infrastructure modules
-    requires dk.sdu.mmmi.pms.infrastructure.account;
-    requires dk.sdu.mmmi.pms.core.account;
-    requires dk.sdu.mmmi.pms.application.account;
-    requires dk.sdu.mmmi.pms.infrastructure.security;
+    exports dk.sdu.mmmi.pms.presentation.main;
 }

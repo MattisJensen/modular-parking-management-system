@@ -4,7 +4,7 @@ import dk.sdu.mmmi.pms.application.account.AccountRepository;
 import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.infrastructure.account.jpa.AccountJpaEntity;
 import dk.sdu.mmmi.pms.infrastructure.account.jpa.AccountMapper;
-import dk.sdu.mmmi.pms.infrastructure.account.jpa.SpringDataAccountRepository;
+import dk.sdu.mmmi.pms.infrastructure.account.jpa.AccountJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -12,10 +12,10 @@ import java.util.UUID;
 
 @Repository
 public class JpaAccountRepository implements AccountRepository {
-    private final SpringDataAccountRepository springDataRepo;
+    private final AccountJpaRepository springDataRepo;
     private final AccountMapper mapper;
 
-    public JpaAccountRepository(SpringDataAccountRepository springDataRepo, AccountMapper mapper) {
+    public JpaAccountRepository(AccountJpaRepository springDataRepo, AccountMapper mapper) {
         this.springDataRepo = springDataRepo;
         this.mapper = mapper;
     }

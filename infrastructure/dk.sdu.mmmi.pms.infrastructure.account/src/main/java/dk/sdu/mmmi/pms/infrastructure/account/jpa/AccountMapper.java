@@ -1,7 +1,6 @@
 package dk.sdu.mmmi.pms.infrastructure.account.jpa;
 
 import dk.sdu.mmmi.pms.core.account.Account;
-import dk.sdu.mmmi.pms.core.account.AccountRole;
 
 public class AccountMapper {
     public AccountJpaEntity toJpaEntity(Account account) {

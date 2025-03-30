@@ -18,11 +18,13 @@
             <artifactId>infrastructure.account</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>core.account</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>application.account</artifactId>
@@ -30,20 +32,110 @@
         </dependency>
 
         <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>infrastructure.security</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <version>${spring-boot-starter-security.version}</version>
+            <version>${spring-boot.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>${spring-data.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring-context.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version> <!-- Check for compatible version -->
+        </dependency>
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-observation</artifactId>
+            <version>1.12.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-commons</artifactId>
+            <version>1.12.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>infrastructure.security</artifactId>
+            <artifactId>presentation.account</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>infrastructure.database</artifactId>
             <version>1.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+
+    <!--adds external dependencies to the compiled modules folder-->
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeArtifactIds>
+                                spring-context,spring-core,spring-boot,spring-boot-autoconfigure,spring-beans,
+                                commons-logging,spring-aop,spring-expression,micrometer-observation,micrometer-commons,spring-web
+<!--                                spring-context,spring-core,spring-beans,spring-boot,spring-boot-autoconfigure,spring-aop,spring-expression,spring-jcl-->
+                            </includeArtifactIds>
+                            <outputDirectory>../../compiled-modules</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.springframework.boot</groupId>
+                                    <artifactId>spring-boot-starter</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <version>${spring-boot.version}</version>
+                                    <outputDirectory>../../libs</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

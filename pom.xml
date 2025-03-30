@@ -20,6 +20,7 @@
         <module>application/dk.sdu.mmmi.pms.application.account</module>
         <module>application/dk.sdu.mmmi.pms.application.shared</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>
+        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.database</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>
         <module>presentation/dk.sdu.mmmi.pms.presentation.account</module>
         <module>presentation/dk.sdu.mmmi.pms.presentation.main</module>
@@ -33,11 +34,12 @@
         <maven.compiler.target>21</maven.compiler.target>
 
         <spring-context.version>6.2.5</spring-context.version>
-        <spring-boot-starter-web.version>3.4.4</spring-boot-starter-web.version>
-        <spring-security.version>6.4.4</spring-security.version>
-        <spring-boot-starter-security.version>3.4.4</spring-boot-starter-security.version>
+        <spring-boot.version>3.4.4</spring-boot.version>
         <spring-data.version>3.4.4</spring-data.version>
+        <spring-security.version>6.4.4</spring-security.version>
         <jakarta.persistence-api.version>3.2.0</jakarta.persistence-api.version>
+
+        <postgresql.version>42.7.5</postgresql.version>
     </properties>
 
     <dependencyManagement>
@@ -84,11 +86,10 @@
                     <arguments>
                         <argument>-Dorg.lwjgl.util.Debug=true</argument>
                         <argument>-Djava.library.path=libs</argument>
-                        <argument>--module-path=mods-mvn</argument>
+                        <argument>--module-path=compiled-modules</argument>
                         <argument>--class-path=libs/*</argument>
 <!--                        <argument>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=127.0.0.1:8000</argument>-->
-                        <argument>--module=dk.sdu.mmmi.pms.presentation.main</argument>
-                    </arguments>
+                        <argument>--module=dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication</argument>                    </arguments>
                 </configuration>
             </plugin>
         </plugins>
@@ -96,7 +97,7 @@
 
     <profiles>
         <profile>
-            <!-- parent project should delete 'mods-mvn' -->
+            <!-- parent project should delete 'compiled-modules' -->
             <id>parent-project</id>
             <activation>
                 <file>
@@ -111,7 +112,7 @@
                         <configuration>
                             <filesets>
                                 <fileset>
-                                    <directory>mods-mvn</directory>
+                                    <directory>compiled-modules</directory>
                                 </fileset>
                                 <fileset>
                                     <directory>libs</directory>
@@ -123,7 +124,7 @@
             </build>
         </profile>
         <profile>
-            <!-- child projects should copy artifact into 'mods-mvn' -->
+            <!-- child projects should copy artifact into 'compiled-modules' -->
             <id>child-project</id>
             <activation>
                 <file>
@@ -151,7 +152,7 @@
                                             <type>jar</type>
                                         </artifactItem>
                                     </artifactItems>
-                                    <outputDirectory>../../mods-mvn</outputDirectory>
+                                    <outputDirectory>../../compiled-modules</outputDirectory>
                                 </configuration>
                             </execution>
                         </executions>
