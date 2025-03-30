@@ -48,6 +48,7 @@
         <com.zaxxer.version>6.3.0</com.zaxxer.version>
         <org.slf4j.version>2.0.17</org.slf4j.version>
         <ch.qos.logback.version>1.5.18</ch.qos.logback.version>
+        <org.jboss.logging.version>3.6.1.Final</org.jboss.logging.version>
 
         <postgresql.version>42.7.5</postgresql.version>
     </properties>

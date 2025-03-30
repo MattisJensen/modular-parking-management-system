@@ -16,8 +16,13 @@ module dk.sdu.mmmi.pms.infrastructure.database {
 
     requires com.zaxxer.hikari;
     requires org.slf4j;
+    requires org.hibernate.orm.core;
+    requires org.jboss.logging;
+
+//    requires static jakarta.persistence;
 
 
     exports dk.sdu.mmmi.pms.infrastructure.database;
-    opens dk.sdu.mmmi.pms.infrastructure.database to spring.core, spring.beans, spring.context;
+    opens dk.sdu.mmmi.pms.infrastructure.database to spring.core, spring.beans, spring.context;//, org.hibernate.orm.core;
+//    opens org.hibernate.orm.core to org.jboss.logging;
 }
