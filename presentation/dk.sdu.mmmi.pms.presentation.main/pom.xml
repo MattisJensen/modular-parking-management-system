@@ -10,7 +10,7 @@
     </parent>
 
     <packaging>jar</packaging>
-    <artifactId>presentation.main</artifactId>
+    <artifactId>dk.sdu.mmmi.pms.presentation.main</artifactId>
     <name>dk.sdu.mmmi.pms.presentation.main</name>
 
     <dependencies>
@@ -31,26 +31,26 @@
         </dependency>
 
         <!-- Infrastructure dependencies -->
-<!--        <dependency>-->
-<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
-<!--            <artifactId>infrastructure.account</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
+        <!--            <artifactId>infrastructure.account</artifactId>-->
+        <!--            <version>${project.version}</version>-->
+        <!--            <scope>compile</scope>-->
+        <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
-<!--            <artifactId>infrastructure.database</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
+        <!--            <artifactId>infrastructure.database</artifactId>-->
+        <!--            <version>${project.version}</version>-->
+        <!--            <scope>compile</scope>-->
+        <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
-<!--            <artifactId>infrastructure.security</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
+        <!--            <artifactId>infrastructure.security</artifactId>-->
+        <!--            <version>${project.version}</version>-->
+        <!--            <scope>compile</scope>-->
+        <!--        </dependency>-->
 
         <!-- Presentation dependencies -->
         <dependency>
@@ -65,6 +65,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
             <version>${spring-boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-observation</artifactId>
+            <version>${io.micrometer.version}</version>
         </dependency>
     </dependencies>
 
@@ -83,7 +95,10 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-context
+<!--                                spring-boot, spring-boot-autoconfigure, spring-context,-->
+                                <!--                                spring-core, spring-beans,-->
+                                <!--                                spring-aop, spring-expression,-->
+                                <!--                                commons-logging, micrometer-observation-->
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
@@ -91,47 +106,103 @@
                     </execution>
 
 
-                    <execution>
-                        <id>copy</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.springframework.boot</groupId>
-                                    <artifactId>spring-boot-starter</artifactId>
-                                    <version>${spring-boot.version}</version>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>../../libs</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
+                    <!--                    <execution>-->
+                    <!--                        <id>copy</id>-->
+                    <!--                        <phase>package</phase>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>copy</goal>-->
+                    <!--                        </goals>-->
+                    <!--                        <configuration>-->
+                    <!--                            <artifactItems>-->
+                    <!--                                <artifactItem>-->
+                    <!--                                    <groupId>org.springframework.boot</groupId>-->
+                    <!--                                    <artifactId>spring-boot-starter</artifactId>-->
+                    <!--                                    <version>${spring-boot.version}</version>-->
+                    <!--                                    <overWrite>true</overWrite>-->
+                    <!--                                    <outputDirectory>../../libs</outputDirectory>-->
+                    <!--                                </artifactItem>-->
+                    <!--                            </artifactItems>-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
 
 
-<!--                    <execution>-->
-<!--                        <id>copy-commons-logging</id>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>copy</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <artifactItems>-->
-<!--                                <artifactItem>-->
-<!--                                    <groupId>commons-logging</groupId>-->
-<!--                                    <artifactId>commons-logging</artifactId>-->
-<!--                                    <version>${commons-logging.version}</version>-->
-<!--                                    <overWrite>true</overWrite>-->
-<!--                                    <outputDirectory>../../libs</outputDirectory>-->
-<!--                                </artifactItem>-->
-<!--                            </artifactItems>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
+                    <!--                    <execution>-->
+                    <!--                        <id>copy-commons-logging</id>-->
+                    <!--                        <phase>package</phase>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>copy</goal>-->
+                    <!--                        </goals>-->
+                    <!--                        <configuration>-->
+                    <!--                            <artifactItems>-->
+                    <!--                                <artifactItem>-->
+                    <!--                                    <groupId>commons-logging</groupId>-->
+                    <!--                                    <artifactId>commons-logging</artifactId>-->
+                    <!--                                    <version>${commons-logging.version}</version>-->
+                    <!--                                    <overWrite>true</overWrite>-->
+                    <!--                                    <outputDirectory>../../libs</outputDirectory>-->
+                    <!--                                </artifactItem>-->
+                    <!--                            </artifactItems>-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
 
                 </executions>
             </plugin>
+
+            <!--            <plugin>-->
+            <!--                <groupId>org.codehaus.mojo</groupId>-->
+            <!--                <artifactId>exec-maven-plugin</artifactId>-->
+            <!--                <version>1.6.0</version>-->
+            <!--                <configuration>-->
+            <!--                    <executable>${java}</executable>-->
+            <!--                    <workingDirectory>../..</workingDirectory>-->
+            <!--                    <arguments>-->
+            <!--                        <argument>-Djava.library.path=libs</argument>-->
+            <!--                        <argument>&#45;&#45;module-path=compiled-modules</argument>-->
+            <!--                        <argument>&#45;&#45;class-path=libs/*</argument>-->
+            <!--                        <argument>-->
+            <!--                            &#45;&#45;module=dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication-->
+            <!--                        </argument>-->
+            <!--                    </arguments>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
+
+            <!-- Add exec-maven-plugin HERE, not in parent -->
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>exec-maven-plugin</artifactId>-->
+<!--                <version>1.6.0</version>-->
+<!--                <configuration>-->
+<!--                    <arguments>-->
+<!--                        <argument>-Djava.library.path=libs</argument>-->
+<!--                        <argument>&#45;&#45;module-path</argument>-->
+<!--                        <argument>compiled-modules/*${path.separator}libs/*</argument>-->
+<!--                        <argument>&#45;&#45;module</argument>-->
+<!--                        <argument>-->
+<!--                            dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication-->
+<!--                        </argument>-->
+<!--                    </arguments>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+            <!--            <plugin>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--                <version>${spring-boot.version}</version>-->
+            <!--&lt;!&ndash;                <configuration>&ndash;&gt;-->
+            <!--&lt;!&ndash;                    <mainClass>dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication</mainClass>&ndash;&gt;-->
+            <!--&lt;!&ndash;                </configuration>&ndash;&gt;-->
+            <!--                <configuration>-->
+            <!--                    <classifier>exec</classifier>-->
+            <!--                    <skip>true</skip>-->
+            <!--                </configuration>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <goals>-->
+            <!--                            <goal>repackage</goal>-->
+            <!--                        </goals>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -142,6 +213,10 @@
                         <goals>
                             <goal>repackage</goal>
                         </goals>
+                        <configuration>
+                            <classifier>exec</classifier>
+                            <skip>true</skip>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

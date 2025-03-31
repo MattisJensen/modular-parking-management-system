@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <name>ParkingManagementSystem</name>
@@ -19,9 +20,9 @@
         <module>core/dk.sdu.mmmi.pms.core.vehicle</module>
         <module>application/dk.sdu.mmmi.pms.application.account</module>
         <module>application/dk.sdu.mmmi.pms.application.shared</module>
-<!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>-->
-<!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.database</module>-->
-<!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>-->
+        <!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>-->
+        <!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.database</module>-->
+        <!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>-->
         <module>presentation/dk.sdu.mmmi.pms.presentation.account</module>
         <module>presentation/dk.sdu.mmmi.pms.presentation.main</module>
     </modules>
@@ -82,15 +83,35 @@
                 </configuration>
             </plugin>
 
-            <!-- Plugin for executing the application from Maven command line (mvn exec:exec) -->
+            <!--            <plugin>-->
+            <!--                <groupId>org.codehaus.mojo</groupId>-->
+            <!--                <artifactId>exec-maven-plugin</artifactId>-->
+            <!--                <version>3.5.0</version>-->
+            <!--                <inherited>false</inherited>-->
+            <!--                <configuration>-->
+            <!--                    <executable>${java}</executable>-->
+            <!--                    <workingDirectory>${project.basedir}</workingDirectory>-->
+            <!--                    <arguments>-->
+            <!--                        <argument>-Djava.library.path=libs</argument>-->
+            <!--                        <argument>&#45;&#45;module-path</argument>-->
+            <!--                        <argument>compiled-modules/*${path.separator}libs/*</argument>-->
+            <!--                        <argument>&#45;&#45;module</argument>-->
+            <!--                        <argument>dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication</argument>-->
+            <!--                    </arguments>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
+
+            <!-- Plugin for executing the application from Maven command line (mvn exec:exec)-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
+                <version>3.5.0</version>
                 <!-- Prevents this configuration from being inherited by child modules -->
                 <inherited>false</inherited>
                 <executions>
                     <execution>
+                        <id>run-main-module</id>
+                        <phase>none</phase> <!-- Disable automatic execution -->
                         <goals>
                             <!-- Uses the exec goal which executes programs and Java applications -->
                             <goal>exec</goal>

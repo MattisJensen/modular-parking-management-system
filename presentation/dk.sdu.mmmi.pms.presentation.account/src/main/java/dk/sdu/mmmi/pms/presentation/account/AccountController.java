@@ -1,6 +1,8 @@
 package dk.sdu.mmmi.pms.presentation.account;
 
 import dk.sdu.mmmi.pms.application.account.CreateAccountUseCase;
+import dk.sdu.mmmi.pms.core.account.Account;
+import dk.sdu.mmmi.pms.core.account.AccountRole;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

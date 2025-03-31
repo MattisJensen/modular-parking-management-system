@@ -2,10 +2,10 @@ module dk.sdu.mmmi.pms.presentation.main {
     requires spring.boot;
     requires spring.boot.autoconfigure;
     requires spring.context;
-    requires spring.web;
-//    requires spring.data.jpa;
 
-//    requires org.apache.tomcat.embed.core;
+
+    requires micrometer.observation;
+
 
 //    requires transitive dk.sdu.mmmi.pms.infrastructure.account;
 //    requires transitive dk.sdu.mmmi.pms.infrastructure.database;
