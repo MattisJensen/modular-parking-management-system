@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Clean, Build &amp; Spring Run" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="Clean &amp; Spring Run" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings" />
       <option name="myRunnerSettings" />
@@ -28,7 +28,7 @@
       </option>
     </MavenSettings>
     <method v="2">
-      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="-T 8 clean install" />
+      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="-T 8 clean" />
     </method>
   </configuration>
 </component>
