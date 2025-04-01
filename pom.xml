@@ -20,9 +20,9 @@
         <module>core/dk.sdu.mmmi.pms.core.vehicle</module>
         <module>application/dk.sdu.mmmi.pms.application.account</module>
         <module>application/dk.sdu.mmmi.pms.application.shared</module>
-        <!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>-->
-        <!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.database</module>-->
-        <!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>-->
+        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>
+        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.database</module>
+        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>
         <module>presentation/dk.sdu.mmmi.pms.presentation.account</module>
         <module>presentation/dk.sdu.mmmi.pms.presentation.main</module>
     </modules>
@@ -54,52 +54,23 @@
         <postgresql.version>42.7.5</postgresql.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <!--Dependency Name-->
-            <!--            <dependency>-->
-            <!--                <groupId>org.example</groupId>-->
-            <!--                <artifactId>example-context</artifactId>-->
-            <!--                <version>${example.version}</version>-->
-            <!--            </dependency>-->
-        </dependencies>
-    </dependencyManagement>
-
     <build>
         <plugins>
             <!-- Enables 'mvn clean' command to delete generated build files
                  By default, removes the 'target' directory in each module -->
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.4.1</version>
             </plugin>
 
             <!-- Compiles Java source code across all modules -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
+                <version>3.14.0</version>
                 <configuration>
                     <fork>true</fork>
                 </configuration>
             </plugin>
-
-            <!--            <plugin>-->
-            <!--                <groupId>org.codehaus.mojo</groupId>-->
-            <!--                <artifactId>exec-maven-plugin</artifactId>-->
-            <!--                <version>3.5.0</version>-->
-            <!--                <inherited>false</inherited>-->
-            <!--                <configuration>-->
-            <!--                    <executable>${java}</executable>-->
-            <!--                    <workingDirectory>${project.basedir}</workingDirectory>-->
-            <!--                    <arguments>-->
-            <!--                        <argument>-Djava.library.path=libs</argument>-->
-            <!--                        <argument>&#45;&#45;module-path</argument>-->
-            <!--                        <argument>compiled-modules/*${path.separator}libs/*</argument>-->
-            <!--                        <argument>&#45;&#45;module</argument>-->
-            <!--                        <argument>dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication</argument>-->
-            <!--                    </arguments>-->
-            <!--                </configuration>-->
-            <!--            </plugin>-->
 
             <!-- Plugin for executing the application from Maven command line (mvn exec:exec)-->
             <plugin>
@@ -136,6 +107,9 @@
                         <argument>
                             --module=dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication
                         </argument>
+<!--                        <argument>-->
+<!--                            &#45;&#45;add-opens=dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main=spring.core-->
+<!--                        </argument>-->
                     </arguments>
                 </configuration>
             </plugin>
@@ -164,7 +138,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-clean-plugin</artifactId>
-                        <version>3.2.0</version>
+                        <version>3.4.1</version>
                         <configuration>
                             <filesets>
                                 <!-- Removes the compiled modules directory where built artifacts are collected -->
