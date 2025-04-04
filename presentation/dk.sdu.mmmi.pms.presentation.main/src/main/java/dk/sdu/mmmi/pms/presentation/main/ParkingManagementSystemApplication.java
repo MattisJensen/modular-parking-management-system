@@ -11,7 +11,8 @@ import java.util.concurrent.CountDownLatch;
 @SpringBootApplication
 @ComponentScan({
 //        "dk.sdu.mmmi.pms.infrastructure.account",
-//        "dk.sdu.mmmi.pms.infrastructure.database",
+//        "dk.sdu.mmmi.pms.infrastructure.account.jpa",
+        "dk.sdu.mmmi.pms.infrastructure.database",
         "dk.sdu.mmmi.pms.infrastructure.security",
         "dk.sdu.mmmi.pms.presentation.account",
 //        "dk.sdu.mmmi.pms.presentation.main",

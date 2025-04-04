@@ -32,49 +32,6 @@
             <artifactId>spring-context</artifactId>
             <version>${spring-context.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>${spring-beans.version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${spring-context.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${spring-tx.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>${com.zaxxer.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${org.slf4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${ch.qos.logback.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <version>${org.jboss.logging.version}</version>
-        </dependency>
     </dependencies>
 
     <!--adds external dependencies to the compiled modules folder-->
@@ -92,29 +49,12 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-boot,spring-context,spring-beans,spring-orm,spring-tx,
-                                spring-data-commons,spring-jdbc,
-                                postgresql,HikariCP,slf4j-api,logback-classic,logback-core,
-                                hibernate-core,jboss-logging
+                                spring-boot,spring-context,spring-beans,
+                                spring-orm,spring-tx,
+                                java-sql,
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>copy-class-path</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <includeArtifactIds>
-                                hibernate-core,
-                                jboss-logging
-                            </includeArtifactIds>
-                            <overWriteReleases>false</overWriteReleases>
-                            <outputDirectory>../../libs</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>

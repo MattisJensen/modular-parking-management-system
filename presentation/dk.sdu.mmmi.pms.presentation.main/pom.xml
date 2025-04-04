@@ -10,7 +10,7 @@
     </parent>
 
     <packaging>jar</packaging>
-    <artifactId>dk.sdu.mmmi.pms.presentation.main</artifactId>
+    <artifactId>presentation.main</artifactId>
     <name>dk.sdu.mmmi.pms.presentation.main</name>
 
     <dependencies>
@@ -38,12 +38,12 @@
 <!--            <scope>compile</scope>-->
 <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
-<!--            <artifactId>infrastructure.database</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>infrastructure.database</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
 
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
