@@ -8,14 +8,14 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import javax.sql.DataSource;
 
 @Configuration
-public class JpaConfig {
+public class DatabaseConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
             EntityManagerFactoryBuilder builder, DataSource dataSource) {
 
         LocalContainerEntityManagerFactoryBean emf = builder
                 .dataSource(dataSource)
-                .packages("dk.sdu.mmmi.pms.infrastructure.account")
+                .packages("dk.sdu.mmmi.pms.infrastructure")
                 .build();
 
         emf.setEntityManagerFactoryInterface(jakarta.persistence.EntityManagerFactory.class);

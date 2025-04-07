@@ -12,7 +12,6 @@ import java.util.UUID;
  * AccountRepositoryImpl is the implementation of the AccountRepository interface.
  * It uses AcccountJpaRepository to perform CRUD operations on the database.
  */
-@EnableJpaRepositories("dk.sdu.mmmi.pms.infrastructure.account")
 @Repository
 public class AccountRepositoryImpl implements AccountRepository {
     private final AccountJpaRepository springDataRepo;

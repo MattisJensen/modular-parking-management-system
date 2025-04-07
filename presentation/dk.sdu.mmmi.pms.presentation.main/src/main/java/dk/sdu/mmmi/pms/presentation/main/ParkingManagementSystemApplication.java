@@ -2,18 +2,16 @@ package dk.sdu.mmmi.pms.presentation.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.Arrays;
 
 @SpringBootApplication
-@ComponentScan({
-        "dk.sdu.mmmi.pms.infrastructure.account",
-        "dk.sdu.mmmi.pms.infrastructure.database",
-        "dk.sdu.mmmi.pms.infrastructure.security",
-        "dk.sdu.mmmi.pms.presentation.account",
-})
+@EnableJpaRepositories(basePackages = "dk.sdu.mmmi.pms.infrastructure")
+@ComponentScan(basePackages = "dk.sdu.mmmi.pms")
 public class ParkingManagementSystemApplication {
     public static void main(String[] args) {
         System.out.println("Starting Parking Management System Application");
