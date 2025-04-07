@@ -2,22 +2,20 @@ package dk.sdu.mmmi.pms.infrastructure.account;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
 import dk.sdu.mmmi.pms.core.account.Account;
-import dk.sdu.mmmi.pms.infrastructure.account.jpa.AccountJpaEntity;
-import dk.sdu.mmmi.pms.infrastructure.account.jpa.AccountMapper;
-import dk.sdu.mmmi.pms.infrastructure.account.jpa.AccountJpaRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 import java.util.UUID;
 
+@EnableJpaRepositories("dk.sdu.mmmi.pms.infrastructure.account")
 @Repository
-@Component
 public class JpaAccountRepository implements AccountRepository {
-    private final AccountJpaRepository springDataRepo;
+    private final AccountSpringDataRepository springDataRepo;
     private final AccountMapper mapper;
 
-    public JpaAccountRepository(AccountJpaRepository springDataRepo, AccountMapper mapper) {
+    public JpaAccountRepository(AccountSpringDataRepository springDataRepo, AccountMapper mapper) {
         this.springDataRepo = springDataRepo;
         this.mapper = mapper;
     }
@@ -47,6 +45,7 @@ public class JpaAccountRepository implements AccountRepository {
 
     @Override
     public Optional<Account> findByEmail(String email) {
-        return Optional.empty();
+        return springDataRepo.findByEmail(email)
+                .map(mapper::toCore);
     }
 }

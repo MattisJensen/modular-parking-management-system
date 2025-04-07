@@ -6,16 +6,13 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 import java.util.Arrays;
-import java.util.concurrent.CountDownLatch;
 
 @SpringBootApplication
 @ComponentScan({
-//        "dk.sdu.mmmi.pms.infrastructure.account",
-//        "dk.sdu.mmmi.pms.infrastructure.account.jpa",
+        "dk.sdu.mmmi.pms.infrastructure.account",
         "dk.sdu.mmmi.pms.infrastructure.database",
         "dk.sdu.mmmi.pms.infrastructure.security",
         "dk.sdu.mmmi.pms.presentation.account",
-//        "dk.sdu.mmmi.pms.presentation.main",
 })
 public class ParkingManagementSystemApplication {
     public static void main(String[] args) {

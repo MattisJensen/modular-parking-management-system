@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.pms.infrastructure.account.jpa;
+package dk.sdu.mmmi.pms.infrastructure.account;
 
 import dk.sdu.mmmi.pms.core.account.Account;
 import org.springframework.stereotype.Component;

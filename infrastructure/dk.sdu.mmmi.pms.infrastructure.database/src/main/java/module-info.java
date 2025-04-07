@@ -2,13 +2,11 @@ module dk.sdu.mmmi.pms.infrastructure.database {
     // Internal dependencies
 
     // External dependencies
-    requires spring.context;
     requires spring.boot;
-    requires spring.beans;
-
-    requires java.sql;
+    requires spring.context;
     requires spring.orm;
-    requires spring.tx;
+
+    requires jakarta.persistence;
 
     exports dk.sdu.mmmi.pms.infrastructure.database;
 }

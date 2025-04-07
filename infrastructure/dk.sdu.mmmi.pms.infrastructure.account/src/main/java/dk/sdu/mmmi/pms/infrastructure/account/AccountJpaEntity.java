@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.pms.infrastructure.account.jpa;
+package dk.sdu.mmmi.pms.infrastructure.account;
 
 import dk.sdu.mmmi.pms.core.account.AccountRole;
 import jakarta.persistence.Column;
@@ -25,7 +25,6 @@ public class AccountJpaEntity {
 
     @Column(nullable = false)
     private AccountRole accountRole;
-
 
     public AccountJpaEntity() {}
 

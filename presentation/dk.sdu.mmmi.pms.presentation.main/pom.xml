@@ -31,12 +31,12 @@
         </dependency>
 
         <!-- Infrastructure dependencies -->
-<!--        <dependency>-->
-<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
-<!--            <artifactId>infrastructure.account</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>infrastructure.account</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
 
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
