@@ -6,7 +6,11 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Spring Data JPA repository for the Account entity.
+ * This interface extends JpaRepository to provide CRUD operations on AccountJpaEntity.
+ */
 @Repository
-public interface AccountSpringDataRepository extends JpaRepository<AccountJpaEntity, UUID> {
+public interface AccountJpaRepository extends JpaRepository<AccountJpaEntity, UUID> {
     Optional<AccountJpaEntity> findByEmail(String email);
 }

@@ -8,13 +8,17 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * AccountRepositoryImpl is the implementation of the AccountRepository interface.
+ * It uses AcccountJpaRepository to perform CRUD operations on the database.
+ */
 @EnableJpaRepositories("dk.sdu.mmmi.pms.infrastructure.account")
 @Repository
-public class JpaAccountRepository implements AccountRepository {
-    private final AccountSpringDataRepository springDataRepo;
+public class AccountRepositoryImpl implements AccountRepository {
+    private final AccountJpaRepository springDataRepo;
     private final AccountMapper mapper;
 
-    public JpaAccountRepository(AccountSpringDataRepository springDataRepo, AccountMapper mapper) {
+    public AccountRepositoryImpl(AccountJpaRepository springDataRepo, AccountMapper mapper) {
         this.springDataRepo = springDataRepo;
         this.mapper = mapper;
     }

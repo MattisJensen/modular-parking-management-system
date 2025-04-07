@@ -8,6 +8,10 @@ import jakarta.persistence.Table;
 
 import java.util.UUID;
 
+/**
+ * JPA entity representing an Account in the database.
+ * This class is mapped to the "accounts" table and contains fields for account details.
+ */
 @Entity
 @Table(name = "accounts")
 public class AccountJpaEntity {
