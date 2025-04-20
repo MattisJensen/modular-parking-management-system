@@ -9,4 +9,5 @@ module dk.sdu.mmmi.pms.presentation.account {
     requires spring.web;
 
     exports dk.sdu.mmmi.pms.presentation.account;
+    opens dk.sdu.mmmi.pms.presentation.account to spring.core, spring.beans, spring.context, spring.web;
 }

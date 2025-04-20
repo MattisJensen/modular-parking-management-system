@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AccountConfig {
-    @Bean
-    public CreateAccountUseCase createAccountUseCase(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
-        return new CreateAccountUseCase(accountRepository, passwordEncoder);
-    }
+//    @Bean
+//    public CreateAccountUseCase createAccountUseCase(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
+//        return new CreateAccountUseCase(accountRepository, passwordEncoder);
+//    }
 }
 
 

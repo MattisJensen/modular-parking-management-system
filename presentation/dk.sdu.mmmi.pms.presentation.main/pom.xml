@@ -15,42 +15,42 @@
 
     <dependencies>
         <!-- Core dependencies -->
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>core.account</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
+<!--            <artifactId>core.account</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
 
-        <!-- Application dependencies -->
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>application.account</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
+<!--        &lt;!&ndash; Application dependencies &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
+<!--            <artifactId>application.account</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
 
-        <!-- Infrastructure dependencies -->
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>infrastructure.account</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
+<!--        &lt;!&ndash; Infrastructure dependencies &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
+<!--            <artifactId>infrastructure.account</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>infrastructure.database</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
+<!--            <artifactId>infrastructure.database</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>infrastructure.security</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
+<!--            <artifactId>infrastructure.security</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
 
         <!-- Presentation dependencies -->
         <dependency>
@@ -62,16 +62,53 @@
 
         <!-- Spring dependencies -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>${spring-boot.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-webmvc.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>${spring-data.version}</version>
-            <scope>compile</scope>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring-webmvc.version}</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.data</groupId>-->
+<!--            <artifactId>spring-data-jpa</artifactId>-->
+<!--            <version>${spring-data.version}</version>-->
+<!--        </dependency>-->
+
+        <!-- Tomcat dependencies-->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>11.0.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>${jakarta.annotation.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring-webmvc.version}</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>javax.servlet</groupId>-->
+<!--            <artifactId>javax.servlet-api</artifactId>-->
+<!--            <version>4.0.1</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging.version}</version>
         </dependency>
     </dependencies>
 
@@ -90,7 +127,10 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-boot, spring-boot-autoconfigure, spring-context, spring-data-jpa,
+<!--                                spring-boot, spring-boot-autoconfigure, -->
+                                spring-context, spring-data-jpa, spring-web,
+                                tomcat-embed-core, spring-webmvc, jakarta.annotation-api,
+                                commons-logging, spring-aop, spring-expression, micrometer-observation
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>

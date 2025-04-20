@@ -35,6 +35,7 @@
         <maven.compiler.target>21</maven.compiler.target>
 
         <spring-context.version>6.2.5</spring-context.version>
+        <spring-webmvc.version>6.2.5</spring-webmvc.version>
         <spring-beans.version>6.2.5</spring-beans.version>
         <spring-tx.version>6.2.5</spring-tx.version>
         <spring-boot.version>3.4.4</spring-boot.version>
