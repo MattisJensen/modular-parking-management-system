@@ -12,6 +12,7 @@ public class ParkingManagementSystemApplication {
     public static void main(String[] args) throws Exception {
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(8080);
+        tomcat.getConnector();
 
         Context context = tomcat.addContext("", null);
 

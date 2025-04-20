@@ -7,8 +7,6 @@ module dk.sdu.mmmi.pms.presentation.main {
     requires org.apache.tomcat.embed.core;
 
     requires jakarta.annotation;
-//    requires org.apache.commons.logging;
-
 
     // Internal dependencies
     requires dk.sdu.mmmi.pms.presentation.account;

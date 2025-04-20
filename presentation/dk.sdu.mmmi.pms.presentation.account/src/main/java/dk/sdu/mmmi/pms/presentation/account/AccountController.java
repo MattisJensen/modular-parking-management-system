@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/account")
 public class AccountController {
-    @GetMapping("/test")
+    @GetMapping("/test4")
     public String test() {
         return "Account service is up and running!";
     }
