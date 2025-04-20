@@ -30,10 +30,16 @@
         </dependency>
 
         <!-- Spring dependencies -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-web</artifactId>-->
+<!--            <version>${spring-boot.version}</version>-->
+<!--        </dependency>-->
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
     </dependencies>
 
@@ -52,7 +58,7 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-web
+<!--                                spring-web-->
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>

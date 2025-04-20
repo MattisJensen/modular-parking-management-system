@@ -15,43 +15,8 @@
 
     <dependencies>
         <!-- Core dependencies -->
-<!--        <dependency>-->
-<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
-<!--            <artifactId>core.account</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; Application dependencies &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
-<!--            <artifactId>application.account</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; Infrastructure dependencies &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
-<!--            <artifactId>infrastructure.account</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
-<!--            <artifactId>infrastructure.database</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>dk.sdu.mmmi.pms</groupId>-->
-<!--            <artifactId>infrastructure.security</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
-
+        <!-- Application dependencies -->
+        <!-- Infrastructure dependencies -->
         <!-- Presentation dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
@@ -60,55 +25,50 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Spring dependencies -->
+        <!-- External dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${spring-webmvc.version}</version>
+            <version>${springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jcl</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>${spring-webmvc.version}</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.data</groupId>-->
-<!--            <artifactId>spring-data-jpa</artifactId>-->
-<!--            <version>${spring-data.version}</version>-->
-<!--        </dependency>-->
-
-        <!-- Tomcat dependencies-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>11.0.6</version>
+            <version>${tomcat.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-logging-juli</artifactId>
+            <version>${tomcat-embed-logging-juli.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>commons-logging</groupId>-->
+<!--            <artifactId>commons-logging</artifactId>-->
+<!--            <version>${commons-logging.version}</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
             <version>${jakarta.annotation.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-expression</artifactId>
-            <version>${spring-webmvc.version}</version>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>javax.servlet</groupId>-->
-<!--            <artifactId>javax.servlet-api</artifactId>-->
-<!--            <version>4.0.1</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
-
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>${commons-logging.version}</version>
         </dependency>
     </dependencies>
 
@@ -127,48 +87,13 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-<!--                                spring-boot, spring-boot-autoconfigure, -->
-                                spring-context, spring-data-jpa, spring-web,
-                                tomcat-embed-core, spring-webmvc, jakarta.annotation-api,
-                                commons-logging, spring-aop, spring-expression, micrometer-observation
+                                spring-context, spring-web, spring-webmvc, spring-jcl,
+                                tomcat-embed-core,
+                                jakarta.annotation-api,
+                                commons-logging,
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
-                        </configuration>
-                    </execution>
-<!--                    <execution>-->
-<!--                        <id>copy</id>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>copy</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <artifactItems>-->
-<!--                                <artifactItem>-->
-<!--                                    <groupId>org.springframework.boot</groupId>-->
-<!--                                    <artifactId>spring-boot-starter</artifactId>-->
-<!--                                    <version>${spring-boot.version}</version>-->
-<!--                                    <overWrite>true</overWrite>-->
-<!--                                    <outputDirectory>../../libs</outputDirectory>-->
-<!--                                </artifactItem>-->
-<!--                            </artifactItems>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                        <configuration>
-                            <classifier>exec</classifier>
-                            <skip>true</skip>
                         </configuration>
                     </execution>
                 </executions>

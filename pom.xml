@@ -13,16 +13,16 @@
     </repositories>
 
     <modules>
-        <module>core/dk.sdu.mmmi.pms.core.account</module>
-        <module>core/dk.sdu.mmmi.pms.core.booking</module>
-        <module>core/dk.sdu.mmmi.pms.core.parkinglot</module>
-        <module>core/dk.sdu.mmmi.pms.core.parkingspot</module>
-        <module>core/dk.sdu.mmmi.pms.core.vehicle</module>
-        <module>application/dk.sdu.mmmi.pms.application.account</module>
-        <module>application/dk.sdu.mmmi.pms.application.shared</module>
-        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>
-        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.database</module>
-        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>
+<!--        <module>core/dk.sdu.mmmi.pms.core.account</module>-->
+<!--        <module>core/dk.sdu.mmmi.pms.core.booking</module>-->
+<!--        <module>core/dk.sdu.mmmi.pms.core.parkinglot</module>-->
+<!--        <module>core/dk.sdu.mmmi.pms.core.parkingspot</module>-->
+<!--        <module>core/dk.sdu.mmmi.pms.core.vehicle</module>-->
+<!--        <module>application/dk.sdu.mmmi.pms.application.account</module>-->
+<!--        <module>application/dk.sdu.mmmi.pms.application.shared</module>-->
+<!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>-->
+<!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.database</module>-->
+<!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>-->
         <module>presentation/dk.sdu.mmmi.pms.presentation.account</module>
         <module>presentation/dk.sdu.mmmi.pms.presentation.main</module>
     </modules>
@@ -33,6 +33,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+
+        <springframework.version>6.2.5</springframework.version>
+        <tomcat.version>11.0.6</tomcat.version>
+        <tomcat-embed-logging-juli.version>8.5.2</tomcat-embed-logging-juli.version>
+        <jackson.version>2.18.3</jackson.version>
 
         <spring-context.version>6.2.5</spring-context.version>
         <spring-webmvc.version>6.2.5</spring-webmvc.version>
@@ -105,6 +110,9 @@
                         <!-- Adds all JAR files in libs directory to application classpath -->
                         <argument>--class-path=libs/*</argument>
                         <!-- Defines the main module and class to run the application -->
+                        <argument>--add-opens=java.base/java.lang=org.apache.tomcat.embed.core</argument>
+                        <argument>--add-opens=java.rmi/sun.rmi.transport=org.apache.tomcat.embed.core</argument>
+                        <argument>--add-modules=spring.jcl</argument>
                         <argument>
                             --module=dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication
                         </argument>
