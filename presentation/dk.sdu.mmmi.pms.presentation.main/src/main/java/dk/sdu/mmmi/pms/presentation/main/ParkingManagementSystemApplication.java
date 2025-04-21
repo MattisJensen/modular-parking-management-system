@@ -25,26 +25,7 @@ public class ParkingManagementSystemApplication {
         context.addServletMappingDecoded("/*", "dispatcherServlet");
 
         tomcat.start();
-        printPmsSpecificBeans(appContext);
+        BeanPrinter.printPackageSpecificBeans(appContext, "dk.sdu.mmmi.pms");
         tomcat.getServer().await();
-    }
-
-    public static void printPmsSpecificBeans(ApplicationContext context) {
-        System.out.println("\n=== Beans of PMS Modules ===");
-        String[] beanNames = context.getBeanDefinitionNames();
-        Arrays.sort(beanNames);
-        int pmsBeanCount = 0;
-
-        for (String beanName : beanNames) {
-            try {
-                Class<?> type = context.getType(beanName);
-                if (type != null && type.getName().startsWith("dk.sdu.mmmi.pms")) {
-                    System.out.println(beanName + " - " + type.getName());
-                    pmsBeanCount++;
-                }
-            } catch (Exception e) {
-                System.out.println("Error getting type for bean: " + beanName);
-            }
-        }
     }
 }
