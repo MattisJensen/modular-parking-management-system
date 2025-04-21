@@ -5,7 +5,6 @@ module dk.sdu.mmmi.pms.presentation.main {
     requires spring.webmvc;
 
     requires org.apache.tomcat.embed.core;
-
     requires jakarta.annotation;
 
     // Internal dependencies

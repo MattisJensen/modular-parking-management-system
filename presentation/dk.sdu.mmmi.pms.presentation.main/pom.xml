@@ -31,50 +31,17 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${springframework.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jcl</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
             <version>${tomcat.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-logging-juli</artifactId>
-            <version>${tomcat-embed-logging-juli.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <version>${tomcat.version}</version>
-        </dependency>
-
-        <!--        <dependency>-->
-        <!--            <groupId>commons-logging</groupId>-->
-        <!--            <artifactId>commons-logging</artifactId>-->
-        <!--            <version>${commons-logging.version}</version>-->
-        <!--        </dependency>-->
 
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
             <version>${jakarta.annotation.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>${jakarta.servlet.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -93,7 +60,7 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-context, spring-web, spring-webmvc, spring-jcl,
+                                spring-context, spring-web, spring-webmvc,
                                 tomcat-embed-core,
                                 jakarta.annotation-api,
                             </includeArtifactIds>
@@ -102,24 +69,24 @@
                         </configuration>
                     </execution>
 
-                    <execution>
-                        <id>copy</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.apache.tomcat.embed</groupId>
-                                    <artifactId>tomcat-embed-core</artifactId>
-                                    <version>${tomcat.version}</version>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>../../libs</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
+<!--                    <execution>-->
+<!--                        <id>copy</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>copy</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <artifactItems>-->
+<!--                                <artifactItem>-->
+<!--                                    <groupId>org.apache.tomcat.embed</groupId>-->
+<!--                                    <artifactId>tomcat-embed-core</artifactId>-->
+<!--                                    <version>${tomcat.version}</version>-->
+<!--                                    <overWrite>true</overWrite>-->
+<!--                                    <outputDirectory>../../libs</outputDirectory>-->
+<!--                                </artifactItem>-->
+<!--                            </artifactItems>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
                 </executions>
             </plugin>
         </plugins>

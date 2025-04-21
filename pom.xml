@@ -110,9 +110,6 @@
                         <!-- Adds all JAR files in libs directory to application classpath -->
                         <argument>--class-path=libs/*</argument>
                         <!-- Defines the main module and class to run the application -->
-                        <argument>--add-opens=java.base/java.lang=org.apache.tomcat.embed.core</argument>
-                        <argument>--add-opens=java.rmi/sun.rmi.transport=org.apache.tomcat.embed.core</argument>
-                        <argument>--add-modules=spring.jcl</argument>
                         <argument>
                             --module=dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication
                         </argument>
