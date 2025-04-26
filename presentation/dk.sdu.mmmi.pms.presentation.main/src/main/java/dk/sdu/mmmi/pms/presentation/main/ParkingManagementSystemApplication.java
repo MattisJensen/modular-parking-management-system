@@ -24,6 +24,13 @@ public class ParkingManagementSystemApplication {
         startServer(tomcat, springContext);
     }
 
+    /**
+     * Starts the Tomcat server and waits for it to finish.
+     *
+     * @param tomcat  The Tomcat server instance.
+     * @param context The Spring application context.
+     * @throws Exception If an error occurs while starting the server.
+     */
     private static void startServer(Tomcat tomcat, AnnotationConfigWebApplicationContext context) throws Exception {
         tomcat.start();
         BeanPrinter.printPackageSpecificBeans(context, "dk.sdu.mmmi.pms");

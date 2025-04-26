@@ -13,7 +13,7 @@
     </repositories>
 
     <modules>
-<!--        <module>core/dk.sdu.mmmi.pms.core.account</module>-->
+        <module>core/dk.sdu.mmmi.pms.core.account</module>
 <!--        <module>core/dk.sdu.mmmi.pms.core.booking</module>-->
 <!--        <module>core/dk.sdu.mmmi.pms.core.parkinglot</module>-->
 <!--        <module>core/dk.sdu.mmmi.pms.core.parkingspot</module>-->
