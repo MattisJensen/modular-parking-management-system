@@ -18,7 +18,7 @@
 <!--        <module>core/dk.sdu.mmmi.pms.core.parkinglot</module>-->
 <!--        <module>core/dk.sdu.mmmi.pms.core.parkingspot</module>-->
 <!--        <module>core/dk.sdu.mmmi.pms.core.vehicle</module>-->
-<!--        <module>application/dk.sdu.mmmi.pms.application.account</module>-->
+        <module>application/dk.sdu.mmmi.pms.application.account</module>
         <module>application/dk.sdu.mmmi.pms.application.shared</module>
 <!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>-->
 <!--        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.database</module>-->

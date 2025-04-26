@@ -24,13 +24,6 @@
         </dependency>
         <!-- Infrastructure dependencies -->
         <!-- Presentation dependencies -->
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>presentation.account</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
         <!-- External dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -66,9 +59,11 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-context, spring-web, spring-webmvc,
+                                spring-aop, spring-beans, spring-context, spring-core,
+                                spring-expression, spring-jcl, spring-web, spring-webmvc,
                                 tomcat-embed-core,
                                 jakarta.annotation-api,
+                                micrometer-commons, micrometer-observation,
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>

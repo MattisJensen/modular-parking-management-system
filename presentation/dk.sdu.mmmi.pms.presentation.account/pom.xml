@@ -52,13 +52,14 @@
                 <executions>
                     <execution>
                         <id>copy-dependencies</id>
-                        <phase>package</phase>
+<!--                        <phase>package</phase>-->
+                        <phase>none</phase> <!-- skips execution -->
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-<!--                                spring-web-->
+                                spring-context, spring-web
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
