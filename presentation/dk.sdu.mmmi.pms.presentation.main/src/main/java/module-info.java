@@ -1,3 +1,5 @@
+import dk.sdu.mmmi.pms.application.shared.ModuleConfigurationSPI;
+
 module dk.sdu.mmmi.pms.presentation.main {
     // External dependencies
     requires spring.context;
@@ -7,8 +9,10 @@ module dk.sdu.mmmi.pms.presentation.main {
     requires org.apache.tomcat.embed.core;
     requires jakarta.annotation;
 
-    // Internal dependencies
-    requires dk.sdu.mmmi.pms.presentation.account;
+    opens dk.sdu.mmmi.pms.presentation.main to spring.beans, spring.core, spring.context, spring.web;
+    opens dk.sdu.mmmi.pms.presentation.main.config to spring.beans, spring.context, spring.core, spring.web;
 
-    exports dk.sdu.mmmi.pms.presentation.main;
+    // Internal dependencies
+    requires dk.sdu.mmmi.pms.application.shared;
+    uses ModuleConfigurationSPI;
 }

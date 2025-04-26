@@ -16,6 +16,12 @@
     <dependencies>
         <!-- Core dependencies -->
         <!-- Application dependencies -->
+        <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>application.shared</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- Infrastructure dependencies -->
         <!-- Presentation dependencies -->
         <dependency>
