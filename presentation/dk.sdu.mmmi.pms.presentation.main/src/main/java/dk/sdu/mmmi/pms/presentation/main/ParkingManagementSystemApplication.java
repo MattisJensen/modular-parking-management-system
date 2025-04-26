@@ -1,38 +1,32 @@
 package dk.sdu.mmmi.pms.presentation.main;
 
-import dk.sdu.mmmi.pms.application.shared.ModuleConfigurationSPI;
+import dk.sdu.mmmi.pms.presentation.main.config.AppConfig;
+import dk.sdu.mmmi.pms.presentation.main.spring.BeanPrinter;
+import dk.sdu.mmmi.pms.presentation.main.spring.SpringContextInitializer;
+import dk.sdu.mmmi.pms.presentation.main.tomcat.ServletRegistrar;
+import dk.sdu.mmmi.pms.presentation.main.tomcat.TomcatServerFactory;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
-
-import java.util.ServiceLoader;
 
 public class ParkingManagementSystemApplication {
-    public static void main(String[] args) throws Exception {
-        // Initialize embedded Tomcat server
-        Tomcat tomcat = new Tomcat();
-        tomcat.setPort(8080);
-        tomcat.getConnector();
+    private static final int PORT = 8080;
+    private static final String SERVLET_NAME = "dispatcherServlet";
 
-        // Create a root context for the Tomcat server
+    public static void main(String[] args) throws Exception {
+        Tomcat tomcat = TomcatServerFactory.createServer(PORT);
         Context tomcatContext = tomcat.addContext("", null);
 
-        // Register and configure the Spring context
-        AnnotationConfigWebApplicationContext springContext = new AnnotationConfigWebApplicationContext();
-        springContext.register(AppConfig.class);
+        AnnotationConfigWebApplicationContext springContext = SpringContextInitializer.createContext(AppConfig.class);
 
-        ServiceLoader<ModuleConfigurationSPI> moduleConfigProviders = ServiceLoader.load(ModuleConfigurationSPI.class);
-        moduleConfigProviders.forEach(moduleConfigProvider -> springContext.register(moduleConfigProvider.getConfigurationClass()));
+        ServletRegistrar.registerDispatcherServlet(tomcatContext, springContext, SERVLET_NAME);
 
-        // Create and add the DispatcherServlet to handle requests
-        DispatcherServlet dispatcherServlet = new DispatcherServlet(springContext);
-        Tomcat.addServlet(tomcatContext, "dispatcherServlet", dispatcherServlet).setLoadOnStartup(1);
-        tomcatContext.addServletMappingDecoded("/*", "dispatcherServlet");
+        startServer(tomcat, springContext);
+    }
 
-        // Start Tomcat and display the package specific beans
+    private static void startServer(Tomcat tomcat, AnnotationConfigWebApplicationContext context) throws Exception {
         tomcat.start();
-        BeanPrinter.printPackageSpecificBeans(springContext, "dk.sdu.mmmi.pms");
+        BeanPrinter.printPackageSpecificBeans(context, "dk.sdu.mmmi.pms");
         tomcat.getServer().await();
     }
 }

@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.pms.presentation.main;
+package dk.sdu.mmmi.pms.presentation.main.spring;
 
 import org.springframework.context.ApplicationContext;
 
