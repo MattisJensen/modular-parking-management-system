@@ -66,8 +66,9 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-context,spring-data-jpa,
-                                jakarta.persistence-api
+                                spring-context,
+                                spring-data-jpa,
+                                jakarta.persistence-api,
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
