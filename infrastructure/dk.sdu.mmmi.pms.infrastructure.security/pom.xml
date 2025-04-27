@@ -50,11 +50,12 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-context,spring-beans,spring-core,
-                                spring-security-core,spring-security-crypto,spring-security-config,spring-security-web,
-                                jakarta.annotation-api,
+<!--                                spring-context,spring-beans,spring-core,-->
+<!--                                spring-security-core,-->
+                                spring-security-crypto,
+<!--                                spring-security-config,spring-security-web,-->
+<!--                                jakarta.annotation-api,-->
                             </includeArtifactIds>
-<!--                            <excludeArtifactIds>jakarta.servlet-api</excludeArtifactIds>-->
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
                         </configuration>
