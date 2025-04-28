@@ -88,7 +88,13 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.14.0</version>
                 <configuration>
+                    <!--  Maven will run the Java compiler (javac) in a separate process (a "forked" process)
+                          instead of running it within the same JVM as Maven itself.-->
                     <fork>true</fork>
+                    <compilerArgs>
+                        <!-- enables Spring to resolve method arguments such as mapping @GetMapping("/{value}") with the method's @PathVariable -->
+                        <arg>-parameters</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
 

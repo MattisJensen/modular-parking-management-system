@@ -1,6 +1,8 @@
 package dk.sdu.mmmi.pms.presentation.account;
 
 import dk.sdu.mmmi.pms.application.account.CreateAccountUseCase;
+import dk.sdu.mmmi.pms.application.account.FindAccountByEmailUseCase;
+import dk.sdu.mmmi.pms.core.account.Account;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +12,13 @@ import java.util.UUID;
 @RequestMapping("/api/account")
 public class AccountController {
     private final CreateAccountUseCase createAccountUseCase;
+    private final FindAccountByEmailUseCase findAccountByEmailUseCase;
 
-    public AccountController(CreateAccountUseCase createAccountUseCase) {
+
+    public AccountController(CreateAccountUseCase createAccountUseCase,
+                             FindAccountByEmailUseCase findAccountByEmailUseCase) {
         this.createAccountUseCase = createAccountUseCase;
+        this.findAccountByEmailUseCase = findAccountByEmailUseCase;
     }
 
     @PostMapping("/create")
@@ -27,8 +33,14 @@ public class AccountController {
         return new AccountResponse(accountId, request.name(), request.email(), request.role());
     }
 
-    @GetMapping("/test4")
-    public String test() {
-        return "Account service is up and running!";
+    @GetMapping("/email/{email}")
+    public AccountResponse getAccountByEmail(@PathVariable String email) {
+        Account account = findAccountByEmailUseCase.execute(email);
+        return new AccountResponse(
+                account.getId(),
+                account.getName(),
+                account.getEmail(),
+                account.getAccountRole()
+        );
     }
 }
