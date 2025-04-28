@@ -11,7 +11,7 @@ import java.util.UUID;
  * AccountRepositoryImpl is the implementation of the {@link AccountRepository} interface.
  * It uses {@link AccountJpaRepository} to perform CRUD operations on the database.
  */
-//@Repository
+@Repository
 public class AccountRepositoryImpl implements AccountRepository {
     private final AccountJpaRepository springDataRepo;
     private final AccountMapper mapper;

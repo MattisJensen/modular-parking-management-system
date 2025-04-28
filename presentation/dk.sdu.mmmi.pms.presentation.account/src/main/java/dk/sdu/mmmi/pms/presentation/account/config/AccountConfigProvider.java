@@ -5,6 +5,6 @@ import dk.sdu.mmmi.pms.application.shared.ModuleConfigurationSPI;
 public class AccountConfigProvider implements ModuleConfigurationSPI {
     @Override
     public Class<?> getConfigurationClass() {
-        return AccountConfig.class;
+        return AccountConfigPresentation.class;
     }
 }
