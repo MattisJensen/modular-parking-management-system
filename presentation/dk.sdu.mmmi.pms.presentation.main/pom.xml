@@ -40,6 +40,12 @@
             <artifactId>jakarta.annotation-api</artifactId>
             <version>${jakarta.annotation.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -66,6 +72,9 @@
                                 spring-web,
                                 spring-webmvc,
                                 tomcat-embed-core,
+                                jackson-databind,
+                                jackson-core,
+                                jackson-annotations,
                                 jakarta.annotation-api,
                                 micrometer-commons,
                                 micrometer-observation,
