@@ -1,11 +1,10 @@
 package dk.sdu.mmmi.pms.infrastructure.database;
 
-import jakarta.persistence.EntityManagerFactory;
+//import jakarta.persistence.EntityManagerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -15,45 +14,42 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-//import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = "dk.sdu.mmmi.pms.infrastructure.database")
-@PropertySource("classpath:application.properties")
-//@EnableTransactionManagement
 public class DatabaseConfigInfrastructure {
-    /**
-     * Creates a DataSource using properties from application.properties.
-     */
+
     @Bean
-    public DataSource dataSource(Environment env) {
-        DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
-        ds.setUrl(env.getProperty("spring.datasource.url"));
-        ds.setUsername(env.getProperty("spring.datasource.username"));
-        ds.setPassword(env.getProperty("spring.datasource.password"));
-        return ds;
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/test");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("1234");
+        return dataSource;
     }
 
-    /**
-     * Creates the entity manager factory bean and sets JPA properties.
-     */
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Environment env) {
-        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-        factoryBean.setDataSource(dataSource);
-        factoryBean.setPackagesToScan("dk.sdu.mmmi.pms.infrastructure.account");
-        factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(dataSource);
+        em.setPackagesToScan("dk.sdu.mmmi.pms.infrastructure");
+        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         Properties props = new Properties();
-        props.setProperty("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
-        props.setProperty("hibernate.hbm2ddl.auto", env.getProperty("spring.jpa.hibernate.ddl-auto"));
-        props.setProperty("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
-        factoryBean.setJpaProperties(props);
+        props.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        props.put("hibernate.hbm2ddl.auto", "update"); // or "validate"
+        props.put("hibernate.show_sql", "true");
 
-        return factoryBean;
+        // Critical for JPMS
+        props.put("hibernate.allow_jar_file_metadata", "true");
+        props.put("hibernate.archive.autodetection", "class");
+
+        em.setJpaProperties(props);
+        em.setEntityManagerFactoryInterface(jakarta.persistence.EntityManagerFactory.class);
+
+        return em;
     }
-
 
     @Bean
     public PlatformTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean emf) {
@@ -61,6 +57,47 @@ public class DatabaseConfigInfrastructure {
         transactionManager.setEntityManagerFactory(emf.getObject());
         return transactionManager;
     }
+
+    /**
+     * Creates a DataSource using properties from application.properties.
+     */
+//    @PropertySource("classpath:application.properties")
+
+//    @Bean
+//    public DataSource dataSource(Environment env) {
+//        DriverManagerDataSource ds = new DriverManagerDataSource();
+//        ds.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
+//        ds.setUrl(env.getProperty("spring.datasource.url"));
+//        ds.setUsername(env.getProperty("spring.datasource.username"));
+//        ds.setPassword(env.getProperty("spring.datasource.password"));
+//        return ds;
+//    }
+//
+//    /**
+//     * Creates the entity manager factory bean and sets JPA properties.
+//     */
+//    @Bean
+//    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Environment env) {
+//        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+//        factoryBean.setDataSource(dataSource);
+//        factoryBean.setPackagesToScan("dk.sdu.mmmi.pms.infrastructure.account");
+//        factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+//
+//        Properties props = new Properties();
+//        props.setProperty("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
+//        props.setProperty("hibernate.hbm2ddl.auto", env.getProperty("spring.jpa.hibernate.ddl-auto"));
+//        props.setProperty("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
+//        factoryBean.setJpaProperties(props);
+//
+//        return factoryBean;
+//    }
+//
+//    @Bean
+//    public PlatformTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean emf) {
+//        JpaTransactionManager transactionManager = new JpaTransactionManager();
+//        transactionManager.setEntityManagerFactory(emf.getObject());
+//        return transactionManager;
+//    }
     /**
      * Creates the transactional manager bean for JPA.
      */

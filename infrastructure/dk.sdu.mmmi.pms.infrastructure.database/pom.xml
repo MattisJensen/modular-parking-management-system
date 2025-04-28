@@ -104,6 +104,31 @@
             <artifactId>jboss-logging</artifactId>
             <version>3.4.2.Final</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.common</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>7.0.3.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.2</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.smallrye</groupId>
+            <artifactId>jandex</artifactId>
+            <version>3.2.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.15.11</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <!--adds external dependencies to the compiled modules folder-->
@@ -133,10 +158,18 @@
                                 jakarta.transaction-api,
                                 jakarta.enterprise.cdi-api,
                                 jakarta.interceptor-api,
+                                jakarta.xml.bind-api,
+                                jakarta.activation-api,
                                 hibernate-core,
-                                hibernate-validator,
+<!--                                hibernate-validator,-->
+                                hibernate-commons-annotations,
                                 HikariCP,
                                 jboss-logging,
+                                jandex,
+                                classmate,
+                                slf4j-api,
+                                byte-buddy,
+                                antlr4-runtime,
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>

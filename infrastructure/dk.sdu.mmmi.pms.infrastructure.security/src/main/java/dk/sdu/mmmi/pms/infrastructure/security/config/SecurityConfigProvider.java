@@ -5,6 +5,6 @@ import dk.sdu.mmmi.pms.application.shared.ModuleConfigurationSPI;
 public class SecurityConfigProvider implements ModuleConfigurationSPI {
     @Override
     public Class<?> getConfigurationClass() {
-        return SecurityConfig.class;
+        return SecurityConfigInfrastructure.class;
     }
 }

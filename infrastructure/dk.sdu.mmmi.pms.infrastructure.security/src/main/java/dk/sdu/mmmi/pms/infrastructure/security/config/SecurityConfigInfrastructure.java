@@ -5,5 +5,5 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = "dk.sdu.mmmi.pms.infrastructure.security")
-public class SecurityConfig {
+public class SecurityConfigInfrastructure {
 }

@@ -11,10 +11,13 @@ module dk.sdu.mmmi.pms.infrastructure.account {
     requires spring.context;
     requires spring.data.jpa;
     requires jakarta.persistence;
+    requires org.hibernate.orm.core;
 
     // Visibility
     provides ModuleConfigurationSPI with AccountConfigProvider;
-    opens dk.sdu.mmmi.pms.infrastructure.account to spring.beans, spring.context, spring.core;
-    opens dk.sdu.mmmi.pms.infrastructure.account.config to spring.beans, spring.context, spring.core;
+    opens dk.sdu.mmmi.pms.infrastructure.account ;//to spring.beans, spring.context, spring.core;
+    opens dk.sdu.mmmi.pms.infrastructure.account.config;// to spring.beans, spring.context, spring.core;
+//    opens dk.sdu.mmmi.pms.infrastructure.account to org.hibernate.orm.core;
+
 //    exports dk.sdu.mmmi.pms.infrastructure.account;
 }
