@@ -28,6 +28,7 @@
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>application.account</artifactId>
@@ -39,7 +40,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${springframework.version}</version>
+            <version>${spring-webmvc.version}</version>
         </dependency>
     </dependencies>
 
@@ -53,13 +54,14 @@
                     <execution>
                         <id>copy-dependencies</id>
 <!--                        <phase>package</phase>-->
-                        <phase>none</phase> <!-- skips execution -->
+                        <phase>none</phase> <!-- skips execution. Copy simultaneously same artifactId doesn't work -->
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-context, spring-web
+                                spring-context,
+                                spring-web,
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>

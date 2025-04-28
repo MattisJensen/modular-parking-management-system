@@ -13,6 +13,7 @@ module dk.sdu.mmmi.pms.presentation.main {
     requires org.apache.tomcat.embed.core;
     requires jakarta.annotation;
 
+    // Visibility
     opens dk.sdu.mmmi.pms.presentation.main to spring.beans, spring.context, spring.core;
     opens dk.sdu.mmmi.pms.presentation.main.config to spring.beans, spring.context, spring.core;
 }

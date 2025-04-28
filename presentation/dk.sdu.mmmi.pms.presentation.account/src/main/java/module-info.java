@@ -7,12 +7,12 @@ module dk.sdu.mmmi.pms.presentation.account {
     requires dk.sdu.mmmi.pms.application.account;
     requires dk.sdu.mmmi.pms.application.shared;
 
-    provides ModuleConfigurationSPI with AccountConfigProvider;
-
     // External dependencies
     requires spring.context;
     requires spring.web;
 
+    // Visibility
+    provides ModuleConfigurationSPI with AccountConfigProvider;
     opens dk.sdu.mmmi.pms.presentation.account to spring.beans, spring.context, spring.core, spring.web;
     opens dk.sdu.mmmi.pms.presentation.account.config to spring.beans, spring.context, spring.core, spring.web;
 }

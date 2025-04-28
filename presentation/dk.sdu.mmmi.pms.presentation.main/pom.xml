@@ -14,7 +14,6 @@
     <name>dk.sdu.mmmi.pms.presentation.main</name>
 
     <dependencies>
-        <!-- Core dependencies -->
         <!-- Application dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
@@ -22,13 +21,12 @@
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
-        <!-- Infrastructure dependencies -->
-        <!-- Presentation dependencies -->
+
         <!-- External dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${springframework.version}</version>
+            <version>${spring-webmvc.version}</version>
         </dependency>
 
         <dependency>
@@ -59,35 +57,23 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-aop, spring-beans, spring-context, spring-core,
-                                spring-expression, spring-jcl, spring-web, spring-webmvc,
+                                spring-aop,
+                                spring-beans,
+                                spring-context,
+                                spring-core,
+                                spring-expression,
+                                spring-jcl,
+                                spring-web,
+                                spring-webmvc,
                                 tomcat-embed-core,
                                 jakarta.annotation-api,
-                                micrometer-commons, micrometer-observation,
+                                micrometer-commons,
+                                micrometer-observation,
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
                         </configuration>
                     </execution>
-
-<!--                    <execution>-->
-<!--                        <id>copy</id>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>copy</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <artifactItems>-->
-<!--                                <artifactItem>-->
-<!--                                    <groupId>org.apache.tomcat.embed</groupId>-->
-<!--                                    <artifactId>tomcat-embed-core</artifactId>-->
-<!--                                    <version>${tomcat.version}</version>-->
-<!--                                    <overWrite>true</overWrite>-->
-<!--                                    <outputDirectory>../../libs</outputDirectory>-->
-<!--                                </artifactItem>-->
-<!--                            </artifactItems>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
                 </executions>
             </plugin>
         </plugins>

@@ -54,6 +54,7 @@
             <version>${postgresql.version}</version>
         </dependency>
 
+        <!-- jakarta dependencies -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
@@ -63,71 +64,64 @@
         <dependency>
             <groupId>jakarta.transaction</groupId>
             <artifactId>jakarta.transaction-api</artifactId>
-            <version>2.0.1</version>
+            <version>${jakarta.transaction.version}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>3.0.0</version>
+            <version>${jakarta.enterprise.cdi.version}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.interceptor</groupId>
             <artifactId>jakarta.interceptor-api</artifactId>
-            <version>2.2.0</version>
+            <version>${jakarta.interceptor.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>${jakarta.xml.version}</version>
         </dependency>
 
 
+        <!-- Hibernate dependencies -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>6.2.13.Final</version>
-        </dependency>
-
-        <!-- Hibernate Validator -->
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>8.0.1.Final</version>
-        </dependency>
-
-        <!-- HikariCP Connection Pool -->
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>5.1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <version>3.4.2.Final</version>
+            <version>${hibernate-core.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate.common</groupId>
             <artifactId>hibernate-commons-annotations</artifactId>
-            <version>7.0.3.Final</version>
+            <version>${hibernate-commons.version}</version>
         </dependency>
+
+        <!-- Other dependencies -->
         <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>4.0.2</version>
-            <scope>compile</scope>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>classmate</artifactId>
+            <version>${fasterxml.classmate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>${jboss.logging.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.smallrye</groupId>
             <artifactId>jandex</artifactId>
-            <version>3.2.0</version>
-            <scope>compile</scope>
+            <version>${smallrye.jandex.version}</version>
         </dependency>
+
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
-            <version>1.15.11</version>
-            <scope>compile</scope>
+            <version>${byte-buddy.version}</version>
         </dependency>
     </dependencies>
 
@@ -146,30 +140,26 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-<!--                                spring-context,-->
-<!--                                spring-core,-->
+                                spring-context,
+                                spring-core,
                                 spring-jdbc,
                                 spring-orm,
-                                spring-data-jpa,
                                 spring-data-commons,
                                 spring-tx,
                                 postgresql,
-                                jakarta.persistence-api,
-                                jakarta.transaction-api,
+                                jakarta.activation-api,
                                 jakarta.enterprise.cdi-api,
                                 jakarta.interceptor-api,
+                                jakarta.persistence-api,
+                                jakarta.transaction-api,
                                 jakarta.xml.bind-api,
-                                jakarta.activation-api,
-                                hibernate-core,
-<!--                                hibernate-validator,-->
                                 hibernate-commons-annotations,
-                                HikariCP,
+                                hibernate-core,
+                                antlr4-runtime,
+                                byte-buddy,
+                                classmate,
                                 jboss-logging,
                                 jandex,
-                                classmate,
-                                slf4j-api,
-                                byte-buddy,
-                                antlr4-runtime,
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>
