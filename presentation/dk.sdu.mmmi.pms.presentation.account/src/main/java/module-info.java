@@ -15,4 +15,5 @@ module dk.sdu.mmmi.pms.presentation.account {
     provides ModuleConfigurationSPI with AccountConfigProvider;
     opens dk.sdu.mmmi.pms.presentation.account to spring.beans, spring.context, spring.core, spring.web;
     opens dk.sdu.mmmi.pms.presentation.account.config to spring.beans, spring.context, spring.core, spring.web;
+    exports dk.sdu.mmmi.pms.presentation.account to com.fasterxml.jackson.databind;
 }

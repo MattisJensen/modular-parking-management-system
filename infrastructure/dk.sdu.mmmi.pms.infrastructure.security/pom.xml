@@ -50,8 +50,8 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-beans,
-                                spring-context,
+<!--                                spring-beans,-->
+<!--                                spring-context,-->
                                 spring-security-crypto,
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
