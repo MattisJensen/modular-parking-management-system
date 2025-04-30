@@ -1,8 +1,8 @@
 package dk.sdu.mmmi.pms.application.account.usecase;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
-import dk.sdu.mmmi.pms.application.account.EmailValidator;
-import dk.sdu.mmmi.pms.application.account.IdValidator;
+import dk.sdu.mmmi.pms.application.account.uitl.EmailValidator;
+import dk.sdu.mmmi.pms.application.account.uitl.IdValidator;
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.core.account.AccountRole;
