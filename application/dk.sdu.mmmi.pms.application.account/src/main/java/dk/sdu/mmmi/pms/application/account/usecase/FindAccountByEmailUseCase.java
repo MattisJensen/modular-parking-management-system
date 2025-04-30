@@ -11,8 +11,9 @@ public class FindAccountByEmailUseCase {
         this.accountRepository = accountRepository;
     }
 
-    public Account execute(String email) {
-        return accountRepository.findByEmail(email)
+    public Account execute(String email) throws AccountNotFoundException {
+        return accountRepository
+                .findByEmail(email)
                 .orElseThrow(() -> new AccountNotFoundException("Account with email " + email + " not found"));
     }
 }

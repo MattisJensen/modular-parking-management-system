@@ -14,7 +14,8 @@ public class FindAccountByIdUseCase {
     }
 
     public Account execute(UUID id) {
-        return accountRepository.findById(id)
+        return accountRepository
+                .findById(id)
                 .orElseThrow(() -> new AccountNotFoundException("Account with id " + id.toString() + " not found"));
     }
 }

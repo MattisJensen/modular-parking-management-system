@@ -33,10 +33,11 @@ public class CreateAccountUseCase {
      * @return the UUID of the created account
      * @throws IllegalArgumentException if the email format is invalid
      */
-    public UUID execute(String name, String email, String rawPassword, AccountRole role) throws IllegalArgumentException {
+    public UUID execute(String name, String email, String rawPassword, AccountRole role) {
         EmailValidator.validateFormat(email);
-        String hashedPassword = passwordEncoder.encode(rawPassword);
+        EmailValidator.validateUniqueness(email, accountRepository);
         UUID accountId = UUID.randomUUID();
+        String hashedPassword = passwordEncoder.encode(rawPassword);
         Account account = new Account(accountId, name, email, hashedPassword, role);
         accountRepository.save(account);
         return accountId;
