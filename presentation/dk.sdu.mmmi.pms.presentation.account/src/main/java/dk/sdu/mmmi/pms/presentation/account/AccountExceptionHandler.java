@@ -1,6 +1,6 @@
 package dk.sdu.mmmi.pms.presentation.account;
 
-import dk.sdu.mmmi.pms.application.account.AccountNotFoundException;
+import dk.sdu.mmmi.pms.core.account.AccountNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
