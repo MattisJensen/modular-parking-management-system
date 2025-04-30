@@ -3,6 +3,7 @@ package dk.sdu.mmmi.pms.presentation.account.config;
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
 import dk.sdu.mmmi.pms.application.account.CreateAccountUseCase;
 import dk.sdu.mmmi.pms.application.account.FindAccountByEmailUseCase;
+import dk.sdu.mmmi.pms.application.account.FindAccountByIdUseCase;
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,6 +20,11 @@ public class AccountConfigPresentation {
     @Bean
     public FindAccountByEmailUseCase findAccountByEmailUseCase(AccountRepository accountRepository) {
         return new FindAccountByEmailUseCase(accountRepository);
+    }
+
+    @Bean
+    public FindAccountByIdUseCase findAccountByIdUseCase(AccountRepository accountRepository) {
+        return new FindAccountByIdUseCase(accountRepository);
     }
 }
 

@@ -34,14 +34,14 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Optional<Account> findById(UUID id) {
-        return springDataRepo.findById(id)
-                .map(mapper::toCore);
+    public void deleteById(UUID id) {
+        springDataRepo.deleteById(id);
     }
 
     @Override
-    public void deleteById(UUID id) {
-        springDataRepo.deleteById(id);
+    public Optional<Account> findById(UUID id) {
+        return springDataRepo.findById(id)
+                .map(mapper::toCore);
     }
 
     @Override

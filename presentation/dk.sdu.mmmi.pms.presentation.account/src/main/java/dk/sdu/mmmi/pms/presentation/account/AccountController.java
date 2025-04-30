@@ -2,8 +2,10 @@ package dk.sdu.mmmi.pms.presentation.account;
 
 import dk.sdu.mmmi.pms.application.account.CreateAccountUseCase;
 import dk.sdu.mmmi.pms.application.account.FindAccountByEmailUseCase;
+import dk.sdu.mmmi.pms.application.account.FindAccountByIdUseCase;
 import dk.sdu.mmmi.pms.core.account.Account;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -12,12 +14,16 @@ import java.util.UUID;
 @RequestMapping("/api/account")
 public class AccountController {
     private final CreateAccountUseCase createAccountUseCase;
+    private final FindAccountByIdUseCase findAccountByIdUseCase;
     private final FindAccountByEmailUseCase findAccountByEmailUseCase;
 
 
     public AccountController(CreateAccountUseCase createAccountUseCase,
-                             FindAccountByEmailUseCase findAccountByEmailUseCase) {
+                             FindAccountByEmailUseCase findAccountByEmailUseCase,
+                             FindAccountByIdUseCase findAccountByIdUseCase) {
+
         this.createAccountUseCase = createAccountUseCase;
+        this.findAccountByIdUseCase = findAccountByIdUseCase;
         this.findAccountByEmailUseCase = findAccountByEmailUseCase;
     }
 
@@ -31,6 +37,23 @@ public class AccountController {
                 request.role()
         );
         return new AccountResponse(accountId, request.name(), request.email(), request.role());
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<?> getAccountById(@PathVariable String id) {
+        try {
+            UUID uuid = UUID.fromString(id); // Validate UUID format
+            Account account = findAccountByIdUseCase.execute(uuid);
+            AccountResponse response = new AccountResponse(
+                    account.getId(),
+                    account.getName(),
+                    account.getEmail(),
+                    account.getAccountRole()
+            );
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid UUID format: " + id);
+        }
     }
 
     @GetMapping("/email/{email}")
