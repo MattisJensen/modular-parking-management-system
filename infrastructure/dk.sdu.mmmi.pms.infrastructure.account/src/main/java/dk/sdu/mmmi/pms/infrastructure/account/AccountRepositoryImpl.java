@@ -29,7 +29,7 @@ public class AccountRepositoryImpl implements AccountRepository {
             AccountJpaEntity jpaEntity = mapper.toJpaEntity(account);
             springDataRepo.save(jpaEntity);
         } catch (DataIntegrityViolationException e) {
-            throw new DuplicateEmailException("An account with the email " + account.getEmail() + " already exists.");
+            throw new DuplicateEmailException("An account with the email " + account.email() + " already exists.");
         }
     }
 

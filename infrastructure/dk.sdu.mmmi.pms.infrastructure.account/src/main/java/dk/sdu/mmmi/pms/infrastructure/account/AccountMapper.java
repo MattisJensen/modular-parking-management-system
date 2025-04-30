@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 public class AccountMapper {
     public AccountJpaEntity toJpaEntity(Account account) {
         return new AccountJpaEntity(
-                account.getId(),
-                account.getName(),
-                account.getEmail(),
-                account.getPassword(),
-                account.getAccountRole()
+                account.id(),
+                account.name(),
+                account.email(),
+                account.password(),
+                account.accountRole()
         );
     }
 
