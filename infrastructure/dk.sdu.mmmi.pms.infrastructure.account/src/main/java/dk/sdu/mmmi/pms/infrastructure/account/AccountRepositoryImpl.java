@@ -35,8 +35,12 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public void update(Account account) {
-        AccountJpaEntity jpaEntity = mapper.toJpaEntity(account);
-        springDataRepo.save(jpaEntity);
+        try {
+            AccountJpaEntity jpaEntity = mapper.toJpaEntity(account);
+            springDataRepo.save(jpaEntity);
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateEmailException("An account with the email " + account.email() + " already exists.");
+        }
     }
 
     @Override

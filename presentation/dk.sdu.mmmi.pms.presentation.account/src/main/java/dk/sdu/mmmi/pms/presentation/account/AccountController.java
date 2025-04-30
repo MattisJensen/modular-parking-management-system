@@ -3,7 +3,12 @@ package dk.sdu.mmmi.pms.presentation.account;
 import dk.sdu.mmmi.pms.application.account.usecase.CreateAccountUseCase;
 import dk.sdu.mmmi.pms.application.account.usecase.FindAccountByEmailUseCase;
 import dk.sdu.mmmi.pms.application.account.usecase.FindAccountByIdUseCase;
+import dk.sdu.mmmi.pms.application.account.usecase.UpdateAccountUseCase;
 import dk.sdu.mmmi.pms.core.account.Account;
+import dk.sdu.mmmi.pms.core.account.exceptions.AccountNotFoundException;
+import dk.sdu.mmmi.pms.presentation.account.datatransferobjects.AccountResponse;
+import dk.sdu.mmmi.pms.presentation.account.datatransferobjects.CreateAccountRequest;
+import dk.sdu.mmmi.pms.presentation.account.datatransferobjects.UpdateAccountRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +19,18 @@ import java.util.UUID;
 @RequestMapping("/api/account")
 public class AccountController {
     private final CreateAccountUseCase createAccountUseCase;
+    private final UpdateAccountUseCase updateAccountUseCase;
     private final FindAccountByIdUseCase findAccountByIdUseCase;
     private final FindAccountByEmailUseCase findAccountByEmailUseCase;
 
 
     public AccountController(CreateAccountUseCase createAccountUseCase,
+                             UpdateAccountUseCase updateAccountUseCase,
                              FindAccountByEmailUseCase findAccountByEmailUseCase,
                              FindAccountByIdUseCase findAccountByIdUseCase) {
 
         this.createAccountUseCase = createAccountUseCase;
+        this.updateAccountUseCase = updateAccountUseCase;
         this.findAccountByIdUseCase = findAccountByIdUseCase;
         this.findAccountByEmailUseCase = findAccountByEmailUseCase;
     }
@@ -37,6 +45,24 @@ public class AccountController {
                 request.role()
         );
         return new AccountResponse(accountId, request.name(), request.email(), request.role());
+    }
+
+    @PatchMapping("/id/{id}")
+    public ResponseEntity<?> updateAccount(@PathVariable String id, @RequestBody UpdateAccountRequest request) {
+        try {
+            UUID uuid = UUID.fromString(id);
+            updateAccountUseCase.execute(uuid, new UpdateAccountUseCase.UpdateParameters(
+                    request.name(),
+                    request.email(),
+                    request.password(),
+                    request.role()
+            ));
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (AccountNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
     @GetMapping("/id/{id}")

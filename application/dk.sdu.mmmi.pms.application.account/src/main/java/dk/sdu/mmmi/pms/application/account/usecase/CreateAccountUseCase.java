@@ -5,7 +5,6 @@ import dk.sdu.mmmi.pms.application.account.EmailValidator;
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.core.account.AccountRole;
-import dk.sdu.mmmi.pms.core.account.exceptions.DuplicateEmailException;
 
 import java.util.UUID;
 
@@ -35,7 +34,7 @@ public class CreateAccountUseCase {
      * @throws IllegalArgumentException if the email format is invalid
      */
     public UUID execute(String name, String email, String rawPassword, AccountRole role) throws IllegalArgumentException {
-        EmailValidator.validate(email);
+        EmailValidator.validateFormat(email);
         String hashedPassword = passwordEncoder.encode(rawPassword);
         UUID accountId = UUID.randomUUID();
         Account account = new Account(accountId, name, email, hashedPassword, role);
