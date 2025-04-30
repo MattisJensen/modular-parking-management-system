@@ -5,4 +5,5 @@ module dk.sdu.mmmi.pms.application.account {
 
     // Visibility
     exports dk.sdu.mmmi.pms.application.account;
+    exports dk.sdu.mmmi.pms.application.account.usecase;
 }

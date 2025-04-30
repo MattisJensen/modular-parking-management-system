@@ -1,5 +1,7 @@
-package dk.sdu.mmmi.pms.application.account;
+package dk.sdu.mmmi.pms.application.account.usecase;
 
+import dk.sdu.mmmi.pms.application.account.AccountRepository;
+import dk.sdu.mmmi.pms.application.account.EmailValidator;
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.core.account.AccountRole;
@@ -29,7 +31,7 @@ public class CreateAccountUseCase {
      * @throws IllegalArgumentException if the email format is invalid
      */
     public UUID execute(String name, String email, String rawPassword, AccountRole role) throws IllegalArgumentException {
-        if (!validateEmail(email)) {
+        if (!EmailValidator.validate(email)) {
             throw new IllegalArgumentException("Invalid email format");
         }
         String hashedPassword = passwordEncoder.encode(rawPassword);
@@ -37,15 +39,5 @@ public class CreateAccountUseCase {
         Account account = new Account(accountId, name, email, hashedPassword, role);
         accountRepository.save(account);
         return accountId;
-    }
-
-    /**
-     * Validates the email format.
-     * @param email the email address to validate
-     * @return true if the email format is valid, false otherwise
-     */
-    private boolean validateEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9._%+-]{2,}@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-        return email.matches(emailRegex);
     }
 }

@@ -1,9 +1,9 @@
 package dk.sdu.mmmi.pms.presentation.account.config;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
-import dk.sdu.mmmi.pms.application.account.CreateAccountUseCase;
-import dk.sdu.mmmi.pms.application.account.FindAccountByEmailUseCase;
-import dk.sdu.mmmi.pms.application.account.FindAccountByIdUseCase;
+import dk.sdu.mmmi.pms.application.account.usecase.CreateAccountUseCase;
+import dk.sdu.mmmi.pms.application.account.usecase.FindAccountByEmailUseCase;
+import dk.sdu.mmmi.pms.application.account.usecase.FindAccountByIdUseCase;
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
