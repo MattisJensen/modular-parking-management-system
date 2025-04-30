@@ -2,6 +2,8 @@ package dk.sdu.mmmi.pms.infrastructure.account;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
 import dk.sdu.mmmi.pms.core.account.Account;
+import dk.sdu.mmmi.pms.core.account.exceptions.DuplicateEmailException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -23,8 +25,12 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public void save(Account account) {
-        AccountJpaEntity jpaEntity = mapper.toJpaEntity(account);
-        springDataRepo.save(jpaEntity);
+        try {
+            AccountJpaEntity jpaEntity = mapper.toJpaEntity(account);
+            springDataRepo.save(jpaEntity);
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateEmailException("An account with the email " + account.getEmail() + " already exists.");
+        }
     }
 
     @Override

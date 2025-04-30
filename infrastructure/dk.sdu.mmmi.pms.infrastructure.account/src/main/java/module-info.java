@@ -11,6 +11,7 @@ module dk.sdu.mmmi.pms.infrastructure.account {
     requires spring.context;
     requires spring.data.jpa;
     requires jakarta.persistence;
+    requires spring.tx;
 
     // Visibility
     provides ModuleConfigurationSPI with AccountConfigProvider;

@@ -5,6 +5,8 @@ import dk.sdu.mmmi.pms.application.account.EmailValidator;
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.core.account.AccountRole;
+import dk.sdu.mmmi.pms.core.account.exceptions.DuplicateEmailException;
+
 import java.util.UUID;
 
 public class CreateAccountUseCase {
@@ -13,8 +15,9 @@ public class CreateAccountUseCase {
 
     /**
      * Constructor for CreateAccountUseCase.
+     *
      * @param accountRepository the repository to handle account storage
-     * @param passwordEncoder the encoder to hash passwords
+     * @param passwordEncoder   the encoder to hash passwords
      */
     public CreateAccountUseCase(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
         this.accountRepository = accountRepository;
@@ -23,10 +26,11 @@ public class CreateAccountUseCase {
 
     /**
      * Creates a new account with the given details.
-     * @param name the name of the account holder
-     * @param email the email address of the account holder
+     *
+     * @param name        the name of the account holder
+     * @param email       the email address of the account holder
      * @param rawPassword the raw password to be hashed and stored
-     * @param role the role of the account (e.g., USER, ADMIN)
+     * @param role        the role of the account (e.g., USER, ADMIN)
      * @return the UUID of the created account
      * @throws IllegalArgumentException if the email format is invalid
      */
