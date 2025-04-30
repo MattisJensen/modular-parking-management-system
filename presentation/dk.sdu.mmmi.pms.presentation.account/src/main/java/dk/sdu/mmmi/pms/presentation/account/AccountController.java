@@ -45,10 +45,10 @@ public class AccountController {
             UUID uuid = UUID.fromString(id); // Validate UUID format
             Account account = findAccountByIdUseCase.execute(uuid);
             AccountResponse response = new AccountResponse(
-                    account.getId(),
-                    account.getName(),
-                    account.getEmail(),
-                    account.getAccountRole()
+                    account.id(),
+                    account.name(),
+                    account.email(),
+                    account.accountRole()
             );
             return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
@@ -60,10 +60,10 @@ public class AccountController {
     public AccountResponse getAccountByEmail(@PathVariable String email) {
         Account account = findAccountByEmailUseCase.execute(email);
         return new AccountResponse(
-                account.getId(),
-                account.getName(),
-                account.getEmail(),
-                account.getAccountRole()
+                account.id(),
+                account.name(),
+                account.email(),
+                account.accountRole()
         );
     }
 }
