@@ -35,9 +35,7 @@ public class CreateAccountUseCase {
      * @throws IllegalArgumentException if the email format is invalid
      */
     public UUID execute(String name, String email, String rawPassword, AccountRole role) throws IllegalArgumentException {
-        if (!EmailValidator.validate(email)) {
-            throw new IllegalArgumentException("Invalid email format");
-        }
+        EmailValidator.validate(email);
         String hashedPassword = passwordEncoder.encode(rawPassword);
         UUID accountId = UUID.randomUUID();
         Account account = new Account(accountId, name, email, hashedPassword, role);
