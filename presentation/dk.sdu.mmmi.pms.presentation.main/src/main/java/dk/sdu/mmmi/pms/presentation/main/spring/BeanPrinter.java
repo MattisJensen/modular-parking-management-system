@@ -15,7 +15,6 @@ public class BeanPrinter {
         System.out.println("\n=== Beans of PMS Modules ===");
         String[] beanNames = context.getBeanDefinitionNames();
         Arrays.sort(beanNames);
-        int pmsBeanCount = 0;
 
         for (String beanName : beanNames) {
             try {
@@ -23,13 +22,13 @@ public class BeanPrinter {
                 for (String basePackage : basePackages) {
                     if (type != null && type.getName().startsWith(basePackage)) {
                         System.out.println(beanName + " - " + type.getName());
-                        pmsBeanCount++;
-                        break;
                     }
                 }
             } catch (Exception e) {
                 System.out.println("Error getting type for bean: " + beanName);
             }
         }
+
+        System.out.println("\n");
     }
 }
