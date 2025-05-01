@@ -12,7 +12,15 @@ public class EmailValidator {
      * @throws EmailFormatException if the email format is invalid
      */
     public static void validateFormat(String email) throws EmailFormatException {
-        String emailRegex = "^[a-zA-Z0-9._%+-]{2,}@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        // Check if the email exceeds length (320 characters)
+        if (email.length() > 320) {
+            throw new EmailFormatException("Email is too long: " + email);
+        }
+
+        // Check if email matches the regex
+        String emailRegex = "^[a-zA-Z0-9._%+-]{2,}@"
+                + "(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+"
+                + "[a-zA-Z]{2,}$";
         if (!email.matches(emailRegex)) {
             throw new EmailFormatException("Invalid email format: " + email);
         }
