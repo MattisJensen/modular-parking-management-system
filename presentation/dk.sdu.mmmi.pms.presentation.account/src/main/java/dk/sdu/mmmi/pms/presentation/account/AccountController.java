@@ -48,23 +48,23 @@ public class AccountController {
         this.findAccountByEmailUseCase = findAccountByEmailUseCase;
     }
 
-    /**
-     * Creates a new account.
-     *
-     * @param request the {@link CreateAccountRequest} containing account details
-     * @return the created {@link AccountResponse}
-     */
-    @PostMapping("/create")
-    @ResponseStatus(HttpStatus.CREATED)
-    public AccountResponse createAccount(@RequestBody CreateAccountRequest request) {
-        UUID accountId = createAccountUseCase.execute(
-                request.name(),
-                request.email(),
-                request.password(),
-                request.role()
-        );
-        return new AccountResponse(accountId, request.name(), request.email(), request.role());
-    }
+   /**
+    * Creates a new account.
+    *
+    * @param request the {@link CreateAccountRequest} containing account details
+    * @return a {@link ResponseEntity} containing the created {@link AccountResponse}
+    */
+   @PostMapping("/create")
+   public ResponseEntity<AccountResponse> createAccount(@RequestBody CreateAccountRequest request) {
+       UUID accountId = createAccountUseCase.execute(
+               request.name(),
+               request.email(),
+               request.password(),
+               request.role()
+       );
+       AccountResponse response = new AccountResponse(accountId, request.name(), request.email(), request.role());
+       return ResponseEntity.status(HttpStatus.CREATED).body(response);
+   }
 
     /**
      * Updates an existing account.
