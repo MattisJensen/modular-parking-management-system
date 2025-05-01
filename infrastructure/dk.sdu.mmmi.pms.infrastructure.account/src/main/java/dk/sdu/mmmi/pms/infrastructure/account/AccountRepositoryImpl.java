@@ -2,7 +2,7 @@ package dk.sdu.mmmi.pms.infrastructure.account;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
 import dk.sdu.mmmi.pms.core.account.Account;
-import dk.sdu.mmmi.pms.core.account.exceptions.DuplicateEmailException;
+import jakarta.persistence.PersistenceException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +29,7 @@ public class AccountRepositoryImpl implements AccountRepository {
             AccountJpaEntity jpaEntity = mapper.toJpaEntity(account);
             springDataRepo.save(jpaEntity);
         } catch (DataIntegrityViolationException e) {
-            throw new DuplicateEmailException("An account with the email " + account.email() + " already exists.");
+            throw new PersistenceException("Database error occurred while saving account", e);
         }
     }
 
@@ -39,7 +39,7 @@ public class AccountRepositoryImpl implements AccountRepository {
             AccountJpaEntity jpaEntity = mapper.toJpaEntity(account);
             springDataRepo.save(jpaEntity);
         } catch (DataIntegrityViolationException e) {
-            throw new DuplicateEmailException("An account with the email " + account.email() + " already exists.");
+            throw new PersistenceException("Database error occurred while updating account", e);
         }
     }
 

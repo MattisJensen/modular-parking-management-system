@@ -6,6 +6,7 @@ import dk.sdu.mmmi.pms.application.account.usecase.FindAccountByIdUseCase;
 import dk.sdu.mmmi.pms.application.account.usecase.UpdateAccountUseCase;
 import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.core.account.exceptions.AccountNotFoundException;
+import dk.sdu.mmmi.pms.core.account.exceptions.EmailFormatException;
 import dk.sdu.mmmi.pms.presentation.account.datatransferobjects.AccountResponse;
 import dk.sdu.mmmi.pms.presentation.account.datatransferobjects.CreateAccountRequest;
 import dk.sdu.mmmi.pms.presentation.account.datatransferobjects.UpdateAccountRequest;
@@ -58,7 +59,7 @@ public class AccountController {
                     request.role()
             ));
             return ResponseEntity.noContent().build();
-        } catch (IllegalArgumentException e) {
+        } catch (EmailFormatException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (AccountNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

@@ -31,7 +31,6 @@ public class CreateAccountUseCase {
      * @param rawPassword the raw password to be hashed and stored
      * @param role        the role of the account (e.g., USER, ADMIN)
      * @return the UUID of the created account
-     * @throws IllegalArgumentException if the email format is invalid
      */
     public UUID execute(String name, String email, String rawPassword, AccountRole role) {
         EmailValidator.validateFormat(email);

@@ -6,7 +6,8 @@ import dk.sdu.mmmi.pms.application.account.uitl.IdValidator;
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.core.account.AccountRole;
-import dk.sdu.mmmi.pms.core.account.exceptions.DuplicateEmailException;
+import dk.sdu.mmmi.pms.core.account.exceptions.EmailDuplicateException;
+import dk.sdu.mmmi.pms.core.account.exceptions.EmailFormatException;
 
 import java.util.UUID;
 
@@ -37,7 +38,7 @@ public class UpdateAccountUseCase {
         );
     }
 
-    private void validateEmail(String email) throws IllegalArgumentException, DuplicateEmailException {
+    private void validateEmail(String email) throws EmailFormatException, EmailDuplicateException {
         EmailValidator.validateFormat(email);
         EmailValidator.validateUniqueness(email, accountRepository);
     }
