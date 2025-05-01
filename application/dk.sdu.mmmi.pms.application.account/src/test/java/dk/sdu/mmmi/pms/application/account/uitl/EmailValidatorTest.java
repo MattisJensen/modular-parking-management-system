@@ -28,6 +28,7 @@ class EmailValidatorTest {
         assertDoesNotThrow(() -> EmailValidator.validateFormat(email));
     }
 
+
     @ParameterizedTest
     @ValueSource(strings = {
             "a@example.com",    // Suffix too short
