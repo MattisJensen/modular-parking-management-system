@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+/**
+ * REST controller for managing accounts.
+ * This controller provides endpoints for creating, updating and retrieving accounts
+ * using the corresponding use cases.
+ */
 @RestController
 @RequestMapping("/api/account")
 public class AccountController {
@@ -24,7 +29,14 @@ public class AccountController {
     private final FindAccountByIdUseCase findAccountByIdUseCase;
     private final FindAccountByEmailUseCase findAccountByEmailUseCase;
 
-
+    /**
+     * Constructs an {@link AccountController} with the required use cases.
+     *
+     * @param createAccountUseCase   the use case for creating accounts
+     * @param updateAccountUseCase   the use case for updating accounts
+     * @param findAccountByEmailUseCase the use case for finding accounts by email
+     * @param findAccountByIdUseCase the use case for finding accounts by ID
+     */
     public AccountController(CreateAccountUseCase createAccountUseCase,
                              UpdateAccountUseCase updateAccountUseCase,
                              FindAccountByEmailUseCase findAccountByEmailUseCase,
@@ -36,6 +48,12 @@ public class AccountController {
         this.findAccountByEmailUseCase = findAccountByEmailUseCase;
     }
 
+    /**
+     * Creates a new account.
+     *
+     * @param request the {@link CreateAccountRequest} containing account details
+     * @return the created {@link AccountResponse}
+     */
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public AccountResponse createAccount(@RequestBody CreateAccountRequest request) {
@@ -48,6 +66,13 @@ public class AccountController {
         return new AccountResponse(accountId, request.name(), request.email(), request.role());
     }
 
+    /**
+     * Updates an existing account.
+     *
+     * @param id      the ID of the account to update
+     * @param request the {@link UpdateAccountRequest} containing updated account details
+     * @return a {@link ResponseEntity} indicating the result of the operation
+     */
     @PatchMapping("/id/{id}")
     public ResponseEntity<?> updateAccount(@PathVariable String id, @RequestBody UpdateAccountRequest request) {
         try {
@@ -66,6 +91,12 @@ public class AccountController {
         }
     }
 
+    /**
+     * Retrieves an account by its ID.
+     *
+     * @param id the ID of the account to retrieve
+     * @return a {@link ResponseEntity} containing the {@link AccountResponse}
+     */
     @GetMapping("/id/{id}")
     public ResponseEntity<?> getAccountById(@PathVariable String id) {
         try {
@@ -83,6 +114,12 @@ public class AccountController {
         }
     }
 
+    /**
+     * Retrieves an account by its email.
+     *
+     * @param email the email of the account to retrieve
+     * @return the {@link AccountResponse} for the account
+     */
     @GetMapping("/email/{email}")
     public AccountResponse getAccountByEmail(@PathVariable String email) {
         Account account = findAccountByEmailUseCase.execute(email);

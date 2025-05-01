@@ -15,13 +15,14 @@ public class IdValidator {
      * @throws AccountNotFoundException if the account with the given ID does not exist
      */
     public static void validateExistence(UUID id, AccountRepository accountRepository) throws AccountNotFoundException {
-        accountRepository.findById(id)
+        accountRepository
+                .findById(id)
                 .orElseThrow(() -> new AccountNotFoundException("Account with ID " + id + " not found"));
     }
 
     /**
      * Validates that an account with the given ID exists and returns it.
-     * Reduces Database calls by returning the already fetched account.
+     * Reduces Database calls by returning the already fetched {@link Account}.
      *
      * @param id                the account ID to validate
      * @param accountRepository the repository to check for the account
@@ -29,7 +30,8 @@ public class IdValidator {
      * @throws AccountNotFoundException if the account with the given ID does not exist
      */
     public static Account validateExistenceAndGetAccount(UUID id, AccountRepository accountRepository) throws AccountNotFoundException {
-        return accountRepository.findById(id)
+        return accountRepository
+                .findById(id)
                 .orElseThrow(() -> new AccountNotFoundException("Account with ID " + id + " not found"));
     }
 }

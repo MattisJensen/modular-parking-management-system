@@ -10,7 +10,8 @@ import java.util.UUID;
 
 /**
  * JPA entity representing an Account in the database.
- * This class is mapped to the "accounts" table and contains fields for account details.
+ * This class is mapped to the "accounts" table and contains fields for account details
+ * such as ID, name, email, password and role.
  */
 @Entity
 @Table(name = "accounts")
@@ -30,8 +31,21 @@ public class AccountJpaEntity {
     @Column(nullable = false)
     private AccountRole accountRole;
 
+    /**
+     * Default constructor for {@link AccountJpaEntity}.
+     * This constructor is required by JPA.
+     */
     public AccountJpaEntity() {}
 
+    /**
+     * Constructs a new {@link AccountJpaEntity} with the specified details.
+     *
+     * @param id          the unique identifier of the account
+     * @param name        the name of the account holder
+     * @param email       the email address of the account holder
+     * @param password    the hashed password of the account
+     * @param accountRole the role of the account (e.g., USER or ADMIN)
+     */
     public AccountJpaEntity(UUID id, String name, String email, String password, AccountRole accountRole) {
         this.id = id;
         this.name = name;

@@ -4,12 +4,20 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.Arrays;
 
+/**
+ * Utility class for printing Spring beans filtered by specific base packages.
+ * This class provides a method to list all beans in the {@link ApplicationContext}
+ * that belong to the specified base packages.
+ */
 public class BeanPrinter {
+
     /**
-     * Prints all beans in the application context that belong to the specified base packages.
+     * Prints all beans in the {@link ApplicationContext} that belong to the specified base packages.
+     * The method retrieves all bean definitions, filters them by the provided base packages
+     * and prints their names along with their fully qualified class names.
      *
-     * @param context      The Spring application context.
-     * @param basePackages The base packages to filter beans by.
+     * @param context      the {@link ApplicationContext} containing the bean definitions
+     * @param basePackages the base packages to filter beans by
      */
     public static void printPackageSpecificBeans(ApplicationContext context, String... basePackages) {
         System.out.println("\n=== Beans of PMS Modules ===");

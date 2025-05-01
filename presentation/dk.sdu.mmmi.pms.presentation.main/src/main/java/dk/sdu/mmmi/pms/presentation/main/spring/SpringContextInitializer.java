@@ -5,12 +5,19 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 
 import java.util.ServiceLoader;
 
+/**
+ * Utility class for initializing and configuring a Spring application context.
+ * This class provides methods to create a new {@link AnnotationConfigWebApplicationContext}
+ * and register module configurations using {@link ModuleConfigurationSPI}.
+ */
 public class SpringContextInitializer {
+
     /**
-     * Creates and configures a new Spring context using the given primary configuration class.
+     * Creates and configures a new {@link AnnotationConfigWebApplicationContext} using the given primary configuration class.
+     * The method registers the primary configuration class and any additional module configurations.
      *
-     * @param primaryConfig the primary spring configuration class
-     * @return a configured AnnotationConfigWebApplicationContext instance
+     * @param primaryConfig the primary Spring configuration class
+     * @return a configured {@link AnnotationConfigWebApplicationContext} instance
      */
     public static AnnotationConfigWebApplicationContext createContext(Class<?> primaryConfig) {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
@@ -20,11 +27,11 @@ public class SpringContextInitializer {
     }
 
     /**
-     * Registers module configurations from all implementations of ModuleConfigurationSPI.
-     * This method uses the ServiceLoader to discover and register module configurations.
-     * The discovered configurations are registered to the provided Spring context.
+     * Registers module configurations from all implementations of {@link ModuleConfigurationSPI}.
+     * This method uses the {@link ServiceLoader} to discover and register module configurations
+     * to the provided {@link AnnotationConfigWebApplicationContext}.
      *
-     * @param context the context to which module configurations will be registered
+     * @param context the {@link AnnotationConfigWebApplicationContext} to which module configurations will be registered
      */
     private static void registerModuleConfigurations(AnnotationConfigWebApplicationContext context) {
         ServiceLoader.load(ModuleConfigurationSPI.class)

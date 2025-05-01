@@ -1,7 +1,6 @@
 package dk.sdu.mmmi.pms.infrastructure.security;
 
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -9,8 +8,8 @@ import org.springframework.stereotype.Component;
  * Adapter that wraps the Spring Security {@link BCryptPasswordEncoder} and implements the
  * application's {@link PasswordEncoder} interface.
  *
- * Follows the Adapter design pattern by converting the interface of
- * {@code BCryptPasswordEncoder} into the interface expected by the application.
+ * This class follows the Adapter design pattern by adapting the functionality of
+ * {@link BCryptPasswordEncoder} to the {@link PasswordEncoder} interface expected by the application.
  */
 @Component
 public class BCryptPasswordEncoderAdapter implements PasswordEncoder {

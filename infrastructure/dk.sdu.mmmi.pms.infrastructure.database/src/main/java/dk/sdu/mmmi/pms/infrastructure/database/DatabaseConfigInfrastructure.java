@@ -14,16 +14,22 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * Configuration class for the database infrastructure module.
+ * This class is annotated with {@link Configuration} to indicate that it provides
+ * Spring configuration, {@link ComponentScan} to scan for Spring components within its module
+ * and {@link PropertySource} to load properties from the application.properties file.
+ */
 @Configuration
 @ComponentScan(basePackages = "dk.sdu.mmmi.pms.infrastructure.database")
 @PropertySource("classpath:application.properties")
 public class DatabaseConfigInfrastructure {
 
     /**
-     * Configures the DataSource bean, which provides the database connection.
+     * Configures the {@link DataSource} bean, which provides the database connection.
      *
-     * @param env the Spring Environment object to access properties from the application.properties file.
-     * @return a configured DataSource object.
+     * @param env the {@link Environment} object to access properties from the application.properties file
+     * @return a configured {@link DataSource} object
      */
     @Bean
     public DataSource dataSource(Environment env) {
@@ -36,21 +42,19 @@ public class DatabaseConfigInfrastructure {
     }
 
     /**
-     * Configures the LocalContainerEntityManagerFactoryBean, which manages the JPA entity manager.
+     * Configures the {@link LocalContainerEntityManagerFactoryBean}, which manages the JPA entity manager.
      *
-     * @param dataSource the DataSource bean used for database connections.
-     * @param env the Spring Environment object to access properties from the properties file.
-     * @return a configured LocalContainerEntityManagerFactoryBean object.
+     * @param dataSource the {@link DataSource} bean used for database connections
+     * @param env the {@link Environment} object to access properties from the application.properties file
+     * @return a configured {@link LocalContainerEntityManagerFactoryBean} object
      */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Environment env) {
-        // Set the data source and package to scan for JPA entities
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(dataSource);
         entityManager.setPackagesToScan("dk.sdu.mmmi.pms.infrastructure");
         entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
-        // Set JPA properties
         Properties props = new Properties();
         props.setProperty("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
         props.setProperty("hibernate.hbm2ddl.auto", env.getProperty("spring.jpa.hibernate.ddl-auto"));
@@ -63,15 +67,15 @@ public class DatabaseConfigInfrastructure {
     }
 
     /**
-     * Configures the PlatformTransactionManager bean, which manages transactions.
+     * Configures the {@link PlatformTransactionManager} bean, which manages transactions.
      *
-     * @param emf the LocalContainerEntityManagerFactoryBean used to create the EntityManagerFactory.
-     * @return a configured PlatformTransactionManager object.
+     * @param entityManager the {@link LocalContainerEntityManagerFactoryBean} used to create the EntityManagerFactory
+     * @return a configured {@link PlatformTransactionManager} object
      */
     @Bean
-    public PlatformTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean emf) {
+    public PlatformTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean entityManager) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(emf.getObject());
+        transactionManager.setEntityManagerFactory(entityManager.getObject());
         return transactionManager;
     }
 }

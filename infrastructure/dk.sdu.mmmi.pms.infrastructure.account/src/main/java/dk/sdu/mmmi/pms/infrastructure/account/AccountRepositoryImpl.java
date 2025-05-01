@@ -13,14 +13,21 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * AccountRepositoryImpl is the implementation of the {@link AccountRepository} interface.
- * It uses {@link AccountJpaRepository} to perform CRUD operations on the database.
+ * Implementation of the {@link AccountRepository} interface.
+ * This class uses {@link AccountJpaRepository} to perform CRUD operations
+ * and {@link AccountMapper} to map between domain and persistence models.
  */
 @Repository
 public class AccountRepositoryImpl implements AccountRepository {
     private final AccountJpaRepository springDataRepo;
     private final AccountMapper mapper;
 
+    /**
+     * Constructs a new {@link AccountRepositoryImpl} with the specified dependencies.
+     *
+     * @param springDataRepo the {@link AccountJpaRepository} to handle database operations
+     * @param mapper         the {@link AccountMapper} to map between domain and persistence models
+     */
     public AccountRepositoryImpl(AccountJpaRepository springDataRepo, AccountMapper mapper) {
         this.springDataRepo = springDataRepo;
         this.mapper = mapper;

@@ -1,6 +1,10 @@
 package dk.sdu.mmmi.pms.application.shared;
 
+/**
+ * Interface for encoding and verifying passwords.
+ */
 public interface PasswordEncoder {
+
     /**
      * Encodes the provided raw password.
      *
