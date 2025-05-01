@@ -1,11 +1,11 @@
-package dk.sdu.mmmi.pms.infrastructure.account;
+package dk.sdu.mmmi.pms.infrastructure.account.persistence;
 
 import dk.sdu.mmmi.pms.core.account.Account;
 import org.springframework.stereotype.Component;
 
 /**
- * AccountMapper is responsible for converting between Account and AccountJpaEntity.
- * It provides methods to convert from the core domain model to the JPA entity and vice versa.
+ * AccountMapper is responsible for converting between {@link Account} and {@link AccountJpaEntity}.
+ * It handles the conversion between the domain model and the persistence model.
  */
 @Component
 public class AccountMapper {

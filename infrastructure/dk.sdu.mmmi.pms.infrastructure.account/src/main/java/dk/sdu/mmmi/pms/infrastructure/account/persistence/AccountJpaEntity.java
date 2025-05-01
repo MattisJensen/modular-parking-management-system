@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.pms.infrastructure.account;
+package dk.sdu.mmmi.pms.infrastructure.account.persistence;
 
 import dk.sdu.mmmi.pms.core.account.AccountRole;
 import jakarta.persistence.Column;

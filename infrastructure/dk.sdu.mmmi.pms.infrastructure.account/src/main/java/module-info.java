@@ -17,4 +17,5 @@ module dk.sdu.mmmi.pms.infrastructure.account {
     provides ModuleConfigurationSPI with AccountConfigProvider;
     opens dk.sdu.mmmi.pms.infrastructure.account to spring.beans, spring.context, spring.core, org.hibernate.orm.core;
     opens dk.sdu.mmmi.pms.infrastructure.account.config to spring.beans, spring.context, spring.core;
+    opens dk.sdu.mmmi.pms.infrastructure.account.persistence to spring.beans, spring.context, spring.core, org.hibernate.orm.core;
 }

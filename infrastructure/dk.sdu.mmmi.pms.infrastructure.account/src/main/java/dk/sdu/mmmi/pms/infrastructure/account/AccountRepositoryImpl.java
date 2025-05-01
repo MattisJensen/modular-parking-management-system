@@ -2,6 +2,9 @@ package dk.sdu.mmmi.pms.infrastructure.account;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
 import dk.sdu.mmmi.pms.core.account.Account;
+import dk.sdu.mmmi.pms.infrastructure.account.persistence.AccountJpaEntity;
+import dk.sdu.mmmi.pms.infrastructure.account.persistence.AccountJpaRepository;
+import dk.sdu.mmmi.pms.infrastructure.account.persistence.AccountMapper;
 import jakarta.persistence.PersistenceException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
