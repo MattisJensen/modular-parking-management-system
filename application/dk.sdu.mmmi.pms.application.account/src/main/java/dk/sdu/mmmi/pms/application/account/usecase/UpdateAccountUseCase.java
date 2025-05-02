@@ -43,7 +43,9 @@ public class UpdateAccountUseCase {
     public void execute(UUID id, UpdateParameters parameters) {
         Account existingAccount = IdValidator.validateExistenceAndGetAccount(id, accountRepository);
         Account updatedAccount = createUpdatedAccount(existingAccount, parameters);
-        validateEmail(parameters.email);
+        if (parameters.email() != null) {
+            validateEmail(parameters.email());
+        }
         EmailValidator.validateUniqueness(parameters.email, accountRepository);
         accountRepository.update(updatedAccount);
     }
@@ -83,5 +85,6 @@ public class UpdateAccountUseCase {
             String email,
             String password,
             AccountRole role
-    ) {}
+    ) {
+    }
 }
