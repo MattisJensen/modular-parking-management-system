@@ -7,20 +7,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mock;
 
 import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.openMocks;
 
 class IdValidatorTest {
+    @Mock
     private AccountRepository mockRepository;
     private final UUID existingId = UUID.randomUUID();
 
     @BeforeEach
     void setup() {
-        mockRepository = mock(AccountRepository.class);
+     openMocks(this);
     }
 
     @Test
@@ -31,7 +34,7 @@ class IdValidatorTest {
         // Ensures that no exception is thrown
         assertDoesNotThrow(() -> IdValidator.validateExistence(existingId, mockRepository));
 
-        // Verifies that the repository's findById method was called with the correct ID
+        // Verify that the repository's findById method was called with the correct ID
         verify(mockRepository).findById(existingId);
     }
 
@@ -50,7 +53,7 @@ class IdValidatorTest {
         // Ensures that an AccountNotFoundException is thrown
         assertThrows(AccountNotFoundException.class, () -> IdValidator.validateExistence(id, mockRepository));
 
-        // Verifies that the repository's findById method was called with the correct ID
+        // Verify that the repository's findById method was called with the correct ID
         verify(mockRepository).findById(id);
     }
 
@@ -67,7 +70,7 @@ class IdValidatorTest {
         // Ensures that the returned account is the same as the expected one
         assertSame(expectedAccount, result);
 
-        // Verifies that the repository's findById method was called with the correct ID
+        // Verify that the repository's findById method was called with the correct ID
         verify(mockRepository).findById(existingId);
     }
 
@@ -85,7 +88,7 @@ class IdValidatorTest {
         // Ensures that an AccountNotFoundException is thrown
         assertThrows(AccountNotFoundException.class, () -> IdValidator.validateExistenceAndGetAccount(id, mockRepository));
 
-        // Verifies that the repository's findById method was called with the correct ID
+        // Verify that the repository's findById method was called with the correct ID
         verify(mockRepository).findById(id);
     }
 }

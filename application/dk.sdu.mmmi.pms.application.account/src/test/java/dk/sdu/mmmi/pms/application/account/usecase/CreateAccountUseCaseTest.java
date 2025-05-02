@@ -8,6 +8,7 @@ import dk.sdu.mmmi.pms.core.account.exceptions.EmailDuplicateException;
 import dk.sdu.mmmi.pms.core.account.exceptions.EmailFormatException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -15,9 +16,12 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.openMocks;
 
 class CreateAccountUseCaseTest {
+    @Mock
     private AccountRepository accountRepository;
+    @Mock
     private PasswordEncoder passwordEncoder;
 
     private CreateAccountUseCase useCase;
@@ -29,8 +33,7 @@ class CreateAccountUseCaseTest {
 
     @BeforeEach
     void setUp() {
-        accountRepository = mock(AccountRepository.class);
-        passwordEncoder = mock(PasswordEncoder.class);
+        openMocks(this);
         useCase = new CreateAccountUseCase(accountRepository, passwordEncoder);
     }
 
@@ -64,7 +67,7 @@ class CreateAccountUseCaseTest {
         // Ensures that an EmailFormatException is thrown
         assertThrows(EmailFormatException.class, () -> useCase.execute(name, invalidEmail, rawPassword, role));
 
-        // Verifies that the passwordEncoder's encode method was not called
+        // Verify that the passwordEncoder's encode method was not called
         verifyNoInteractions(passwordEncoder);
         verify(accountRepository, never()).save(any());
     }
