@@ -51,11 +51,9 @@ class EmailValidatorTest {
 
     @Test
     void validateUniqueness_newEmail_doesNotThrowException() {
-        // Repository mock
+        // Arrange
         AccountRepository mockRepository = mock(AccountRepository.class);
         String newEmail = "unique@mail.com";
-
-        // Simulate no existing email
         when(mockRepository.findByEmail(newEmail)).thenReturn(java.util.Optional.empty());
 
         // Validate uniqueness
@@ -65,11 +63,9 @@ class EmailValidatorTest {
 
     @Test
     void validateUniqueness_existingEmail_throwsEmailDuplicateException() {
-        // Repository mock
+        // Arrange
         AccountRepository mockRepository = mock(AccountRepository.class);
         String existingEmail = "existing@mail.com";
-
-        // Simulate existing email
         when(mockRepository.findByEmail(existingEmail)).thenReturn(Optional.of(mock(Account.class)));
 
         // Validate existence

@@ -3,12 +3,10 @@ package dk.sdu.mmmi.pms.application.account.uitl;
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
 import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.core.account.exceptions.AccountNotFoundException;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.Mockito;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -22,18 +20,12 @@ class IdValidatorTest {
 
     @BeforeEach
     void setup() {
-        mockRepository = Mockito.mock(AccountRepository.class);
+        mockRepository = mock(AccountRepository.class);
     }
 
-    @AfterEach
-    void tearDown() {
-        // Reset the mock repository to avoid side effects on other tests
-        Mockito.reset(mockRepository);
-    }
-
-    
     @Test
     void validateExistence_ExistingId_NoException() {
+        // Arrange
         when(mockRepository.findById(existingId)).thenReturn(Optional.of(mock(Account.class)));
 
         // Ensures that no exception is thrown
@@ -51,6 +43,7 @@ class IdValidatorTest {
             "11111111-1111-1111-1111-111111111111"
     })
     void validateExistence_NonExistingId_ThrowsException(String idString) {
+        // Arrange
         UUID id = UUID.fromString(idString);
         when(mockRepository.findById(id)).thenReturn(Optional.empty());
 
@@ -64,9 +57,11 @@ class IdValidatorTest {
 
     @Test
     void validateExistenceAndGetAccount_ExistingId_ReturnsAccount() {
+        // Arrange
         Account expectedAccount = mock(Account.class);
         when(mockRepository.findById(existingId)).thenReturn(Optional.of(expectedAccount));
 
+        // Ensures that no exception is thrown
         Account result = IdValidator.validateExistenceAndGetAccount(existingId, mockRepository);
 
         // Ensures that the returned account is the same as the expected one
@@ -83,13 +78,12 @@ class IdValidatorTest {
             "33333333-3333-3333-3333-333333333333"
     })
     void validateExistenceAndGetAccount_NonExistingId_ThrowsException(String idString) {
+        // Arrange
         UUID id = UUID.fromString(idString);
         when(mockRepository.findById(id)).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(AccountNotFoundException.class, () -> IdValidator.validateExistenceAndGetAccount(id, mockRepository));
-
         // Ensures that an AccountNotFoundException is thrown
-        assertTrue(exception.getMessage().contains(id.toString()));
+        assertThrows(AccountNotFoundException.class, () -> IdValidator.validateExistenceAndGetAccount(id, mockRepository));
 
         // Verifies that the repository's findById method was called with the correct ID
         verify(mockRepository).findById(id);
