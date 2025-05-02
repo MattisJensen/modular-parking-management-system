@@ -29,7 +29,7 @@ class FindAccountByEmailUseCaseTest {
 
 
     @Test
-    void execute_ExistingEmail_ReturnsAccount() throws Exception {
+    void execute_ExistingEmail_ReturnsAccount() {
         // Arrange
         Account expectedAccount = mock(Account.class);
         when(accountRepository.findByEmail(existingEmail)).thenReturn(Optional.of(expectedAccount));
