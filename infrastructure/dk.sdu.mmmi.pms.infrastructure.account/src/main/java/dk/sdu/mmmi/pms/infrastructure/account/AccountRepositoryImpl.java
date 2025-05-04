@@ -35,22 +35,14 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public void save(Account account) {
-        try {
-            AccountJpaEntity jpaEntity = mapper.toJpaEntity(account);
-            springDataRepo.save(jpaEntity);
-        } catch (DataIntegrityViolationException e) {
-            throw new PersistenceException("Database error occurred while saving account", e);
-        }
+        AccountJpaEntity jpaEntity = mapper.toJpaEntity(account);
+        springDataRepo.save(jpaEntity);
     }
 
     @Override
     public void update(Account account) {
-        try {
-            AccountJpaEntity jpaEntity = mapper.toJpaEntity(account);
-            springDataRepo.save(jpaEntity);
-        } catch (DataIntegrityViolationException e) {
-            throw new PersistenceException("Database error occurred while updating account", e);
-        }
+        AccountJpaEntity jpaEntity = mapper.toJpaEntity(account);
+        springDataRepo.save(jpaEntity);
     }
 
     @Override
