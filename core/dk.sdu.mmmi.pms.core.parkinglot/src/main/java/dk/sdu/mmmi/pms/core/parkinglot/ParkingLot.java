@@ -1,26 +1,28 @@
 package dk.sdu.mmmi.pms.core.parkinglot;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.UUID;
 
-public class ParkingLot {
-    private final UUID id;
-    private final String name;
-    private final List<UUID> parkingSpotIds; // Renamed for clarity
-
-    public ParkingLot(UUID id, String name, List<UUID> parkingSpotIds) {
-        this.id = id;
-        this.name = name.strip();
-        this.parkingSpotIds = List.copyOf(parkingSpotIds); // Defensive copy
+/**
+ * Domain entity representing a parking lot
+ * @param id Unique identifier
+ * @param name Human-readable name
+ * @param location Geographical location
+ * @param capacity Maximum number of vehicles
+ * @param availableSpots Currently available spots
+ */
+public record ParkingLot(
+        UUID id,
+        String name,
+        String location,
+        int capacity,
+        int availableSpots
+) {
+    public ParkingLot {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Capacity must be positive");
+        }
+        if (availableSpots < 0 || availableSpots > capacity) {
+            throw new IllegalArgumentException("Available spots must be between 0 and capacity");
+        }
     }
-
-    public int getTotalParkingSpots() {
-        return parkingSpotIds.size();
-    }
-
-    // Getters
-    public UUID getId() { return id; }
-    public String getName() { return name; }
-    public List<UUID> getParkingSpotIds() { return Collections.unmodifiableList(parkingSpotIds); }
 }

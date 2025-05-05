@@ -1,16 +1,16 @@
 package dk.sdu.mmmi.pms.presentation.account;
 
-import dk.sdu.mmmi.pms.core.account.exceptions.AccountNotFoundException;
-import dk.sdu.mmmi.pms.core.account.exceptions.EmailDuplicateException;
-import dk.sdu.mmmi.pms.core.account.exceptions.EmailFormatException;
+import dk.sdu.mmmi.pms.core.account.exception.AccountNotFoundException;
+import dk.sdu.mmmi.pms.core.account.exception.EmailDuplicateException;
+import dk.sdu.mmmi.pms.core.account.exception.EmailFormatException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * Global exception handler for account-related exceptions.
- * This class provides methods to handle specific exceptions and return appropriate HTTP responses.
+ * Global exception handler for account-related exception.
+ * This class provides methods to handle specific exception and return appropriate HTTP responses.
  */
 @RestControllerAdvice
 public class AccountExceptionHandler {

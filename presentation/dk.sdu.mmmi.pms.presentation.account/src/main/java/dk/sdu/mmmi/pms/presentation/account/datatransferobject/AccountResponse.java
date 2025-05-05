@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.pms.presentation.account.datatransferobjects;
+package dk.sdu.mmmi.pms.presentation.account.datatransferobject;
 
 import dk.sdu.mmmi.pms.core.account.AccountRole;
 

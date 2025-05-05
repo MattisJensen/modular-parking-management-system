@@ -9,14 +9,14 @@
     </parent>
 
     <packaging>jar</packaging>
-    <artifactId>presentation.account</artifactId>
-    <name>dk.sdu.mmmi.pms.presentation.account</name>
+    <artifactId>presentation.parkinglot</artifactId>
+    <name>dk.sdu.mmmi.pms.presentation.parkinglot</name>
 
     <dependencies>
         <!-- Core dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>core.account</artifactId>
+            <artifactId>core.parkinglot</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
@@ -24,7 +24,7 @@
         <!-- Application dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>application.account</artifactId>
+            <artifactId>application.parkinglot</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
@@ -68,7 +68,7 @@
                 <executions>
                     <execution>
                         <id>copy-dependencies</id>
-<!--                        <phase>package</phase>-->
+                        <!--                        <phase>package</phase>-->
                         <phase>none</phase> <!-- skips execution. Copy simultaneously same artifactId doesn't work -->
                         <goals>
                             <goal>copy-dependencies</goal>

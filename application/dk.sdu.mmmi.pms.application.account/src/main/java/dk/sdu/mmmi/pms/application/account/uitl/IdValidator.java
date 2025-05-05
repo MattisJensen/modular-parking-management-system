@@ -2,7 +2,7 @@ package dk.sdu.mmmi.pms.application.account.uitl;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
 import dk.sdu.mmmi.pms.core.account.Account;
-import dk.sdu.mmmi.pms.core.account.exceptions.AccountNotFoundException;
+import dk.sdu.mmmi.pms.core.account.exception.AccountNotFoundException;
 
 import java.util.UUID;
 

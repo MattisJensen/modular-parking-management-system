@@ -2,7 +2,7 @@ package dk.sdu.mmmi.pms.application.account.usecase;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
 import dk.sdu.mmmi.pms.core.account.Account;
-import dk.sdu.mmmi.pms.core.account.exceptions.AccountNotFoundException;
+import dk.sdu.mmmi.pms.core.account.exception.AccountNotFoundException;
 
 /**
  * Use case for finding an account by its email address.

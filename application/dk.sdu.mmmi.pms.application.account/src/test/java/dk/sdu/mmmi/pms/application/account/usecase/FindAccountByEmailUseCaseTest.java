@@ -2,7 +2,7 @@ package dk.sdu.mmmi.pms.application.account.usecase;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
 import dk.sdu.mmmi.pms.core.account.Account;
-import dk.sdu.mmmi.pms.core.account.exceptions.AccountNotFoundException;
+import dk.sdu.mmmi.pms.core.account.exception.AccountNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

@@ -5,8 +5,8 @@ import dk.sdu.mmmi.pms.application.account.uitl.EmailValidator;
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.core.account.AccountRole;
-import dk.sdu.mmmi.pms.core.account.exceptions.EmailDuplicateException;
-import dk.sdu.mmmi.pms.core.account.exceptions.EmailFormatException;
+import dk.sdu.mmmi.pms.core.account.exception.EmailDuplicateException;
+import dk.sdu.mmmi.pms.core.account.exception.EmailFormatException;
 
 import java.util.UUID;
 

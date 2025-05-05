@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.pms.core.account.exceptions;
+package dk.sdu.mmmi.pms.core.account.exception;
 
 /**
  * Exception thrown when an {@link dk.sdu.mmmi.pms.core.account.Account} cannot be found.

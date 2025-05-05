@@ -2,8 +2,8 @@ package dk.sdu.mmmi.pms.application.account.uitl;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
 import dk.sdu.mmmi.pms.core.account.Account;
-import dk.sdu.mmmi.pms.core.account.exceptions.EmailDuplicateException;
-import dk.sdu.mmmi.pms.core.account.exceptions.EmailFormatException;
+import dk.sdu.mmmi.pms.core.account.exception.EmailDuplicateException;
+import dk.sdu.mmmi.pms.core.account.exception.EmailFormatException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

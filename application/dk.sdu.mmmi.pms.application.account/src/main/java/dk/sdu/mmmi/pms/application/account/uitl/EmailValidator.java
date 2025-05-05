@@ -1,8 +1,8 @@
 package dk.sdu.mmmi.pms.application.account.uitl;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
-import dk.sdu.mmmi.pms.core.account.exceptions.EmailDuplicateException;
-import dk.sdu.mmmi.pms.core.account.exceptions.EmailFormatException;
+import dk.sdu.mmmi.pms.core.account.exception.EmailDuplicateException;
+import dk.sdu.mmmi.pms.core.account.exception.EmailFormatException;
 
 public class EmailValidator {
     /**

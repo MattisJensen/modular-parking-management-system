@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.pms.core.account.exceptions;
+package dk.sdu.mmmi.pms.core.account.exception;
 
 /**
  * Exception thrown when an email address is already in use.
