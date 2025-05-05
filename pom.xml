@@ -13,18 +13,28 @@
     </repositories>
 
     <modules>
+        <!-- core modules -->
         <module>core/dk.sdu.mmmi.pms.core.account</module>
-<!--        <module>core/dk.sdu.mmmi.pms.core.booking</module>-->
-<!--        <module>core/dk.sdu.mmmi.pms.core.parkinglot</module>-->
-<!--        <module>core/dk.sdu.mmmi.pms.core.parkingspot</module>-->
-<!--        <module>core/dk.sdu.mmmi.pms.core.vehicle</module>-->
+        <!--        <module>core/dk.sdu.mmmi.pms.core.booking</module>-->
+        <module>core/dk.sdu.mmmi.pms.core.parkinglot</module>
+        <!--        <module>core/dk.sdu.mmmi.pms.core.parkingspot</module>-->
+        <!--        <module>core/dk.sdu.mmmi.pms.core.vehicle</module>-->
+
+        <!-- application modules -->
         <module>application/dk.sdu.mmmi.pms.application.account</module>
+        <module>application/dk.sdu.mmmi.pms.application.parkinglot</module>
         <module>application/dk.sdu.mmmi.pms.application.shared</module>
+
+        <!-- infrastructure modules -->
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.database</module>
+        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.parkinglot</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>
+
+        <!-- presentation modules -->
         <module>presentation/dk.sdu.mmmi.pms.presentation.account</module>
         <module>presentation/dk.sdu.mmmi.pms.presentation.main</module>
+        <module>presentation/dk.sdu.mmmi.pms.presentation.parkinglot</module>
     </modules>
 
     <properties>
@@ -137,9 +147,9 @@
                         <argument>
                             --module=dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main.ParkingManagementSystemApplication
                         </argument>
-<!--                        <argument>-->
-<!--                            &#45;&#45;add-opens=dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main=spring.core-->
-<!--                        </argument>-->
+                        <!--                        <argument>-->
+                        <!--                            &#45;&#45;add-opens=dk.sdu.mmmi.pms.presentation.main/dk.sdu.mmmi.pms.presentation.main=spring.core-->
+                        <!--                        </argument>-->
                     </arguments>
                 </configuration>
             </plugin>
