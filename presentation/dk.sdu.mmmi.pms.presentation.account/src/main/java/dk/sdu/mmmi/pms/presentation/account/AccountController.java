@@ -88,6 +88,8 @@ public class AccountController {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (AccountNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid UUID format: " + id);
         }
     }
 
