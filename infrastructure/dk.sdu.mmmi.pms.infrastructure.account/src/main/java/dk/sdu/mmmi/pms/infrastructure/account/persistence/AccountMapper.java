@@ -4,40 +4,40 @@ import dk.sdu.mmmi.pms.core.account.Account;
 import org.springframework.stereotype.Component;
 
 /**
- * Maps between the domain model {@link Account} and the persistence model {@link AccountJpaEntity}.
+ * Maps between the core model {@link Account} and the persistence model {@link AccountJpaEntity}.
  */
 @Component
 public class AccountMapper {
 
     /**
-     * Converts a domain model {@link Account} to a persistence model {@link AccountJpaEntity}.
+     * Converts a core model {@link Account} to a persistence model {@link AccountJpaEntity}.
      *
-     * @param account the {@link Account} to be converted
+     * @param core the {@link Account} to be converted
      * @return the corresponding {@link AccountJpaEntity}
      */
-    public AccountJpaEntity toJpaEntity(Account account) {
+    public AccountJpaEntity toJpaEntity(Account core) {
         return new AccountJpaEntity(
-                account.id(),
-                account.name(),
-                account.email(),
-                account.password(),
-                account.accountRole()
+                core.id(),
+                core.name(),
+                core.email(),
+                core.password(),
+                core.accountRole()
         );
     }
 
     /**
-     * Converts a persistence model {@link AccountJpaEntity} to a domain model {@link Account}.
+     * Converts a persistence model {@link AccountJpaEntity} to a core model {@link Account}.
      *
-     * @param jpaEntity the {@link AccountJpaEntity} to be converted
+     * @param jpa the {@link AccountJpaEntity} to be converted
      * @return the corresponding {@link Account}
      */
-    public Account toCore(AccountJpaEntity jpaEntity) {
+    public Account toCore(AccountJpaEntity jpa) {
         return new Account(
-                jpaEntity.getId(),
-                jpaEntity.getName(),
-                jpaEntity.getEmail(),
-                jpaEntity.getPassword(),
-                jpaEntity.getAccountRole()
+                jpa.getId(),
+                jpa.getName(),
+                jpa.getEmail(),
+                jpa.getPassword(),
+                jpa.getAccountRole()
         );
     }
 }
