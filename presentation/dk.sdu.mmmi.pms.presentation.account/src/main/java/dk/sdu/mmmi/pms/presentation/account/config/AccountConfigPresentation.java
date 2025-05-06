@@ -30,15 +30,14 @@ public class AccountConfigPresentation {
     }
 
     /**
-     * Provides an {@link UpdateAccountUseCase} bean.
+     * Provides a {@link DeleteAccountByIdUseCase} bean.
      *
-     * @param accountRepository the {@link AccountRepository} to handle account storage
-     * @param passwordEncoder   the {@link PasswordEncoder} to hash passwords
-     * @return an {@link UpdateAccountUseCase} instance
+     * @param accountRepository the {@link AccountRepository} to handle account deletion
+     * @return a {@link DeleteAccountByIdUseCase} instance
      */
     @Bean
-    public UpdateAccountUseCase updateAccountUseCase(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
-        return new UpdateAccountUseCase(accountRepository, passwordEncoder);
+    public DeleteAccountByIdUseCase deleteAccountByIdUseCase(AccountRepository accountRepository) {
+        return new DeleteAccountByIdUseCase(accountRepository);
     }
 
     /**
@@ -64,14 +63,15 @@ public class AccountConfigPresentation {
     }
 
     /**
-     * Provides a {@link DeleteAccountByIdUseCase} bean.
+     * Provides an {@link UpdateAccountUseCase} bean.
      *
-     * @param accountRepository the {@link AccountRepository} to handle account deletion
-     * @return a {@link DeleteAccountByIdUseCase} instance
+     * @param accountRepository the {@link AccountRepository} to handle account storage
+     * @param passwordEncoder   the {@link PasswordEncoder} to hash passwords
+     * @return an {@link UpdateAccountUseCase} instance
      */
     @Bean
-    public DeleteAccountByIdUseCase deleteAccountByIdUseCase(AccountRepository accountRepository) {
-        return new DeleteAccountByIdUseCase(accountRepository);
+    public UpdateAccountUseCase updateAccountUseCase(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
+        return new UpdateAccountUseCase(accountRepository, passwordEncoder);
     }
 }
 
