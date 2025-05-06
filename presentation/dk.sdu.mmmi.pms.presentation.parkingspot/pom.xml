@@ -39,12 +39,6 @@
 
         <!-- Spring dependencies -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring-webmvc.version}</version>
@@ -81,7 +75,6 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-                                spring-boot-autoconfigure,
                                 spring-context,
                                 spring-web,
                             </includeArtifactIds>

@@ -1,5 +1,12 @@
 package dk.sdu.mmmi.pms.infrastructure.parkinglot.config;
 
+import dk.sdu.mmmi.pms.application.parkinglot.ParkingLotRepository;
+import dk.sdu.mmmi.pms.application.parkinglot.usecase.CreateParkingLotUseCase;
+import dk.sdu.mmmi.pms.application.parkinglot.usecase.DeleteParkingLotByIdUseCase;
+import dk.sdu.mmmi.pms.application.parkinglot.usecase.FindParkingLotByIdUseCase;
+import dk.sdu.mmmi.pms.application.parkinglot.usecase.UpdateParkingLotUseCase;
+import dk.sdu.mmmi.pms.core.parkingspot.ParkingSpotDeleter;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -14,4 +21,23 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = "dk.sdu.mmmi.pms.infrastructure.parkinglot")
 @ComponentScan(basePackages = "dk.sdu.mmmi.pms.infrastructure.parkinglot")
 public class ParkingLotConfigInfrastructure {
+    @Bean
+    public CreateParkingLotUseCase createParkingLotUseCase(ParkingLotRepository repository) {
+        return new CreateParkingLotUseCase(repository);
+    }
+
+    @Bean
+    public DeleteParkingLotByIdUseCase deleteParkingLotUseCase(ParkingLotRepository repository, ParkingSpotDeleter deleteAllParkingLotByIdUseCase) {
+        return new DeleteParkingLotByIdUseCase(repository, deleteAllParkingLotByIdUseCase);
+    }
+
+    @Bean
+    public FindParkingLotByIdUseCase getParkingLotUseCase(ParkingLotRepository repository) {
+        return new FindParkingLotByIdUseCase(repository);
+    }
+
+    @Bean
+    public UpdateParkingLotUseCase updateParkingLotUseCase(ParkingLotRepository repository) {
+        return new UpdateParkingLotUseCase(repository);
+    }
 }
