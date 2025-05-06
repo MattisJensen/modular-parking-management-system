@@ -1,10 +1,7 @@
 package dk.sdu.mmmi.pms.presentation.account.config;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
-import dk.sdu.mmmi.pms.application.account.usecase.CreateAccountUseCase;
-import dk.sdu.mmmi.pms.application.account.usecase.FindAccountByEmailUseCase;
-import dk.sdu.mmmi.pms.application.account.usecase.FindAccountByIdUseCase;
-import dk.sdu.mmmi.pms.application.account.usecase.UpdateAccountUseCase;
+import dk.sdu.mmmi.pms.application.account.usecase.*;
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -64,6 +61,17 @@ public class AccountConfigPresentation {
     @Bean
     public FindAccountByIdUseCase findAccountByIdUseCase(AccountRepository accountRepository) {
         return new FindAccountByIdUseCase(accountRepository);
+    }
+
+    /**
+     * Provides a {@link DeleteAccountByIdUseCase} bean.
+     *
+     * @param accountRepository the {@link AccountRepository} to handle account deletion
+     * @return a {@link DeleteAccountByIdUseCase} instance
+     */
+    @Bean
+    public DeleteAccountByIdUseCase deleteAccountByIdUseCase(AccountRepository accountRepository) {
+        return new DeleteAccountByIdUseCase(accountRepository);
     }
 }
 

@@ -52,8 +52,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Optional<Account> findById(UUID id) {
-        return springDataRepo.findById(id)
-                .map(mapper::toCore);
+        return springDataRepo.findById(id).map(mapper::toCore);
     }
 
     @Override
