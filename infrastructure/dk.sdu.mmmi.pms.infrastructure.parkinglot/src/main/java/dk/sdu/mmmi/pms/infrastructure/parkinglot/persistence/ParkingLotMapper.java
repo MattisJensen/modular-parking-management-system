@@ -5,13 +5,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ParkingLotMapper {
-    public ParkingLotJpaEntity toJpaEntity(ParkingLot domain) {
+    public ParkingLotJpaEntity toJpaEntity(ParkingLot core) {
         return new ParkingLotJpaEntity(
-                domain.id(),
-                domain.name(),
-                domain.location(),
-                domain.capacity(),
-                domain.availableSpots()
+                core.id(),
+                core.name(),
+                core.location(),
+                core.capacity(),
+                core.availableSpots()
         );
     }
 
