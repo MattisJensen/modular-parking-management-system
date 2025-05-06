@@ -3,12 +3,11 @@ import dk.sdu.mmmi.pms.presentation.parkinglot.config.ParkingLotConfigProvider;
 
 module dk.sdu.mmmi.pms.presentation.parkinglot {
     // Internal dependencies
+    requires dk.sdu.mmmi.pms.core.parkinglot;
     requires dk.sdu.mmmi.pms.application.parkinglot;
-    requires dk.sdu.mmmi.pms.application.parkingspot;
     requires dk.sdu.mmmi.pms.application.shared;
 
     // External dependencies
-    requires spring.boot.autoconfigure;
     requires spring.context;
     requires spring.web;
 

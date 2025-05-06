@@ -12,6 +12,7 @@ module dk.sdu.mmmi.pms.infrastructure.parkingspot {
     requires spring.data.jpa;
     requires jakarta.persistence;
     requires spring.tx;
+    requires dk.sdu.mmmi.pms.core.parkinglot;
 
     // Visibility
     provides ModuleConfigurationSPI with ParkingSpotConfigProvider;
