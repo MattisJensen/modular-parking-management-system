@@ -27,6 +27,8 @@ class AccountControllerTest {
     private FindAccountByIdUseCase findAccountByIdUseCase;
     @Mock
     private FindAccountByEmailUseCase findAccountByEmailUseCase;
+    @Mock
+    private DeleteAccountByIdUseCase deleteAccountByIdUseCase;
 
     private AccountController controller;
     private UUID testId;
@@ -39,7 +41,8 @@ class AccountControllerTest {
                 createAccountUseCase,
                 updateAccountUseCase,
                 findAccountByEmailUseCase,
-                findAccountByIdUseCase
+                findAccountByIdUseCase,
+                deleteAccountByIdUseCase
         );
         testId = UUID.randomUUID();
         testAccount = new Account(testId, "Test User", "test@mail.com", "hash", AccountRole.USER);
@@ -82,19 +85,6 @@ class AccountControllerTest {
     void updateAccount_InvalidUUID_ReturnsBadRequest() {
         // Arrange
         ResponseEntity<?> response = controller.updateAccount("invalid-uuid", new UpdateAccountRequest(null, null, null, null));
-
-        // Ensures the response is bad request
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-    }
-
-
-    @Test
-    void updateAccount_EmailFormatError_ReturnsBadRequest() {
-        // Arrange
-        UpdateAccountRequest request = new UpdateAccountRequest(null, "bad-email", null, null);
-        doThrow(new EmailFormatException("Invalid email")).when(updateAccountUseCase).execute(any(), any());
-
-        ResponseEntity<?> response = controller.updateAccount(testId.toString(), request);
 
         // Ensures the response is bad request
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());

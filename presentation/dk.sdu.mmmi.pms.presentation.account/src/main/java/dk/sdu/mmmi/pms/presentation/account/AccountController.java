@@ -1,9 +1,6 @@
 package dk.sdu.mmmi.pms.presentation.account;
 
-import dk.sdu.mmmi.pms.application.account.usecase.CreateAccountUseCase;
-import dk.sdu.mmmi.pms.application.account.usecase.FindAccountByEmailUseCase;
-import dk.sdu.mmmi.pms.application.account.usecase.FindAccountByIdUseCase;
-import dk.sdu.mmmi.pms.application.account.usecase.UpdateAccountUseCase;
+import dk.sdu.mmmi.pms.application.account.usecase.*;
 import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.core.account.exception.AccountNotFoundException;
 import dk.sdu.mmmi.pms.core.account.exception.EmailFormatException;
@@ -28,6 +25,7 @@ public class AccountController {
     private final UpdateAccountUseCase updateAccountUseCase;
     private final FindAccountByIdUseCase findAccountByIdUseCase;
     private final FindAccountByEmailUseCase findAccountByEmailUseCase;
+    private final DeleteAccountByIdUseCase deleteAccountByIdUseCase;
 
     /**
      * Constructs an {@link AccountController} with the required use cases.
@@ -40,12 +38,14 @@ public class AccountController {
     public AccountController(CreateAccountUseCase createAccountUseCase,
                              UpdateAccountUseCase updateAccountUseCase,
                              FindAccountByEmailUseCase findAccountByEmailUseCase,
-                             FindAccountByIdUseCase findAccountByIdUseCase) {
+                             FindAccountByIdUseCase findAccountByIdUseCase,
+                             DeleteAccountByIdUseCase deleteAccountByIdUseCase) {
 
         this.createAccountUseCase = createAccountUseCase;
         this.updateAccountUseCase = updateAccountUseCase;
         this.findAccountByIdUseCase = findAccountByIdUseCase;
         this.findAccountByEmailUseCase = findAccountByEmailUseCase;
+        this.deleteAccountByIdUseCase = deleteAccountByIdUseCase;
     }
 
    /**
@@ -84,10 +84,6 @@ public class AccountController {
                     request.role()
             ));
             return ResponseEntity.noContent().build();
-        } catch (EmailFormatException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (AccountNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body("Invalid UUID format: " + id);
         }
@@ -131,5 +127,22 @@ public class AccountController {
                 account.email(),
                 account.accountRole()
         );
+    }
+
+    /**
+     * Deletes an account by its ID.
+     *
+     * @param id the ID of the account to delete
+     * @return a {@link ResponseEntity} indicating the result of the operation
+     */
+    @DeleteMapping("/id/{id}")
+    public ResponseEntity<?> deleteAccount(@PathVariable String id) {
+        try {
+            UUID uuid = UUID.fromString(id);
+            deleteAccountByIdUseCase.execute(uuid);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid UUID format: " + id);
+        }
     }
 }
