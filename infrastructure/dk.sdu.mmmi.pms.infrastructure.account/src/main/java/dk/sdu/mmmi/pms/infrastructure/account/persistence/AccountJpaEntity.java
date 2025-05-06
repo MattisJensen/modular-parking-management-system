@@ -1,10 +1,7 @@
 package dk.sdu.mmmi.pms.infrastructure.account.persistence;
 
 import dk.sdu.mmmi.pms.core.account.AccountRole;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -28,6 +25,7 @@ public class AccountJpaEntity {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AccountRole accountRole;
 
