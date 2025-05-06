@@ -8,9 +8,17 @@ import java.util.UUID;
 public class ParkingLotJpaEntity {
     @Id
     private UUID id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String location;
+
+    @Column(nullable = false)
     private int capacity;
+
+    @Column(nullable = false)
     private int availableSpots;
 
     protected ParkingLotJpaEntity() {}
