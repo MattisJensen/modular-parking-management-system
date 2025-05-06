@@ -17,11 +17,7 @@ public class CreateParkingLotUseCase {
         UUID accountId = UUID.randomUUID();
 
         ParkingLot newLot = new ParkingLot(
-                accountId,
-                name,
-                location,
-                capacity,
-                capacity // Initialize with full availability
+                accountId, name, location, capacity, capacity // Initialize with full availability
         );
 
         repository.save(newLot);

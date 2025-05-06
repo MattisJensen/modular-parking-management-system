@@ -6,10 +6,10 @@ import dk.sdu.mmmi.pms.core.parkinglot.exception.ParkingLotNotFoundException;
 
 import java.util.UUID;
 
-public class GetParkingLotUseCase {
+public class FindParkingLotByIdUseCase {
     private final ParkingLotRepository repository;
 
-    public GetParkingLotUseCase(ParkingLotRepository repository) {
+    public FindParkingLotByIdUseCase(ParkingLotRepository repository) {
         this.repository = repository;
     }
 

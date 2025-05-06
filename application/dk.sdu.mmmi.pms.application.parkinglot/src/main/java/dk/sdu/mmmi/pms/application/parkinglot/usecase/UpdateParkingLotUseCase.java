@@ -3,20 +3,19 @@ package dk.sdu.mmmi.pms.application.parkinglot.usecase;
 import dk.sdu.mmmi.pms.application.parkinglot.ParkingLotRepository;
 import dk.sdu.mmmi.pms.core.parkinglot.ParkingLot;
 import dk.sdu.mmmi.pms.core.parkinglot.exception.ParkingLotException;
+import dk.sdu.mmmi.pms.core.parkinglot.exception.ParkingLotNotFoundException;
 
 import java.util.UUID;
 
 public class UpdateParkingLotUseCase {
     private final ParkingLotRepository repository;
-    private final GetParkingLotUseCase getUseCase;
 
-    public UpdateParkingLotUseCase(ParkingLotRepository repository, GetParkingLotUseCase getUseCase) {
+    public UpdateParkingLotUseCase(ParkingLotRepository repository) {
         this.repository = repository;
-        this.getUseCase = getUseCase;
     }
 
     public void execute(UUID id, UpdateParameters parameters) {
-        ParkingLot existing = getUseCase.execute(id);
+        ParkingLot existing = repository.findById(id).orElseThrow(() -> new ParkingLotNotFoundException("Parking lot not found with id: " + id));
         if (parameters.capacity != null) validateCapacity(existing, parameters);
 
         ParkingLot updatedParkingLot = createUpdatedParkingLot(existing, parameters);
