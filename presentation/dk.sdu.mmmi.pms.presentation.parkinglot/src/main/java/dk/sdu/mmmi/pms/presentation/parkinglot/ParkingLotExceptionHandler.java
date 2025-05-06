@@ -1,6 +1,7 @@
 package dk.sdu.mmmi.pms.presentation.parkinglot;
 
 import dk.sdu.mmmi.pms.core.parkinglot.exception.ParkingLotException;
+import dk.sdu.mmmi.pms.core.parkinglot.exception.ParkingLotNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,5 +23,10 @@ public class ParkingLotExceptionHandler {
     @ExceptionHandler(ParkingLotException.class)
     public ResponseEntity<String> handleParkingLotException(ParkingLotException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ParkingLotNotFoundException.class)
+    public ResponseEntity<String> handleParkingLotNotFoundException(ParkingLotNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }
