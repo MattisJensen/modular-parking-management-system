@@ -17,17 +17,17 @@ import java.util.UUID;
  * and saving the updated account in the {@link AccountRepository}.
  */
 public class UpdateAccountUseCase {
-    private final AccountRepository accountRepository;
+    private final AccountRepository repository;
     private final PasswordEncoder passwordEncoder;
 
     /**
      * Constructor for {@link UpdateAccountUseCase}.
      *
-     * @param accountRepository the repository to handle account updates
+     * @param repository the repository to handle account updates
      * @param passwordEncoder   the encoder to hash passwords
      */
-    public UpdateAccountUseCase(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
-        this.accountRepository = accountRepository;
+    public UpdateAccountUseCase(AccountRepository repository, PasswordEncoder passwordEncoder) {
+        this.repository = repository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -41,29 +41,28 @@ public class UpdateAccountUseCase {
      * @throws EmailDuplicateException if the email is already in use
      */
     public void execute(UUID id, UpdateParameters parameters) {
-        Account existingAccount = IdValidator.validateExistenceAndGetAccount(id, accountRepository);
+        Account existingAccount = IdValidator.validateExistenceAndGetAccount(id, repository);
         Account updatedAccount = createUpdatedAccount(existingAccount, parameters);
-        if (parameters.email() != null) {
-            validateEmail(parameters.email());
-        }
-        EmailValidator.validateUniqueness(parameters.email, accountRepository);
-        accountRepository.update(updatedAccount);
+        if (parameters.email() != null) validateEmail(parameters.email());
+
+        EmailValidator.validateUniqueness(parameters.email, repository);
+        repository.update(updatedAccount);
     }
 
     /**
      * Creates an updated {@link Account} based on the existing account and the provided parameters.
      *
      * @param existing the existing account to update
-     * @param params   the parameters containing the updated account details
+     * @param parameters   the parameters containing the updated account details
      * @return the updated {@link Account}
      */
-    private Account createUpdatedAccount(Account existing, UpdateParameters params) {
+    private Account createUpdatedAccount(Account existing, UpdateParameters parameters) {
         return new Account(
                 existing.id(),
-                params.name() != null ? params.name() : existing.name(),
-                params.email() != null ? params.email : existing.email(),
-                params.password() != null ? passwordEncoder.encode(params.password()) : existing.password(),
-                params.role() != null ? params.role() : existing.accountRole()
+                parameters.name() != null ? parameters.name() : existing.name(),
+                parameters.email() != null ? parameters.email : existing.email(),
+                parameters.password() != null ? passwordEncoder.encode(parameters.password()) : existing.password(),
+                parameters.role() != null ? parameters.role() : existing.accountRole()
         );
     }
 
@@ -74,7 +73,7 @@ public class UpdateAccountUseCase {
      */
     private void validateEmail(String email) {
         EmailValidator.validateFormat(email);
-        EmailValidator.validateUniqueness(email, accountRepository);
+        EmailValidator.validateUniqueness(email, repository);
     }
 
     /**
