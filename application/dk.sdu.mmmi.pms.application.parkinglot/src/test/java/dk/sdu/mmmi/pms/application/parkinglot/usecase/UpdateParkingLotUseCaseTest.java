@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,9 +19,6 @@ import static org.mockito.MockitoAnnotations.openMocks;
 class UpdateParkingLotUseCaseTest {
     @Mock
     private ParkingLotRepository repository;
-    @Mock
-    private GetParkingLotUseCase getUseCase;
-
     private UpdateParkingLotUseCase useCase;
 
     private ParkingLot existingParkingLot;
@@ -33,7 +31,7 @@ class UpdateParkingLotUseCaseTest {
     @BeforeEach
     void setUp() {
         openMocks(this);
-        useCase = new UpdateParkingLotUseCase(repository, getUseCase);
+        useCase = new UpdateParkingLotUseCase(repository);
 
         // Existing parking lot setup
         existingId = UUID.randomUUID();
@@ -45,7 +43,7 @@ class UpdateParkingLotUseCaseTest {
                 existingId, oldName, oldLocation, oldCapacity, oldAvailableSpots
         );
 
-        when(getUseCase.execute(existingId)).thenReturn(existingParkingLot);
+        when(repository.findById(existingId)).thenReturn(Optional.ofNullable(existingParkingLot));
     }
 
 
@@ -113,7 +111,6 @@ class UpdateParkingLotUseCaseTest {
     void execute_NonExistingParkingLot_ThrowsException() {
         // Arrange
         UUID nonExistingId = UUID.randomUUID();
-        when(getUseCase.execute(nonExistingId)).thenThrow(ParkingLotNotFoundException.class);
 
         // Ensure that correct exception is thrown
         assertThrows(ParkingLotNotFoundException.class, () ->
