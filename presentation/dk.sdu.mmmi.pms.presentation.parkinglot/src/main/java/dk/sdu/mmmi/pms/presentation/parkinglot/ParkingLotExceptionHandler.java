@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * Global exception handler for account-related exception.
+ * Global exception handler for parkinglot-related exception.
  * This class provides methods to handle specific exception and return appropriate HTTP responses.
  */
 @RestControllerAdvice

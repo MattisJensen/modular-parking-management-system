@@ -31,12 +31,25 @@
 
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>application.parkingspot</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>application.shared</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
 
         <!-- Spring dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -75,6 +88,7 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
+                                spring-boot-autoconfigure,
                                 spring-context,
                                 spring-web,
                             </includeArtifactIds>
