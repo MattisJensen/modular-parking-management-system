@@ -23,10 +23,9 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Application dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>application.parkingspot</artifactId>
+            <artifactId>core.parkingspot</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>

@@ -1,7 +1,7 @@
 package dk.sdu.mmmi.pms.application.parkingspot.usecase;
 
-import dk.sdu.mmmi.pms.application.parkinglot.usecase.FindParkingLotByIdUseCase;
 import dk.sdu.mmmi.pms.application.parkingspot.ParkingSpotRepository;
+import dk.sdu.mmmi.pms.core.parkinglot.ParkingLotFinder;
 import dk.sdu.mmmi.pms.core.parkingspot.ParkingSpot;
 import dk.sdu.mmmi.pms.core.parkingspot.exception.ParkingSpotNotFoundException;
 
@@ -10,9 +10,9 @@ import java.util.UUID;
 
 public class FindAvailableParkingSpotsByParkingLotIdUseCase {
     private final ParkingSpotRepository repository;
-    private final FindParkingLotByIdUseCase findParkingLotByIdUseCase;
+    private final ParkingLotFinder findParkingLotByIdUseCase;
 
-    public FindAvailableParkingSpotsByParkingLotIdUseCase(ParkingSpotRepository repository, FindParkingLotByIdUseCase findParkingLotByIdUseCase) {
+    public FindAvailableParkingSpotsByParkingLotIdUseCase(ParkingSpotRepository repository, ParkingLotFinder findParkingLotByIdUseCase) {
         this.repository = repository;
         this.findParkingLotByIdUseCase = findParkingLotByIdUseCase;
     }
