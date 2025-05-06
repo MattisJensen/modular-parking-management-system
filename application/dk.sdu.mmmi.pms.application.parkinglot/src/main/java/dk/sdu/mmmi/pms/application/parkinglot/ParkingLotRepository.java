@@ -5,7 +5,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ParkingLotRepository {
-    ParkingLot save(ParkingLot parkingLot);
+    void save(ParkingLot parkingLot);
+    void update(ParkingLot parkingLot);
     Optional<ParkingLot> findById(UUID id);
     void deleteById(UUID id);
     Iterable<ParkingLot> findAll();

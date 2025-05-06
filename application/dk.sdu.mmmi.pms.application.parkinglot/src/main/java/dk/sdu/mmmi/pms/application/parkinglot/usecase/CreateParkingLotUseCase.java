@@ -13,18 +13,18 @@ public class CreateParkingLotUseCase {
     }
 
     public UUID execute(String name, String location, int capacity) {
-        if (capacity <= 0) {
-            throw new ParkingLotException("Capacity must be positive");
-        }
+        if (capacity <= 0) throw new ParkingLotException("Capacity must be at least 1");
+        UUID accountId = UUID.randomUUID();
 
         ParkingLot newLot = new ParkingLot(
-                UUID.randomUUID(),
+                accountId,
                 name,
                 location,
                 capacity,
                 capacity // Initialize with full availability
         );
 
-        return repository.save(newLot).id();
+        repository.save(newLot);
+        return accountId;
     }
 }
