@@ -3,7 +3,7 @@ package dk.sdu.mmmi.pms.infrastructure.parkinglot.config;
 import dk.sdu.mmmi.pms.application.shared.ModuleConfigurationSPI;
 
 /**
- * Provides the configuration class for the account infrastructure module.
+ * Provides the configuration class for the parkingspot infrastructure module.
  * This class implements the {@link ModuleConfigurationSPI} to supply
  * the {@link ParkingLotConfigInfrastructure} configuration.
  */
