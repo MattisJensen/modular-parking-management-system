@@ -18,14 +18,14 @@ class GetParkingLotUseCaseTest {
     @Mock
     private ParkingLotRepository repository;
 
-    private GetParkingLotUseCase useCase;
+    private FindParkingLotByIdUseCase useCase;
     private final UUID existingId = UUID.randomUUID();
     private final UUID nonExistingId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
         openMocks(this);
-        useCase = new GetParkingLotUseCase(repository);
+        useCase = new FindParkingLotByIdUseCase(repository);
         when(repository.findById(existingId)).thenReturn(Optional.of(mock(ParkingLot.class)));
         when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
     }

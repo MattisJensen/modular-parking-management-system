@@ -1,6 +1,7 @@
 package dk.sdu.mmmi.pms.application.parkinglot.usecase;
 
 import dk.sdu.mmmi.pms.application.parkinglot.ParkingLotRepository;
+import dk.sdu.mmmi.pms.application.parkingspot.usecase.DeleteAllParkingSpotsByParkingLotIdUseCase;
 import dk.sdu.mmmi.pms.core.parkinglot.ParkingLot;
 import dk.sdu.mmmi.pms.core.parkinglot.exception.ParkingLotNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,15 +18,17 @@ import static org.mockito.MockitoAnnotations.openMocks;
 class DeleteParkingLotUseCaseTest {
     @Mock
     private ParkingLotRepository repository;
+    @Mock
+    private DeleteAllParkingSpotsByParkingLotIdUseCase deleteAllSpotsUseCase;
 
-    private DeleteParkingLotUseCase useCase;
+    private DeleteParkingLotByIdUseCase useCase;
     private final UUID existingId = UUID.randomUUID();
     private final UUID nonExistingId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
         openMocks(this);
-        useCase = new DeleteParkingLotUseCase(repository);
+        useCase = new DeleteParkingLotByIdUseCase(repository, deleteAllSpotsUseCase);
         when(repository.findById(existingId)).thenReturn(Optional.of(mock(ParkingLot.class)));
         when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
     }
