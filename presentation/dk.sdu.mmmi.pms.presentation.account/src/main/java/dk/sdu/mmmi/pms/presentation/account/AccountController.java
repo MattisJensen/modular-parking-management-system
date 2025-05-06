@@ -2,8 +2,6 @@ package dk.sdu.mmmi.pms.presentation.account;
 
 import dk.sdu.mmmi.pms.application.account.usecase.*;
 import dk.sdu.mmmi.pms.core.account.Account;
-import dk.sdu.mmmi.pms.core.account.exception.AccountNotFoundException;
-import dk.sdu.mmmi.pms.core.account.exception.EmailFormatException;
 import dk.sdu.mmmi.pms.presentation.account.datatransferobject.AccountResponse;
 import dk.sdu.mmmi.pms.presentation.account.datatransferobject.CreateAccountRequest;
 import dk.sdu.mmmi.pms.presentation.account.datatransferobject.UpdateAccountRequest;
@@ -21,31 +19,31 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/account")
 public class AccountController {
-    private final CreateAccountUseCase createAccountUseCase;
-    private final UpdateAccountUseCase updateAccountUseCase;
-    private final FindAccountByIdUseCase findAccountByIdUseCase;
-    private final FindAccountByEmailUseCase findAccountByEmailUseCase;
-    private final DeleteAccountByIdUseCase deleteAccountByIdUseCase;
+    private final CreateAccountUseCase createUseCase;
+    private final UpdateAccountUseCase updateUseCase;
+    private final FindAccountByIdUseCase findByIdUseCase;
+    private final FindAccountByEmailUseCase findByEmailUseCase;
+    private final DeleteAccountByIdUseCase deleteByIdUseCase;
 
     /**
      * Constructs an {@link AccountController} with the required use cases.
      *
-     * @param createAccountUseCase   the use case for creating accounts
-     * @param updateAccountUseCase   the use case for updating accounts
-     * @param findAccountByEmailUseCase the use case for finding accounts by email
-     * @param findAccountByIdUseCase the use case for finding accounts by ID
+     * @param createUseCase   the use case for creating accounts
+     * @param updateUseCase   the use case for updating accounts
+     * @param findByEmailUseCase the use case for finding accounts by email
+     * @param findByIdUseCase the use case for finding accounts by ID
      */
-    public AccountController(CreateAccountUseCase createAccountUseCase,
-                             UpdateAccountUseCase updateAccountUseCase,
-                             FindAccountByEmailUseCase findAccountByEmailUseCase,
-                             FindAccountByIdUseCase findAccountByIdUseCase,
-                             DeleteAccountByIdUseCase deleteAccountByIdUseCase) {
+    public AccountController(CreateAccountUseCase createUseCase,
+                             UpdateAccountUseCase updateUseCase,
+                             FindAccountByEmailUseCase findByEmailUseCase,
+                             FindAccountByIdUseCase findByIdUseCase,
+                             DeleteAccountByIdUseCase deleteByIdUseCase) {
 
-        this.createAccountUseCase = createAccountUseCase;
-        this.updateAccountUseCase = updateAccountUseCase;
-        this.findAccountByIdUseCase = findAccountByIdUseCase;
-        this.findAccountByEmailUseCase = findAccountByEmailUseCase;
-        this.deleteAccountByIdUseCase = deleteAccountByIdUseCase;
+        this.createUseCase = createUseCase;
+        this.updateUseCase = updateUseCase;
+        this.findByIdUseCase = findByIdUseCase;
+        this.findByEmailUseCase = findByEmailUseCase;
+        this.deleteByIdUseCase = deleteByIdUseCase;
     }
 
    /**
@@ -56,7 +54,7 @@ public class AccountController {
     */
    @PostMapping("/create")
    public ResponseEntity<AccountResponse> createAccount(@RequestBody CreateAccountRequest request) {
-       UUID accountId = createAccountUseCase.execute(
+       UUID accountId = createUseCase.execute(
                request.name(),
                request.email(),
                request.password(),
@@ -77,7 +75,7 @@ public class AccountController {
     public ResponseEntity<?> updateAccount(@PathVariable String id, @RequestBody UpdateAccountRequest request) {
         try {
             UUID uuid = UUID.fromString(id);
-            updateAccountUseCase.execute(uuid, new UpdateAccountUseCase.UpdateParameters(
+            updateUseCase.execute(uuid, new UpdateAccountUseCase.UpdateParameters(
                     request.name(),
                     request.email(),
                     request.password(),
@@ -99,7 +97,7 @@ public class AccountController {
     public ResponseEntity<?> getAccountById(@PathVariable String id) {
         try {
             UUID uuid = UUID.fromString(id); // Validate UUID format
-            Account account = findAccountByIdUseCase.execute(uuid);
+            Account account = findByIdUseCase.execute(uuid);
             AccountResponse response = new AccountResponse(
                     account.id(),
                     account.name(),
@@ -120,7 +118,7 @@ public class AccountController {
      */
     @GetMapping("/email/{email}")
     public AccountResponse getAccountByEmail(@PathVariable String email) {
-        Account account = findAccountByEmailUseCase.execute(email);
+        Account account = findByEmailUseCase.execute(email);
         return new AccountResponse(
                 account.id(),
                 account.name(),
@@ -139,7 +137,7 @@ public class AccountController {
     public ResponseEntity<?> deleteAccount(@PathVariable String id) {
         try {
             UUID uuid = UUID.fromString(id);
-            deleteAccountByIdUseCase.execute(uuid);
+            deleteByIdUseCase.execute(uuid);
             return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body("Invalid UUID format: " + id);
