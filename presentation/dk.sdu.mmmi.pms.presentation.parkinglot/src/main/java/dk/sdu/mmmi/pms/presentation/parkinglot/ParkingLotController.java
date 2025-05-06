@@ -1,8 +1,8 @@
 package dk.sdu.mmmi.pms.presentation.parkinglot;
 
 import dk.sdu.mmmi.pms.application.parkinglot.usecase.CreateParkingLotUseCase;
-import dk.sdu.mmmi.pms.application.parkinglot.usecase.DeleteParkingLotUseCase;
-import dk.sdu.mmmi.pms.application.parkinglot.usecase.GetParkingLotUseCase;
+import dk.sdu.mmmi.pms.application.parkinglot.usecase.DeleteParkingLotByIdUseCase;
+import dk.sdu.mmmi.pms.application.parkinglot.usecase.FindParkingLotByIdUseCase;
 import dk.sdu.mmmi.pms.application.parkinglot.usecase.UpdateParkingLotUseCase;
 import dk.sdu.mmmi.pms.core.parkinglot.ParkingLot;
 import dk.sdu.mmmi.pms.presentation.parkinglot.datatransferobject.CreateParkingLotRequest;
@@ -18,28 +18,28 @@ import java.util.UUID;
 @RequestMapping("/api/parking-lot")
 public class ParkingLotController {
     private final CreateParkingLotUseCase createUseCase;
-    private final UpdateParkingLotUseCase updateParkingLotUseCase;
-    private final GetParkingLotUseCase getParkingLotUseCase;
-    private final DeleteParkingLotUseCase deleteParkingLotUseCase;
+    private final UpdateParkingLotUseCase updateUseCase;
+    private final FindParkingLotByIdUseCase findByIdUseCase;
+    private final DeleteParkingLotByIdUseCase deleteUseCase;
 
     public ParkingLotController(CreateParkingLotUseCase createUseCase,
-                                UpdateParkingLotUseCase updateParkingLotUseCase,
-                                GetParkingLotUseCase getParkingLotUseCase,
-                                DeleteParkingLotUseCase deleteParkingLotUseCase) {
+                                UpdateParkingLotUseCase updateUseCase,
+                                FindParkingLotByIdUseCase findByIdUseCase,
+                                DeleteParkingLotByIdUseCase deleteUseCase) {
         this.createUseCase = createUseCase;
-        this.updateParkingLotUseCase = updateParkingLotUseCase;
-        this.getParkingLotUseCase = getParkingLotUseCase;
-        this.deleteParkingLotUseCase = deleteParkingLotUseCase;
+        this.updateUseCase = updateUseCase;
+        this.findByIdUseCase = findByIdUseCase;
+        this.deleteUseCase = deleteUseCase;
     }
 
     @PostMapping
     public ResponseEntity<UUID> createParkingLot(@RequestBody CreateParkingLotRequest request) {
-        UUID id = createUseCase.execute(
+        UUID lotId = createUseCase.execute(
                 request.name(),
                 request.location(),
                 request.capacity()
         );
-        return ResponseEntity.status(HttpStatus.CREATED).body(id);
+        return ResponseEntity.status(HttpStatus.CREATED).body(lotId);
     }
 
     /**
@@ -53,7 +53,7 @@ public class ParkingLotController {
     public ResponseEntity<?> updateParkingLot(@PathVariable String id, @RequestBody UpdateParkingLotRequest request) {
         try {
             UUID uuid = UUID.fromString(id);
-            updateParkingLotUseCase.execute(uuid, new UpdateParkingLotUseCase.UpdateParameters(
+            updateUseCase.execute(uuid, new UpdateParkingLotUseCase.UpdateParameters(
                     request.name(),
                     request.location(),
                     request.capacity(),
@@ -75,7 +75,7 @@ public class ParkingLotController {
     public ResponseEntity<?> getParkingLotById(@PathVariable String id) {
         try {
             UUID uuid = UUID.fromString(id); // Validate UUID format
-            ParkingLot parkingLot = getParkingLotUseCase.execute(uuid);
+            ParkingLot parkingLot = findByIdUseCase.execute(uuid);
             ParkingLotResponse response = new ParkingLotResponse(
                     parkingLot.id(),
                     parkingLot.name(),
@@ -99,7 +99,7 @@ public class ParkingLotController {
     public ResponseEntity<?> deleteParkingLot(@PathVariable String id) {
         try {
             UUID uuid = UUID.fromString(id);
-            deleteParkingLotUseCase.execute(uuid);
+            deleteUseCase.execute(uuid);
             return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body("Invalid UUID format: " + id);
