@@ -90,7 +90,7 @@ public class ParkingSpotController {
         }
     }
 
-    @GetMapping("/parking-lot/{parkingLotId}")
+    @GetMapping("/id/parking-lot/{parkingLotId}")
     public ResponseEntity<?> getParkingSpotsByParkingLot(@PathVariable String parkingLotId) {
         try {
             UUID uuid = UUID.fromString(parkingLotId);

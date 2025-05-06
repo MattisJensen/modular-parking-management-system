@@ -1,17 +1,17 @@
 package dk.sdu.mmmi.pms.application.parkinglot.usecase;
 
 import dk.sdu.mmmi.pms.application.parkinglot.ParkingLotRepository;
-import dk.sdu.mmmi.pms.application.parkingspot.usecase.DeleteAllParkingSpotsByParkingLotIdUseCase;
 import dk.sdu.mmmi.pms.core.parkinglot.exception.ParkingLotNotFoundException;
+import dk.sdu.mmmi.pms.core.parkingspot.ParkingSpotDeleter;
 import dk.sdu.mmmi.pms.core.parkingspot.exception.ParkingSpotNotFoundException;
 
 import java.util.UUID;
 
 public class DeleteParkingLotByIdUseCase {
     private final ParkingLotRepository repository;
-    private final DeleteAllParkingSpotsByParkingLotIdUseCase deleteAllSpotsUseCase;
+    private final ParkingSpotDeleter deleteAllSpotsUseCase;
 
-    public DeleteParkingLotByIdUseCase(ParkingLotRepository repository, DeleteAllParkingSpotsByParkingLotIdUseCase deleteAllSpotsUseCase) {
+    public DeleteParkingLotByIdUseCase(ParkingLotRepository repository, ParkingSpotDeleter deleteAllSpotsUseCase) {
         this.repository = repository;
         this.deleteAllSpotsUseCase = deleteAllSpotsUseCase;
     }

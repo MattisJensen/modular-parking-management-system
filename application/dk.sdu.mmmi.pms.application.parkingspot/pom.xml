@@ -18,18 +18,18 @@
         <!-- Core dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>core.parkinglot</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>core.parkingspot</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
 
-        <!-- Application dependencies -->
-        <dependency>
-            <groupId>dk.sdu.mmmi.pms</groupId>
-            <artifactId>application.parkinglot</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
 
         <!-- Test dependencies -->
         <dependency>

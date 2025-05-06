@@ -1,9 +1,9 @@
 package dk.sdu.mmmi.pms.application.parkinglot.usecase;
 
 import dk.sdu.mmmi.pms.application.parkinglot.ParkingLotRepository;
-import dk.sdu.mmmi.pms.application.parkingspot.usecase.DeleteAllParkingSpotsByParkingLotIdUseCase;
 import dk.sdu.mmmi.pms.core.parkinglot.ParkingLot;
 import dk.sdu.mmmi.pms.core.parkinglot.exception.ParkingLotNotFoundException;
+import dk.sdu.mmmi.pms.core.parkingspot.ParkingSpotDeleter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -19,7 +19,7 @@ class DeleteParkingLotUseCaseTest {
     @Mock
     private ParkingLotRepository repository;
     @Mock
-    private DeleteAllParkingSpotsByParkingLotIdUseCase deleteAllSpotsUseCase;
+    private ParkingSpotDeleter deleteAllSpotsUseCase;
 
     private DeleteParkingLotByIdUseCase useCase;
     private final UUID existingId = UUID.randomUUID();
