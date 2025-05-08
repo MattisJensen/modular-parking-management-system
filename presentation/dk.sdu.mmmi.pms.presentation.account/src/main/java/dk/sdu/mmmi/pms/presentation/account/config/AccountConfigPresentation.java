@@ -16,63 +16,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(basePackages = "dk.sdu.mmmi.pms.presentation.account")
 public class AccountConfigPresentation {
-
-    /**
-     * Provides a {@link CreateAccountUseCase} bean.
-     *
-     * @param accountRepository the {@link AccountRepository} to handle account storage
-     * @param passwordEncoder   the {@link PasswordEncoder} to hash passwords
-     * @return a {@link CreateAccountUseCase} instance
-     */
-    @Bean
-    public CreateAccountUseCase createAccountUseCase(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
-        return new CreateAccountUseCase(accountRepository, passwordEncoder);
-    }
-
-    /**
-     * Provides a {@link DeleteAccountByIdUseCase} bean.
-     *
-     * @param accountRepository the {@link AccountRepository} to handle account deletion
-     * @return a {@link DeleteAccountByIdUseCase} instance
-     */
-    @Bean
-    public DeleteAccountByIdUseCase deleteAccountByIdUseCase(AccountRepository accountRepository) {
-        return new DeleteAccountByIdUseCase(accountRepository);
-    }
-
-    /**
-     * Provides a {@link FindAccountByEmailUseCase} bean.
-     *
-     * @param accountRepository the {@link AccountRepository} to handle account retrieval
-     * @return a {@link FindAccountByEmailUseCase} instance
-     */
-    @Bean
-    public FindAccountByEmailUseCase findAccountByEmailUseCase(AccountRepository accountRepository) {
-        return new FindAccountByEmailUseCase(accountRepository);
-    }
-
-    /**
-     * Provides a {@link FindAccountByIdUseCase} bean.
-     *
-     * @param accountRepository the {@link AccountRepository} to handle account retrieval
-     * @return a {@link FindAccountByIdUseCase} instance
-     */
-    @Bean
-    public FindAccountByIdUseCase findAccountByIdUseCase(AccountRepository accountRepository) {
-        return new FindAccountByIdUseCase(accountRepository);
-    }
-
-    /**
-     * Provides an {@link UpdateAccountUseCase} bean.
-     *
-     * @param accountRepository the {@link AccountRepository} to handle account storage
-     * @param passwordEncoder   the {@link PasswordEncoder} to hash passwords
-     * @return an {@link UpdateAccountUseCase} instance
-     */
-    @Bean
-    public UpdateAccountUseCase updateAccountUseCase(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
-        return new UpdateAccountUseCase(accountRepository, passwordEncoder);
-    }
 }
 
 
