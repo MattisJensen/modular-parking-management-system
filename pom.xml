@@ -15,19 +15,20 @@
     <modules>
         <!-- core modules -->
         <module>core/dk.sdu.mmmi.pms.core.account</module>
-        <!--        <module>core/dk.sdu.mmmi.pms.core.booking</module>-->
+        <module>core/dk.sdu.mmmi.pms.core.booking</module>
         <module>core/dk.sdu.mmmi.pms.core.parkinglot</module>
         <module>core/dk.sdu.mmmi.pms.core.parkingspot</module>
-        <!--        <module>core/dk.sdu.mmmi.pms.core.vehicle</module>-->
 
         <!-- application modules -->
         <module>application/dk.sdu.mmmi.pms.application.account</module>
+        <module>application/dk.sdu.mmmi.pms.application.booking</module>
         <module>application/dk.sdu.mmmi.pms.application.parkinglot</module>
         <module>application/dk.sdu.mmmi.pms.application.parkingspot</module>
         <module>application/dk.sdu.mmmi.pms.application.shared</module>
 
         <!-- infrastructure modules -->
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.account</module>
+        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.booking</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.database</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.parkinglot</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.parkingspot</module>
@@ -35,6 +36,7 @@
 
         <!-- presentation modules -->
         <module>presentation/dk.sdu.mmmi.pms.presentation.account</module>
+        <module>presentation/dk.sdu.mmmi.pms.presentation.booking</module>
         <module>presentation/dk.sdu.mmmi.pms.presentation.main</module>
         <module>presentation/dk.sdu.mmmi.pms.presentation.parkinglot</module>
         <module>presentation/dk.sdu.mmmi.pms.presentation.parkingspot</module>
