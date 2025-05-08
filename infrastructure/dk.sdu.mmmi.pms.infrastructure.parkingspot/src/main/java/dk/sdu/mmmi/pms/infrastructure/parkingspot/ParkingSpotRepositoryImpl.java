@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Repository
 public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
@@ -50,7 +49,7 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
         return springDataRepo.findByParkingLotId(parkingLotId)
                 .stream()
                 .map(mapper::toCore)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -58,6 +57,6 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
         return springDataRepo.findByParkingLotIdAndStatus(parkingLotId, SpotStatus.AVAILABLE)
                 .stream()
                 .map(mapper::toCore)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

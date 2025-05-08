@@ -17,9 +17,6 @@ public class ParkingSpotJpaEntity {
     @Column(nullable = false)
     private String spotIdentifier;
 
-    @Column(nullable = false)
-    private int availableSpots;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private SpotStatus status;
@@ -38,5 +35,4 @@ public class ParkingSpotJpaEntity {
     public UUID getParkingLotId() { return parkingLotId; }
     public String getSpotIdentifier() { return spotIdentifier; }
     public SpotStatus getStatus() { return status; }
-    public int getAvailableSpots() { return availableSpots; }
 }
