@@ -52,15 +52,22 @@ public class AccountController {
     * @param request the {@link CreateAccountRequest} containing account details
     * @return a {@link ResponseEntity} containing the created {@link AccountResponse}
     */
-   @PostMapping("/create")
+   @PostMapping
    public ResponseEntity<AccountResponse> createAccount(@RequestBody CreateAccountRequest request) {
-       UUID accountId = createUseCase.execute(
+       Account account = createUseCase.execute(
                request.name(),
                request.email(),
                request.password(),
                request.role()
        );
-       AccountResponse response = new AccountResponse(accountId, request.name(), request.email(), request.role());
+
+       AccountResponse response = new AccountResponse(
+               account.id(),
+               account.name(),
+               account.email(),
+               account.accountRole()
+       );
+
        return ResponseEntity.status(HttpStatus.CREATED).body(response);
    }
 

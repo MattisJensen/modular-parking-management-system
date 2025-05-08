@@ -5,8 +5,6 @@ import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.infrastructure.account.persistence.AccountJpaEntity;
 import dk.sdu.mmmi.pms.infrastructure.account.persistence.AccountJpaRepository;
 import dk.sdu.mmmi.pms.infrastructure.account.persistence.AccountMapper;
-import jakarta.persistence.PersistenceException;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -52,7 +50,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Optional<Account> findById(UUID id) {
-        return springDataRepo.findById(id).map(mapper::toCore);
+        return springDataRepo.findById(id)
+                .map(mapper::toCore);
     }
 
     @Override

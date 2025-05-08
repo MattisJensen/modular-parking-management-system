@@ -38,17 +38,17 @@ public class CreateAccountUseCase {
      * @param email       the email address of the account holder
      * @param rawPassword the raw password to be hashed and stored
      * @param role        the role of the account (e.g., USER, ADMIN)
-     * @return the UUID of the created account
+     * @return the created {@link Account}
      * @throws EmailFormatException    if the email format is invalid
      * @throws EmailDuplicateException if the email is already in use
      */
-    public UUID execute(String name, String email, String rawPassword, AccountRole role) {
+    public Account execute(String name, String email, String rawPassword, AccountRole role) {
         EmailValidator.validateFormat(email);
         EmailValidator.validateUniqueness(email, accountRepository);
         UUID accountId = UUID.randomUUID();
         String hashedPassword = passwordEncoder.encode(rawPassword);
         Account account = new Account(accountId, name, email, hashedPassword, role);
         accountRepository.save(account);
-        return accountId;
+        return account;
     }
 }

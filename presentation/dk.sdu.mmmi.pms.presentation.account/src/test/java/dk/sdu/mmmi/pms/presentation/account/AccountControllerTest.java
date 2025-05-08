@@ -3,7 +3,6 @@ package dk.sdu.mmmi.pms.presentation.account;
 import dk.sdu.mmmi.pms.application.account.usecase.*;
 import dk.sdu.mmmi.pms.core.account.Account;
 import dk.sdu.mmmi.pms.core.account.AccountRole;
-import dk.sdu.mmmi.pms.core.account.exception.EmailFormatException;
 import dk.sdu.mmmi.pms.presentation.account.datatransferobject.AccountResponse;
 import dk.sdu.mmmi.pms.presentation.account.datatransferobject.CreateAccountRequest;
 import dk.sdu.mmmi.pms.presentation.account.datatransferobject.UpdateAccountRequest;
@@ -12,8 +11,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import java.util.UUID;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
@@ -53,7 +55,7 @@ class AccountControllerTest {
     void createAccount_ReturnsCreatedResponse() {
         // Arrange
         CreateAccountRequest request = new CreateAccountRequest("Test User", "test@mail.com", "password", AccountRole.USER);
-        when(createAccountUseCase.execute(any(), any(), any(), any())).thenReturn(testId);
+        when(createAccountUseCase.execute(any(), any(), any(), any())).thenReturn(testAccount);
 
         ResponseEntity<AccountResponse> response = controller.createAccount(request);
 

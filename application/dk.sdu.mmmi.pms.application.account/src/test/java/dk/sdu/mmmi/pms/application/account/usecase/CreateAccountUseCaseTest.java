@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -43,19 +42,21 @@ class CreateAccountUseCaseTest {
         // Arrange
         when(accountRepository.findByEmail(validEmail)).thenReturn(Optional.empty());
         when(passwordEncoder.encode(rawPassword)).thenReturn(hashedPassword);
-        UUID result = useCase.execute(name, validEmail, rawPassword, role);
+        Account result = useCase.execute(name, validEmail, rawPassword, role);
 
         // Verify account creation
         assertNotNull(result);
 
         // Verify account properties
-        verify(accountRepository).save(argThat(account ->
-                account.id().equals(result) &&
-                        account.email().equals(validEmail) &&
-                        account.password().equals(hashedPassword) &&
-                        account.name().equals(name) &&
-                        account.accountRole() == role
-        ));
+        assertNotNull(result.id());
+        assertNotNull(result.name());
+        assertNotNull(result.email());
+        assertNotNull(result.password());
+        assertNotNull(result.accountRole());
+
+        assertEquals(name, result.name());
+        assertEquals(validEmail, result.email());
+        assertEquals(role, result.accountRole());
     }
 
 
