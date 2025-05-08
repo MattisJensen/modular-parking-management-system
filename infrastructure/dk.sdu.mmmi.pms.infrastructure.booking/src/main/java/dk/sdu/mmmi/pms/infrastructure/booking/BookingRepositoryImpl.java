@@ -61,14 +61,6 @@ public class BookingRepositoryImpl implements BookingRepository {
     }
 
     @Override
-    public List<Booking> findOverlappingBookings(UUID parkingSpotId, LocalDateTime start, LocalDateTime end) {
-        return springDataRepo.findOverlappingBookings(parkingSpotId, start, end)
-                .stream()
-                .map(mapper::toCore)
-                .toList();
-    }
-
-    @Override
     public void deleteById(UUID id) {
         springDataRepo.deleteById(id);
     }

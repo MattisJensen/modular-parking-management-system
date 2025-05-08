@@ -13,6 +13,5 @@ public interface BookingRepository {
     Optional<Booking> findById(UUID id);
     List<Booking> findByUserId(UUID userId);
     List<Booking> findBookingsForDateRange(UUID parkingSpotId, LocalDateTime rangeStart, LocalDateTime rangeEnd);
-    List<Booking> findOverlappingBookings(UUID parkingSpotId, LocalDateTime start, LocalDateTime end);
     void deleteById(UUID id);
 }

@@ -20,20 +20,6 @@ public interface BookingJpaRepository extends JpaRepository<BookingJpaEntity, UU
 
     @Query("SELECT b FROM BookingJpaEntity b " +
             "WHERE b.parkingSpotId = :parkingSpotId " +
-            "AND ( " +
-            "   (b.startTime < :endTime AND b.endTime > :startTime) " + // Overlapping
-            "OR (b.startTime = :startTime AND b.endTime = :endTime) " + // Exact match
-            "OR (b.startTime <= :startTime AND b.endTime >= :endTime) " + // New booking is fully contained
-            "OR (b.startTime >= :startTime AND b.endTime <= :endTime) " + // Existing booking is fully contained
-            ")")
-    List<BookingJpaEntity> findOverlappingBookings(
-            @Param("parkingSpotId") UUID parkingSpotId,
-            @Param("startTime") LocalDateTime startTime,
-            @Param("endTime") LocalDateTime endTime
-    );
-
-    @Query("SELECT b FROM BookingJpaEntity b " +
-            "WHERE b.parkingSpotId = :parkingSpotId " +
             "AND b.startTime <= :rangeEnd " +
             "AND b.endTime >= :rangeStart")
     List<BookingJpaEntity> findByParkingSpotIdAndTimeRange(
