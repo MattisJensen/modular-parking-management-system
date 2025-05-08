@@ -34,11 +34,6 @@ public class ParkingSpotConfigInfrastructure {
     }
 
     @Bean
-    public FindAvailableParkingSpotsByParkingLotIdUseCase findAvailableParkingSpotsByParkingLotIdUseCase(ParkingSpotRepository repository, ParkingLotFinder findParkingLotByIdUseCase) {
-        return new FindAvailableParkingSpotsByParkingLotIdUseCase(repository, findParkingLotByIdUseCase);
-    }
-
-    @Bean
     public FindParkingSpotByIdUseCase getParkingSpotUseCase(ParkingSpotRepository repository) {
         return new FindParkingSpotByIdUseCase(repository);
     }

@@ -12,5 +12,4 @@ public interface ParkingSpotRepository {
     void deleteById(UUID id);
     Optional<ParkingSpot> findById(UUID id);
     List<ParkingSpot> findByParkingLotId(UUID parkingLotId);
-    List<ParkingSpot> findAvailableSpotsByParkingLotId(UUID parkingLotId);
 }

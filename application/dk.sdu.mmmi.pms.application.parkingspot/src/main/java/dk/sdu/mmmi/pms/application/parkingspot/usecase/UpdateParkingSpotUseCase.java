@@ -2,7 +2,6 @@ package dk.sdu.mmmi.pms.application.parkingspot.usecase;
 
 import dk.sdu.mmmi.pms.application.parkingspot.ParkingSpotRepository;
 import dk.sdu.mmmi.pms.core.parkingspot.ParkingSpot;
-import dk.sdu.mmmi.pms.core.parkingspot.SpotStatus;
 import dk.sdu.mmmi.pms.core.parkingspot.exception.ParkingSpotNotFoundException;
 
 import java.util.UUID;
@@ -25,14 +24,12 @@ public class UpdateParkingSpotUseCase {
         return new ParkingSpot(
                 existing.id(),
                 parameters.parkingLotId() != null ? parameters.parkingLotId() : existing.parkingLotId(),
-                parameters.spotIdentifier() != null ? parameters.spotIdentifier() : existing.spotIdentifier(),
-                parameters.status() != null ? parameters.status() : existing.status()
+                parameters.spotIdentifier() != null ? parameters.spotIdentifier() : existing.spotIdentifier()
         );
     }
 
     public record UpdateParameters(
             UUID parkingLotId,
-            String spotIdentifier,
-            SpotStatus status
+            String spotIdentifier
     ) {}
 }

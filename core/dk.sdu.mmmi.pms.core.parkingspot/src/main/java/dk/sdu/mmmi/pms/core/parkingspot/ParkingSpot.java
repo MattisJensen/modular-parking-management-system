@@ -5,8 +5,7 @@ import java.util.UUID;
 public record ParkingSpot(
         UUID id,
         UUID parkingLotId,
-        String spotIdentifier,
-        SpotStatus status
+        String spotIdentifier
 ) {
     public ParkingSpot {
         if (spotIdentifier == null || spotIdentifier.isBlank()) {

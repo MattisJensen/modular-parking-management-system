@@ -4,7 +4,6 @@ import dk.sdu.mmmi.pms.application.parkingspot.ParkingSpotRepository;
 import dk.sdu.mmmi.pms.core.parkinglot.ParkingLot;
 import dk.sdu.mmmi.pms.core.parkinglot.usecase.ParkingLotFinder;
 import dk.sdu.mmmi.pms.core.parkingspot.ParkingSpot;
-import dk.sdu.mmmi.pms.core.parkingspot.SpotStatus;
 import dk.sdu.mmmi.pms.core.parkingspot.exception.ParkingSpotLimitException;
 
 import java.util.UUID;
@@ -29,7 +28,7 @@ public class CreateParkingSpotUseCase {
         // Create a new parking spot
         UUID spotId = UUID.randomUUID();
         ParkingSpot spot = new ParkingSpot(
-                spotId, parkingLotId, identifier, SpotStatus.AVAILABLE
+                spotId, parkingLotId, identifier
         );
         repository.save(spot);
         return spotId;

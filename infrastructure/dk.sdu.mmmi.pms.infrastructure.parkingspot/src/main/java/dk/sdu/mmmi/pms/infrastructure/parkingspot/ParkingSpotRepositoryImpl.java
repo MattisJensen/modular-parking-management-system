@@ -2,7 +2,6 @@ package dk.sdu.mmmi.pms.infrastructure.parkingspot;
 
 import dk.sdu.mmmi.pms.application.parkingspot.ParkingSpotRepository;
 import dk.sdu.mmmi.pms.core.parkingspot.ParkingSpot;
-import dk.sdu.mmmi.pms.core.parkingspot.SpotStatus;
 import dk.sdu.mmmi.pms.infrastructure.parkingspot.persistence.ParkingSpotJpaEntity;
 import dk.sdu.mmmi.pms.infrastructure.parkingspot.persistence.ParkingSpotJpaRepository;
 import dk.sdu.mmmi.pms.infrastructure.parkingspot.persistence.ParkingSpotMapper;
@@ -47,14 +46,6 @@ public class ParkingSpotRepositoryImpl implements ParkingSpotRepository {
     @Override
     public List<ParkingSpot> findByParkingLotId(UUID parkingLotId) {
         return springDataRepo.findByParkingLotId(parkingLotId)
-                .stream()
-                .map(mapper::toCore)
-                .toList();
-    }
-
-    @Override
-    public List<ParkingSpot> findAvailableSpotsByParkingLotId(UUID parkingLotId) {
-        return springDataRepo.findByParkingLotIdAndStatus(parkingLotId, SpotStatus.AVAILABLE)
                 .stream()
                 .map(mapper::toCore)
                 .toList();

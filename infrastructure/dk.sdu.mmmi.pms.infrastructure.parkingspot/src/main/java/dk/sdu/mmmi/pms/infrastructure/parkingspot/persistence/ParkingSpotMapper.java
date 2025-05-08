@@ -9,8 +9,7 @@ public class ParkingSpotMapper {
         return new ParkingSpotJpaEntity(
                 core.id(),
                 core.parkingLotId(),
-                core.spotIdentifier(),
-                core.status()
+                core.spotIdentifier()
         );
     }
 
@@ -18,8 +17,7 @@ public class ParkingSpotMapper {
         return new ParkingSpot(
                 jpa.getId(),
                 jpa.getParkingLotId(),
-                jpa.getSpotIdentifier(),
-                jpa.getStatus()
+                jpa.getSpotIdentifier()
         );
     }
 }
