@@ -19,6 +19,39 @@ public class BookingValidator {
     }
 
     /**
+     * Validate the booking time constraints.
+     *
+     * @param startTime The start time of the booking
+     * @param endTime   The end time of the booking
+     * @throws BookingTimeException if the booking time is invalid
+     */
+    public void validateBookingTimeConstraints(LocalDateTime startTime, LocalDateTime endTime) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime maxBookingAhead = now.plusWeeks(2);
+        LocalDateTime maxBookingTime = startTime.plusDays(2);
+
+        if (startTime.isAfter(endTime)) {
+            throw new BookingTimeException("Start time must be before end time");
+        }
+
+        if (endTime.minusMinutes(30).isBefore(startTime)) {
+            throw new BookingTimeException("Booking time must be at least 30 minutes");
+        }
+
+        if (startTime.isBefore(now) || endTime.isBefore(now)) {
+            throw new BookingTimeException("Booking time must be in the future");
+        }
+
+        if (startTime.isAfter(maxBookingAhead) || endTime.isAfter(maxBookingAhead)) {
+            throw new BookingTimeException("Booking time must be within the next 2 weeks");
+        }
+
+        if (endTime.isAfter(maxBookingTime)) {
+            throw new BookingTimeException("Booking time cannot exceed 2 days");
+        }
+    }
+
+    /**
      * Validate that there are no conflicting bookings for the given parking spot and time range.
      *
      * @param parkingSpotId The ID of the parking spot
@@ -113,39 +146,5 @@ public class BookingValidator {
     }
 
     private record TimeSlot(LocalDateTime start, LocalDateTime end) {
-    }
-
-
-    /**
-     * Validate the booking time constraints.
-     *
-     * @param startTime The start time of the booking
-     * @param endTime   The end time of the booking
-     * @throws BookingTimeException if the booking time is invalid
-     */
-    public void validateBookingTimeConstraints(LocalDateTime startTime, LocalDateTime endTime) {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime twoWeeksFromNow = now.plusWeeks(2);
-        LocalDateTime twelveHoursFromStart = startTime.plusHours(12);
-
-        if (endTime.minusMinutes(30).isBefore(startTime)) {
-            throw new BookingTimeException("Booking time must be at least 30 minutes");
-        }
-
-        if (startTime.isAfter(endTime)) {
-            throw new BookingTimeException("Start time must be before end time");
-        }
-
-        if (startTime.isBefore(now) || endTime.isBefore(now)) {
-            throw new BookingTimeException("Booking time must be in the future");
-        }
-
-        if (startTime.isAfter(twoWeeksFromNow) || endTime.isAfter(twoWeeksFromNow)) {
-            throw new BookingTimeException("Booking time cannot be more than 2 weeks in advance");
-        }
-
-        if (endTime.isAfter(twelveHoursFromStart)) {
-            throw new BookingTimeException("Booking time cannot exceed 12 hours");
-        }
     }
 }

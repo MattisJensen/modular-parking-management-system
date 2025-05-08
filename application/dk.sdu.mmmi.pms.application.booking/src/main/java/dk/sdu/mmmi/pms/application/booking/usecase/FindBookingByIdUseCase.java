@@ -5,6 +5,7 @@ import dk.sdu.mmmi.pms.application.booking.util.BookingFormatter;
 import dk.sdu.mmmi.pms.core.booking.Booking;
 import dk.sdu.mmmi.pms.core.booking.exception.BookingNotFoundException;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class FindBookingByIdUseCase {
@@ -20,7 +21,7 @@ public class FindBookingByIdUseCase {
         Booking booking = repository.findById(id)
                 .orElseThrow(() -> new BookingNotFoundException("Booking not found with id: " + id));
 
-        Booking updatedBooking = bookingFormatter.updateStatusBasedOnTime(booking);
+        Booking updatedBooking = bookingFormatter.updateStatusBasedOnTime(booking, LocalDateTime.now());
         if (updatedBooking.bookingStatus() != booking.bookingStatus()) repository.update(updatedBooking);
 
         return updatedBooking;

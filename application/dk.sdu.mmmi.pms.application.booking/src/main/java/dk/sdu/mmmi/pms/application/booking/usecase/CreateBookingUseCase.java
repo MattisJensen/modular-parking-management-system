@@ -53,7 +53,8 @@ public class CreateBookingUseCase {
                 BookingStatus.RESERVED
         );
 
-        newBooking = bookingFormatter.updateStatusBasedOnTime(newBooking);
+        newBooking = bookingFormatter.updateStatusBasedOnTime(newBooking, LocalDateTime.now());
+        System.out.println(newBooking.toString());
         bookingRepository.save(newBooking);
         return newBooking;
     }
