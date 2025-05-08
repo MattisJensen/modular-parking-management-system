@@ -28,7 +28,7 @@ public class BookingValidator {
     public void validateBookingTimeConstraints(LocalDateTime startTime, LocalDateTime endTime) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime maxBookingAhead = now.plusWeeks(2);
-        LocalDateTime maxBookingTime = startTime.plusDays(2);
+        LocalDateTime maxBookingTime = startTime.plusHours(48);
 
         if (startTime.isAfter(endTime)) {
             throw new BookingTimeException("Start time must be before end time");
@@ -47,7 +47,7 @@ public class BookingValidator {
         }
 
         if (endTime.isAfter(maxBookingTime)) {
-            throw new BookingTimeException("Booking time cannot exceed 2 days");
+            throw new BookingTimeException("Booking time cannot exceed 48 hours");
         }
     }
 
