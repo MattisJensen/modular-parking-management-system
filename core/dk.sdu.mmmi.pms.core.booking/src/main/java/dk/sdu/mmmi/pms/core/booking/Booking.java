@@ -3,32 +3,21 @@ package dk.sdu.mmmi.pms.core.booking;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class Booking {
-    private final UUID id;
-    private final LocalDateTime startTime;
-    private final LocalDateTime endTime;
-    private final UUID bookedParkingSpotId;
-    private final UUID bookedByUserID;
+public record Booking(
+        UUID id,
+        UUID userId,
+        UUID parkingSpotId,
+        LocalDateTime startTime,
+        LocalDateTime endTime,
+        BookingStatus bookingStatus
+) {
+    public Booking {
+        if (startTime.isAfter(endTime)) {
+            throw new IllegalArgumentException("Start time must be before end time");
+        }
 
-    public Booking(UUID id, LocalDateTime startTime, LocalDateTime endTime, UUID bookedParkingSpotId, UUID bookedByUserID) {
-        validateBookingTime(startTime, endTime);
-        this.id = id;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.bookedParkingSpotId = bookedParkingSpotId;
-        this.bookedByUserID = bookedByUserID;
-    }
-
-    private void validateBookingTime(LocalDateTime start, LocalDateTime end) {
-        if (end.isBefore(start)) {
-            throw new IllegalArgumentException("End time must be after start time.");
+        if (startTime.isEqual(endTime)) {
+            throw new IllegalArgumentException("Booking must have duration");
         }
     }
-
-    // Getters
-    public UUID getId() { return id; }
-    public LocalDateTime getStartTime() { return startTime; }
-    public LocalDateTime getEndTime() { return endTime; }
-    public UUID getBookedParkingSpotId() { return bookedParkingSpotId; }
-    public UUID getBookedByUserID() { return bookedByUserID; }
 }
