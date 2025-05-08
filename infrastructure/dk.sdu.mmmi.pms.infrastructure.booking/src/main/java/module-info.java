@@ -1,3 +1,6 @@
+import dk.sdu.mmmi.pms.application.shared.ModuleConfigurationSPI;
+import dk.sdu.mmmi.pms.infrastructure.booking.config.BookingConfigProvider;
+
 module dk.sdu.mmmi.pms.infrastructure.booking {
     // Internal dependencies
     requires dk.sdu.mmmi.pms.core.booking;
@@ -9,6 +12,8 @@ module dk.sdu.mmmi.pms.infrastructure.booking {
     requires spring.data.jpa;
     requires jakarta.persistence;
     requires spring.tx;
+    requires dk.sdu.mmmi.pms.core.parkingspot;
+    requires spring.data.commons;
 
     // Visibility
     provides ModuleConfigurationSPI with BookingConfigProvider;
