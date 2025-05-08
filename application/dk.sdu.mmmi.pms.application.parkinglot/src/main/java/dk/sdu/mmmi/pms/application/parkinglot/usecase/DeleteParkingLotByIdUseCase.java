@@ -2,8 +2,8 @@ package dk.sdu.mmmi.pms.application.parkinglot.usecase;
 
 import dk.sdu.mmmi.pms.application.parkinglot.ParkingLotRepository;
 import dk.sdu.mmmi.pms.core.parkinglot.exception.ParkingLotNotFoundException;
-import dk.sdu.mmmi.pms.core.parkingspot.usecase.ParkingSpotDeleter;
 import dk.sdu.mmmi.pms.core.parkingspot.exception.ParkingSpotNotFoundException;
+import dk.sdu.mmmi.pms.core.parkingspot.usecase.ParkingSpotDeleter;
 
 import java.util.UUID;
 
@@ -20,7 +20,7 @@ public class DeleteParkingLotByIdUseCase {
         if (repository.findById(id).isEmpty()) throw new ParkingLotNotFoundException("Parking lot not found with id: " + id);
         try {
             deleteAllSpotsUseCase.execute(id);
-        } catch (ParkingSpotNotFoundException e) {} // Ignore this exception, the parking lot should get deleted anyway.
+        } catch (ParkingSpotNotFoundException ignored) {} // Ignore exception, parking lot should get deleted anyway.
         repository.deleteById(id);
     }
 }
