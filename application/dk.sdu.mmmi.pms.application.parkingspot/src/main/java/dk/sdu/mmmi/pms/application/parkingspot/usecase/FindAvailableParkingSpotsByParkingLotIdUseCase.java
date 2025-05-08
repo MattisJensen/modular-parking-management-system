@@ -1,7 +1,7 @@
 package dk.sdu.mmmi.pms.application.parkingspot.usecase;
 
 import dk.sdu.mmmi.pms.application.parkingspot.ParkingSpotRepository;
-import dk.sdu.mmmi.pms.core.parkinglot.ParkingLotFinder;
+import dk.sdu.mmmi.pms.core.parkinglot.usecase.ParkingLotFinder;
 import dk.sdu.mmmi.pms.core.parkingspot.ParkingSpot;
 import dk.sdu.mmmi.pms.core.parkingspot.exception.ParkingSpotNotFoundException;
 

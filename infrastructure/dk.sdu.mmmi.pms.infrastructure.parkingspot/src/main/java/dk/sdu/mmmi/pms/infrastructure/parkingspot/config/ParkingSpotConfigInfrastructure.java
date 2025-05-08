@@ -2,8 +2,7 @@ package dk.sdu.mmmi.pms.infrastructure.parkingspot.config;
 
 import dk.sdu.mmmi.pms.application.parkingspot.ParkingSpotRepository;
 import dk.sdu.mmmi.pms.application.parkingspot.usecase.*;
-import dk.sdu.mmmi.pms.core.parkinglot.ParkingLotFinder;
-import dk.sdu.mmmi.pms.core.parkingspot.ParkingSpotDeleter;
+import dk.sdu.mmmi.pms.core.parkinglot.usecase.ParkingLotFinder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.pms.core.parkingspot;
+package dk.sdu.mmmi.pms.core.parkingspot.usecase;
 
 import java.util.UUID;
 

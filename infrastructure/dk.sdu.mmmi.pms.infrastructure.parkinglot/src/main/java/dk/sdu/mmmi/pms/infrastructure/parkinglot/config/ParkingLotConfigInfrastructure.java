@@ -5,7 +5,7 @@ import dk.sdu.mmmi.pms.application.parkinglot.usecase.CreateParkingLotUseCase;
 import dk.sdu.mmmi.pms.application.parkinglot.usecase.DeleteParkingLotByIdUseCase;
 import dk.sdu.mmmi.pms.application.parkinglot.usecase.FindParkingLotByIdUseCase;
 import dk.sdu.mmmi.pms.application.parkinglot.usecase.UpdateParkingLotUseCase;
-import dk.sdu.mmmi.pms.core.parkingspot.ParkingSpotDeleter;
+import dk.sdu.mmmi.pms.core.parkingspot.usecase.ParkingSpotDeleter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

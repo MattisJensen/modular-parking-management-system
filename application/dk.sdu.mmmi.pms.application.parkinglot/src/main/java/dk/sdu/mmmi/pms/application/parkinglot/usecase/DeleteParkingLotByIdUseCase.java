@@ -2,7 +2,7 @@ package dk.sdu.mmmi.pms.application.parkinglot.usecase;
 
 import dk.sdu.mmmi.pms.application.parkinglot.ParkingLotRepository;
 import dk.sdu.mmmi.pms.core.parkinglot.exception.ParkingLotNotFoundException;
-import dk.sdu.mmmi.pms.core.parkingspot.ParkingSpotDeleter;
+import dk.sdu.mmmi.pms.core.parkingspot.usecase.ParkingSpotDeleter;
 import dk.sdu.mmmi.pms.core.parkingspot.exception.ParkingSpotNotFoundException;
 
 import java.util.UUID;
