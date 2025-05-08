@@ -11,8 +11,9 @@ module dk.sdu.mmmi.pms.presentation.main {
     requires spring.webmvc;
 
     requires org.apache.tomcat.embed.core;
-    requires com.fasterxml.jackson.databind;
     requires jakarta.annotation;
+    requires com.fasterxml.jackson.datatype.jsr310;
+    requires com.fasterxml.jackson.databind;
 
     // Visibility
     opens dk.sdu.mmmi.pms.presentation.main to spring.beans, spring.context, spring.core;

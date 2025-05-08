@@ -46,6 +46,12 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-databind.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.19.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -72,10 +78,11 @@
                                 spring-web,
                                 spring-webmvc,
                                 tomcat-embed-core,
-                                jackson-databind,
-                                jackson-core,
                                 jackson-annotations,
                                 jakarta.annotation-api,
+                                jackson-core,
+                                jackson-databind,
+                                jackson-datatype-jsr310,
                                 micrometer-commons,
                                 micrometer-observation,
                             </includeArtifactIds>
