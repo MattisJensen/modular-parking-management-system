@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/booking")
+@RequestMapping("/api/v1/booking")
 public class BookingController {
 
     private final CreateBookingUseCase createUseCase;

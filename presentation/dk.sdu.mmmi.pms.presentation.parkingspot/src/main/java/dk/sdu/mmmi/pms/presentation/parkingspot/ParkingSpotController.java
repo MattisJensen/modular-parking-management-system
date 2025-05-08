@@ -14,7 +14,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/parking-spot")
+@RequestMapping("/api/v1/parking-spot")
 public class ParkingSpotController {
     private final CreateParkingSpotUseCase createUseCase;
     private final DeleteParkingSpotByIdUseCase deleteUseCase;

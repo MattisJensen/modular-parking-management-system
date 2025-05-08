@@ -17,7 +17,7 @@ import java.util.UUID;
  * using the corresponding use cases.
  */
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("/api/v1/account")
 public class AccountController {
     private final CreateAccountUseCase createUseCase;
     private final UpdateAccountUseCase updateUseCase;
