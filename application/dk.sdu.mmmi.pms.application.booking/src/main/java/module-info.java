@@ -1,6 +1,7 @@
 module dk.sdu.mmmi.pms.application.booking {
     // Internal dependencies
     requires dk.sdu.mmmi.pms.core.booking;
+    requires dk.sdu.mmmi.pms.core.parkinglot;
     requires dk.sdu.mmmi.pms.core.parkingspot;
     requires dk.sdu.mmmi.pms.application.shared;
 

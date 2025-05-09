@@ -1,13 +1,12 @@
 package dk.sdu.mmmi.pms.infrastructure.booking.config;
 
 import dk.sdu.mmmi.pms.application.booking.BookingRepository;
-import dk.sdu.mmmi.pms.application.booking.usecase.CreateBookingUseCase;
-import dk.sdu.mmmi.pms.application.booking.usecase.DeleteBookingByIdUseCase;
-import dk.sdu.mmmi.pms.application.booking.usecase.FindBookingByIdUseCase;
-import dk.sdu.mmmi.pms.application.booking.usecase.UpdateBookingUseCase;
+import dk.sdu.mmmi.pms.application.booking.usecase.*;
 import dk.sdu.mmmi.pms.application.booking.util.BookingFormatter;
 import dk.sdu.mmmi.pms.application.booking.util.BookingValidator;
+import dk.sdu.mmmi.pms.core.parkinglot.usecase.ParkingLotFinder;
 import dk.sdu.mmmi.pms.core.parkingspot.usecase.ParkingSpotFinder;
+import dk.sdu.mmmi.pms.core.parkingspot.usecase.ParkingSpotsInLotFinder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +22,23 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = "dk.sdu.mmmi.pms.infrastructure.booking")
 @ComponentScan(basePackages = "dk.sdu.mmmi.pms.infrastructure.booking")
 public class BookingConfigInfrastructure {
+    @Bean
+    public CreateBookingInParkingLotUseCase createBookingInParkingLotUseCase(
+            BookingRepository bookingRepository,
+            BookingFormatter bookingFormatter,
+            BookingValidator bookingValidator,
+            ParkingLotFinder parkingLotFinder,
+            ParkingSpotsInLotFinder parkingSpotsInLotFinder
+    ) {
+        return new CreateBookingInParkingLotUseCase(
+                bookingRepository,
+                bookingFormatter,
+                bookingValidator,
+                parkingLotFinder,
+                parkingSpotsInLotFinder
+        );
+    }
+
     @Bean
     public CreateBookingUseCase createBookingUseCase(BookingRepository bookingRepository,
                                                      BookingFormatter bookingFormatter,

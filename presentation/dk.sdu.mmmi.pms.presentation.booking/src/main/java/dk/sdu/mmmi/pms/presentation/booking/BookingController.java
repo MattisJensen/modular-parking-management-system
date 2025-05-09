@@ -1,12 +1,10 @@
 package dk.sdu.mmmi.pms.presentation.booking;
 
-import dk.sdu.mmmi.pms.application.booking.usecase.CreateBookingUseCase;
-import dk.sdu.mmmi.pms.application.booking.usecase.DeleteBookingByIdUseCase;
-import dk.sdu.mmmi.pms.application.booking.usecase.FindBookingByIdUseCase;
-import dk.sdu.mmmi.pms.application.booking.usecase.UpdateBookingUseCase;
+import dk.sdu.mmmi.pms.application.booking.usecase.*;
 import dk.sdu.mmmi.pms.core.booking.Booking;
 import dk.sdu.mmmi.pms.presentation.booking.datatransferobject.BookingResponse;
 import dk.sdu.mmmi.pms.presentation.booking.datatransferobject.CreateBookingRequest;
+import dk.sdu.mmmi.pms.presentation.booking.datatransferobject.CreateParkingLotBookingRequest;
 import dk.sdu.mmmi.pms.presentation.booking.datatransferobject.UpdateBookingRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,29 +15,52 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/booking")
 public class BookingController {
-
+    private final CreateBookingInParkingLotUseCase createInParkingLotUseCase;
     private final CreateBookingUseCase createUseCase;
     private final DeleteBookingByIdUseCase deleteUseCase;
     private final FindBookingByIdUseCase findByIdUseCase;
     private final UpdateBookingUseCase updateUseCase;
 
     public BookingController(
+            CreateBookingInParkingLotUseCase createInParkingLotUseCase,
             CreateBookingUseCase createUseCase,
             DeleteBookingByIdUseCase deleteUseCase,
             FindBookingByIdUseCase findByIdUseCase,
             UpdateBookingUseCase updateUseCase
     ) {
+        this.createInParkingLotUseCase = createInParkingLotUseCase;
         this.createUseCase = createUseCase;
         this.deleteUseCase = deleteUseCase;
         this.findByIdUseCase = findByIdUseCase;
         this.updateUseCase = updateUseCase;
     }
 
-    @PostMapping
+    @PostMapping("/parking-spot")
     public ResponseEntity<BookingResponse> createBooking(@RequestBody CreateBookingRequest request) {
         Booking booking = createUseCase.execute(
                 request.userId(),
                 request.parkingSpotId(),
+                request.startTime(),
+                request.endTime()
+        );
+
+        BookingResponse response = new BookingResponse(
+                booking.id(),
+                booking.userId(),
+                booking.parkingSpotId(),
+                booking.startTime(),
+                booking.endTime(),
+                booking.bookingStatus()
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PostMapping("/parking-lot")
+    public ResponseEntity<BookingResponse> createBookingInParkingLot(@RequestBody CreateParkingLotBookingRequest request) {
+        Booking booking = createInParkingLotUseCase.execute(
+                request.userId(),
+                request.parkingLotId(),
                 request.startTime(),
                 request.endTime()
         );
@@ -70,6 +91,7 @@ public class BookingController {
 
         return ResponseEntity.ok(response);
     }
+
 
     @DeleteMapping("/id/{id}")
     public ResponseEntity<?> deleteBooking(@PathVariable String id) {

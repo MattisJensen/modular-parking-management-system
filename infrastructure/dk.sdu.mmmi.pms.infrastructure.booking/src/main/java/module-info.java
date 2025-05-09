@@ -14,6 +14,7 @@ module dk.sdu.mmmi.pms.infrastructure.booking {
     requires spring.tx;
     requires dk.sdu.mmmi.pms.core.parkingspot;
     requires spring.data.commons;
+    requires dk.sdu.mmmi.pms.core.parkinglot;
 
     // Visibility
     provides ModuleConfigurationSPI with BookingConfigProvider;

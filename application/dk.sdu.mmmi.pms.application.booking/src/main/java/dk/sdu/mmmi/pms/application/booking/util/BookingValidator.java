@@ -68,11 +68,17 @@ public class BookingValidator {
 
         // Check if there is a conflict
         boolean hasConflict = existingBookings.stream().anyMatch(b -> b.startTime().isBefore(endTime) && b.endTime().isAfter(startTime));
-        if (!hasConflict) return;
+        if (hasConflict) {
+            String message = generateAvailableTimeSlotMessage(existingBookings, startTime, endTime);
+            throw new BookingTimeException(message);
+        }
+    }
 
-        // Group bookings by date with spanning awareness
+    private String generateAvailableTimeSlotMessage(List<Booking> existingBookings, LocalDateTime startTime, LocalDateTime endTime) {
+        // Group bookings by date
         Map<LocalDate, List<Booking>> bookingsByDate = new HashMap<>();
         for (Booking b : existingBookings) {
+            // Get the start and end date of the booking
             LocalDate startDate = b.startTime().toLocalDate();
             LocalDate endDate = b.endTime().toLocalDate();
             startDate.datesUntil(endDate.plusDays(1)).forEach(date ->
@@ -81,7 +87,7 @@ public class BookingValidator {
         }
 
         // Process each day in requested range
-        StringBuilder message = new StringBuilder("Available slots: ");
+        StringBuilder message = new StringBuilder("Available timeslots: ");
 
         startTime.toLocalDate().datesUntil(endTime.toLocalDate().plusDays(1))
                 .forEach(date -> {
@@ -95,7 +101,7 @@ public class BookingValidator {
                     message.append(formatDailySlots(date, freeSlots));
                 });
 
-        throw new BookingTimeException(message.toString());
+        return message.toString();
     }
 
     /**
