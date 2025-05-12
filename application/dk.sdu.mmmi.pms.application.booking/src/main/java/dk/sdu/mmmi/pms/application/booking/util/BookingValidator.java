@@ -74,6 +74,14 @@ public class BookingValidator {
         }
     }
 
+    /**
+     * Generate a message with available time slots based on existing bookings.
+     *
+     * @param existingBookings List of existing bookings
+     * @param startTime        The start time of the booking
+     * @param endTime          The end time of the booking
+     * @return A message with available time slots
+     */
     private String generateAvailableTimeSlotMessage(List<Booking> existingBookings, LocalDateTime startTime, LocalDateTime endTime) {
         // Group bookings by date
         Map<LocalDate, List<Booking>> bookingsByDate = new HashMap<>();
