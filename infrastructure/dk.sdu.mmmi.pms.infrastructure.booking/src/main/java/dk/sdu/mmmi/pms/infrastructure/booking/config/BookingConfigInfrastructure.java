@@ -54,6 +54,11 @@ public class BookingConfigInfrastructure {
     }
 
     @Bean
+    public FindAvailableParkingSpotsUseCase findAvailableParkingSpotsUseCase(ParkingSpotsInLotFinder parkingSpotsInLotFinder, BookingRepository bookingRepository) {
+        return new FindAvailableParkingSpotsUseCase(parkingSpotsInLotFinder, bookingRepository);
+    }
+
+    @Bean
     public FindBookingByIdUseCase findBookingByIdUseCase(BookingRepository bookingRepository,
                                                          BookingFormatter bookingFormatter) {
         return new FindBookingByIdUseCase(bookingRepository, bookingFormatter);
