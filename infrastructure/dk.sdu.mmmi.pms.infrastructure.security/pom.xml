@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>dk.sdu.mmmi.pms</groupId>
@@ -16,6 +17,13 @@
         <!-- Application dependencies -->
         <dependency>
             <groupId>dk.sdu.mmmi.pms</groupId>
+            <artifactId>application.account</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>dk.sdu.mmmi.pms</groupId>
             <artifactId>application.shared</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
@@ -30,9 +38,71 @@
 
         <dependency>
             <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-crypto</artifactId>
+            <artifactId>spring-security-config</artifactId>
             <version>${spring-security.version}</version>
         </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.security</groupId>-->
+        <!--            <artifactId>spring-security-core</artifactId>-->
+        <!--            <version>${spring-security.version}</version>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.security</groupId>-->
+        <!--            <artifactId>spring-security-crypto</artifactId>-->
+        <!--            <version>${spring-security.version}</version>-->
+        <!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework</groupId>-->
+        <!--            <artifactId>spring-webmvc</artifactId>-->
+        <!--            <version>${spring-webmvc.version}</version>-->
+        <!--        </dependency>-->
+
+        <!-- Authentication dependencies -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.12.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.12.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.12.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>jakarta.servlet</groupId>-->
+        <!--            <artifactId>jakarta.servlet-api</artifactId>-->
+        <!--            <version>${jakarta.servlet.version}</version>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>javax.servlet</groupId>-->
+        <!--            <artifactId>servlet-api</artifactId>-->
+        <!--            <version>2.5</version>-->
+        <!--            <scope>provided</scope>-->
+        <!--        </dependency>-->
 
         <!-- Test dependencies -->
         <dependency>
@@ -65,9 +135,15 @@
                         </goals>
                         <configuration>
                             <includeArtifactIds>
-<!--                                spring-beans,-->
-<!--                                spring-context,-->
+                                <!--                                spring-beans,-->
+                                <!--                                spring-context,-->
+                                spring-security-config,
+                                spring-security-core,
                                 spring-security-crypto,
+                                spring-security-web,
+                                jjwt-api,
+                                jjwt-impl,
+                                jjwt-jackson,
                             </includeArtifactIds>
                             <overWriteReleases>false</overWriteReleases>
                             <outputDirectory>../../compiled-modules</outputDirectory>

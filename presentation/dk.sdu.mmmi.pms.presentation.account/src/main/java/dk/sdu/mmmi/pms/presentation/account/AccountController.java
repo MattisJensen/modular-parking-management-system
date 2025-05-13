@@ -2,9 +2,7 @@ package dk.sdu.mmmi.pms.presentation.account;
 
 import dk.sdu.mmmi.pms.application.account.usecase.*;
 import dk.sdu.mmmi.pms.core.account.Account;
-import dk.sdu.mmmi.pms.presentation.account.datatransferobject.AccountResponse;
-import dk.sdu.mmmi.pms.presentation.account.datatransferobject.CreateAccountRequest;
-import dk.sdu.mmmi.pms.presentation.account.datatransferobject.UpdateAccountRequest;
+import dk.sdu.mmmi.pms.presentation.account.datatransferobject.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,52 +22,68 @@ public class AccountController {
     private final FindAccountByIdUseCase findByIdUseCase;
     private final FindAccountByEmailUseCase findByEmailUseCase;
     private final DeleteAccountByIdUseCase deleteByIdUseCase;
+    private final LoginByEmailUseCase loginByEmailUseCase;
 
     /**
      * Constructs an {@link AccountController} with the required use cases.
      *
-     * @param createUseCase   the use case for creating accounts
-     * @param updateUseCase   the use case for updating accounts
+     * @param createUseCase      the use case for creating accounts
+     * @param updateUseCase      the use case for updating accounts
      * @param findByEmailUseCase the use case for finding accounts by email
-     * @param findByIdUseCase the use case for finding accounts by ID
+     * @param findByIdUseCase    the use case for finding accounts by ID
      */
     public AccountController(CreateAccountUseCase createUseCase,
                              UpdateAccountUseCase updateUseCase,
                              FindAccountByEmailUseCase findByEmailUseCase,
                              FindAccountByIdUseCase findByIdUseCase,
-                             DeleteAccountByIdUseCase deleteByIdUseCase) {
-
+                             DeleteAccountByIdUseCase deleteByIdUseCase,
+                             LoginByEmailUseCase loginByEmailUseCase
+    ) {
         this.createUseCase = createUseCase;
         this.updateUseCase = updateUseCase;
         this.findByIdUseCase = findByIdUseCase;
         this.findByEmailUseCase = findByEmailUseCase;
         this.deleteByIdUseCase = deleteByIdUseCase;
+        this.loginByEmailUseCase = loginByEmailUseCase;
     }
 
-   /**
-    * Creates a new account.
-    *
-    * @param request the {@link CreateAccountRequest} containing account details
-    * @return a {@link ResponseEntity} containing the created {@link AccountResponse}
-    */
-   @PostMapping
-   public ResponseEntity<AccountResponse> createAccount(@RequestBody CreateAccountRequest request) {
-       Account account = createUseCase.execute(
-               request.name(),
-               request.email(),
-               request.password(),
-               request.role()
-       );
+    /**
+     * Creates a new account.
+     *
+     * @param request the {@link CreateAccountRequest} containing account details
+     * @return a {@link ResponseEntity} containing the created {@link AccountResponse}
+     */
+    @PostMapping
+    public ResponseEntity<AccountResponse> createAccount(@RequestBody CreateAccountRequest request) {
+        Account account = createUseCase.execute(
+                request.name(),
+                request.email(),
+                request.password(),
+                request.role()
+        );
 
-       AccountResponse response = new AccountResponse(
-               account.id(),
-               account.name(),
-               account.email(),
-               account.accountRole()
-       );
+        AccountResponse response = new AccountResponse(
+                account.id(),
+                account.name(),
+                account.email(),
+                account.accountRole()
+        );
 
-       return ResponseEntity.status(HttpStatus.CREATED).body(response);
-   }
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
+        Account account = new Account(
+                null,
+                null,
+                request.email(),
+                request.password(),
+                null
+        );
+        String token = loginByEmailUseCase.execute(account);
+        return ResponseEntity.ok(new LoginResponse(token));
+    }
 
     /**
      * Updates an existing account.

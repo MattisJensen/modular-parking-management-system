@@ -1,6 +1,7 @@
 package dk.sdu.mmmi.pms.infrastructure.account.config;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
+import dk.sdu.mmmi.pms.application.account.AccountValidator;
 import dk.sdu.mmmi.pms.application.account.usecase.*;
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import org.springframework.context.annotation.Bean;
@@ -61,6 +62,18 @@ public class AccountConfigInfrastructure {
     @Bean
     public FindAccountByIdUseCase findAccountByIdUseCase(AccountRepository accountRepository) {
         return new FindAccountByIdUseCase(accountRepository);
+    }
+
+    /**
+     * Provides a {@link LoginByEmailUseCase} bean.
+     *
+     * @param findAccountByEmailUseCase the {@link FindAccountByEmailUseCase} to find accounts by email
+     * @param accountValidator          the {@link AccountValidator} to validate accounts
+     * @return a {@link LoginByEmailUseCase} instance
+     */
+    @Bean
+    public LoginByEmailUseCase loginByEmailUseCase(FindAccountByEmailUseCase findAccountByEmailUseCase, AccountValidator accountValidator) {
+        return new LoginByEmailUseCase(findAccountByEmailUseCase, accountValidator);
     }
 
     /**

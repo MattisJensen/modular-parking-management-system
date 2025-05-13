@@ -31,6 +31,8 @@ class AccountControllerTest {
     private FindAccountByEmailUseCase findAccountByEmailUseCase;
     @Mock
     private DeleteAccountByIdUseCase deleteAccountByIdUseCase;
+    @Mock
+    private LoginByEmailUseCase loginByEmailUseCase;
 
     private AccountController controller;
     private UUID testId;
@@ -44,7 +46,8 @@ class AccountControllerTest {
                 updateAccountUseCase,
                 findAccountByEmailUseCase,
                 findAccountByIdUseCase,
-                deleteAccountByIdUseCase
+                deleteAccountByIdUseCase,
+                loginByEmailUseCase
         );
         testId = UUID.randomUUID();
         testAccount = new Account(testId, "Test User", "test@mail.com", "hash", AccountRole.USER);

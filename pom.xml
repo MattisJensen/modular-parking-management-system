@@ -54,7 +54,7 @@
         <spring-boot.version>3.4.4</spring-boot.version>
         <spring-context.version>6.2.5</spring-context.version>
         <spring-data.version>3.4.4</spring-data.version>
-        <spring-security.version>6.4.4</spring-security.version>
+        <spring-security.version>6.4.5</spring-security.version>
         <spring-tx.version>6.2.5</spring-tx.version>
         <spring-webmvc.version>6.2.5</spring-webmvc.version>
 
