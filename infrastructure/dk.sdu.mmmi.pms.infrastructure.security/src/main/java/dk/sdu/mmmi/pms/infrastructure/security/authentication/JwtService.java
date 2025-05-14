@@ -2,9 +2,11 @@ package dk.sdu.mmmi.pms.infrastructure.security.authentication;
 
 import dk.sdu.mmmi.pms.application.shared.TokenManager;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -71,11 +73,16 @@ public class JwtService implements TokenManager {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parser()
-                .verifyWith(getKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
+        try {
+            return Jwts.parser()
+                    .verifyWith(getKey())
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+        } catch (JwtException ex) {
+            throw new SignatureException("Invalid credentials");
+        }
+
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {

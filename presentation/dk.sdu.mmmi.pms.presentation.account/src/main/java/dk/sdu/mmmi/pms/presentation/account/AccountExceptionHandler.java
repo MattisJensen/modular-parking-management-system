@@ -3,10 +3,12 @@ package dk.sdu.mmmi.pms.presentation.account;
 import dk.sdu.mmmi.pms.core.account.exception.AccountNotFoundException;
 import dk.sdu.mmmi.pms.core.account.exception.EmailDuplicateException;
 import dk.sdu.mmmi.pms.core.account.exception.EmailFormatException;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 
 /**
  * Global exception handler for account-related exception.
@@ -46,5 +48,16 @@ public class AccountExceptionHandler {
     @ExceptionHandler(AccountNotFoundException.class)
     public ResponseEntity<String> handleAccountNotFoundException(AccountNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    /**
+     * Handles {@link SignatureException} and returns an Unauthorized response.
+     *
+     * @param ex the {@link SignatureException} to handle
+     * @return a {@link ResponseEntity} with the error message and HTTP status
+     */
+    @ExceptionHandler(SignatureException.class)
+    public ResponseEntity<String> handleSignatureException(SignatureException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
     }
 }

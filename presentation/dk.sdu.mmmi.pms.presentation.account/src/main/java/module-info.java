@@ -8,8 +8,10 @@ module dk.sdu.mmmi.pms.presentation.account {
     requires dk.sdu.mmmi.pms.application.shared;
 
     // External dependencies
+    requires spring.core;
     requires spring.context;
     requires spring.web;
+    requires jjwt.api;
 
     // Visibility
     provides ModuleConfigurationSPI with AccountConfigProvider;
