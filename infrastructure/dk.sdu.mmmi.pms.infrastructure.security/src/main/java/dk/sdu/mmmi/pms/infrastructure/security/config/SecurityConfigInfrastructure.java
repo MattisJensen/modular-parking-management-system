@@ -34,10 +34,10 @@ public class SecurityConfigInfrastructure {
     private final UserDetailsService userDetailsService;
 
     /**
-     * Constructor for {@link SecurityConfigInfrastructure}.
+     * Constructs the security configuration with required dependencies.
      *
-     * @param jwtAuthenticationFilter the {@link JwtAuthenticationFilter} to handle JWT authentication
-     * @param userDetailsService the {@link UserDetailsService} to load user-specific data
+     * @param jwtAuthenticationFilter the {@link JwtAuthenticationFilter} that processes and validates JWT tokens in requests
+     * @param userDetailsService the {@link UserDetailsService} that loads user-specific data for authentication and authorization
      */
     public SecurityConfigInfrastructure(JwtAuthenticationFilter jwtAuthenticationFilter, UserDetailsService userDetailsService) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
@@ -45,13 +45,21 @@ public class SecurityConfigInfrastructure {
     }
 
     /**
-     * Configures the {@link SecurityFilterChain} for the application.
-     * This method sets up the security rules such as disabling CSRF, defining
-     * endpoint access rules and adding the JWT authentication filter.
+     * Configures the security filter chain for HTTP requests.
+     * <p>
+     * This method defines the security rules for the application by:
+     * <ul>
+     *   <li>Disabling CSRF protection for stateless REST API</li>
+     *   <li>Permitting unauthenticated access to account creation and login endpoints</li>
+     *   <li>Requiring authentication for all other endpoints</li>
+     *   <li>Configuring stateless session management (no HTTP sessions)</li>
+     *   <li>Adding JWT filter before standard authentication filters</li>
+     *   <li>Setting up custom handling for authentication failures</li>
+     * </ul>
      *
-     * @param http the {@link HttpSecurity} object to configure
+     * @param http the {@link HttpSecurity} object to configure security settings
      * @return the configured {@link SecurityFilterChain}
-     * @throws Exception if an error occurs during configuration
+     * @throws Exception if an error occurs during security configuration
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -71,8 +79,10 @@ public class SecurityConfigInfrastructure {
     }
 
     /**
-     * Provides a custom {@link AuthenticationEntryPoint} to handle unauthorized access.
-     * This entry point sends a 401 Unauthorized response with a custom error message.
+     * Provides a custom authentication entry point for handling unauthorized access attempts.
+     * <p>
+     * This entry point is triggered when an unauthenticated user attempts to access a protected resource.
+     * It responds with a 401 Unauthorized status code and a plain text error message.
      *
      * @return the configured {@link AuthenticationEntryPoint}
      */
@@ -81,16 +91,21 @@ public class SecurityConfigInfrastructure {
         return (request, response, authException) -> {
             response.setContentType("text/plain");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("Wrong credentials");
+            response.getWriter().write("Access denied.");
         };
     }
 
     /**
-     * Configures the {@link AuthenticationProvider} for the application.
-     * This provider uses {@link BCryptPasswordEncoder} for password encoding
-     * and {@link UserDetailsService} for retrieving user details.
+     * Configures the authentication provider for the application.
+     * <p>
+     * This authentication provider is responsible for verifying credentials during authentication.
+     * It uses:
+     * <ul>
+     *   <li>{@link BCryptPasswordEncoder} for secure password comparison</li>
+     *   <li>The injected {@link UserDetailsService} to retrieve user information</li>
+     * </ul>
      *
-     * @return the configured {@link AuthenticationProvider}
+     * @return the configured {@link AuthenticationProvider} for the application
      */
     @Bean
     public AuthenticationProvider authenticationProvider() {
@@ -101,12 +116,14 @@ public class SecurityConfigInfrastructure {
     }
 
     /**
-     * Provides the {@link AuthenticationManager} for the application.
-     * This manager is used to authenticate users based on the provided configuration.
+     * Provides the authentication manager for the application.
+     * <p>
+     * The authentication manager is the main entry point for authentication requests.
+     * It delegates to the appropriate {@link AuthenticationProvider} for credential validation.
      *
-     * @param config the {@link AuthenticationConfiguration} to use
+     * @param config the {@link AuthenticationConfiguration} from which to retrieve the authentication manager
      * @return the configured {@link AuthenticationManager}
-     * @throws Exception if an error occurs during configuration
+     * @throws Exception if an error occurs during authentication manager configuration
      */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {

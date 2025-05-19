@@ -58,6 +58,6 @@ public class AccountExceptionHandler {
      */
     @ExceptionHandler(SignatureException.class)
     public ResponseEntity<String> handleSignatureException(SignatureException ex) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Access denied.");
     }
 }
