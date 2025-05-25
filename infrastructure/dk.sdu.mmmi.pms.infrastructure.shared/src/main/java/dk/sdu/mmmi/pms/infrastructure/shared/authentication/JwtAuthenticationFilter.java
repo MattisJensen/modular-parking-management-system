@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.pms.infrastructure.security.authentication;
+package dk.sdu.mmmi.pms.infrastructure.shared.authentication;
 
 import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;
@@ -20,7 +20,7 @@ import java.io.IOException;
 /**
  * JWT authentication filter responsible for processing JWT tokens in request headers.
  * This filter extends {@link OncePerRequestFilter} to ensure it executes only once per request.
- * It verifies JWT tokens in the Authorization header and sets up the security context
+ * It verifies JWT tokens in the Authorization header and sets up the shared context
  * if the token is valid.
  * <p>
  * The filter works in the following sequence:

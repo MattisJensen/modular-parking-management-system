@@ -1,7 +1,7 @@
 import dk.sdu.mmmi.pms.application.shared.ModuleConfigurationSPI;
-import dk.sdu.mmmi.pms.infrastructure.security.config.SecurityConfigProvider;
+import dk.sdu.mmmi.pms.infrastructure.shared.config.SecurityConfigProvider;
 
-module dk.sdu.mmmi.pms.infrastructure.security {
+module dk.sdu.mmmi.pms.infrastructure.shared {
     // Internal dependencies
     requires dk.sdu.mmmi.pms.application.shared;
 
@@ -18,7 +18,7 @@ module dk.sdu.mmmi.pms.infrastructure.security {
 
     // Visibility
     provides ModuleConfigurationSPI with SecurityConfigProvider;
-    opens dk.sdu.mmmi.pms.infrastructure.security to spring.beans, spring.context, spring.core;
-    opens dk.sdu.mmmi.pms.infrastructure.security.authentication to spring.beans, spring.context, spring.core;
-    opens dk.sdu.mmmi.pms.infrastructure.security.config to spring.beans, spring.context, spring.core;
+    opens dk.sdu.mmmi.pms.infrastructure.shared to spring.beans, spring.context, spring.core;
+    opens dk.sdu.mmmi.pms.infrastructure.shared.authentication to spring.beans, spring.context, spring.core;
+    opens dk.sdu.mmmi.pms.infrastructure.shared.config to spring.beans, spring.context, spring.core;
 }

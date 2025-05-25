@@ -1,8 +1,9 @@
-package dk.sdu.mmmi.pms.infrastructure.security;
+package dk.sdu.mmmi.pms.infrastructure.shared;
 
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BCryptPasswordEncoderAdapterTest {

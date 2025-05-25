@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.pms.infrastructure.security.authentication;
+package dk.sdu.mmmi.pms.infrastructure.shared.authentication;
 
 import dk.sdu.mmmi.pms.application.shared.TokenManager;
 import io.jsonwebtoken.Claims;

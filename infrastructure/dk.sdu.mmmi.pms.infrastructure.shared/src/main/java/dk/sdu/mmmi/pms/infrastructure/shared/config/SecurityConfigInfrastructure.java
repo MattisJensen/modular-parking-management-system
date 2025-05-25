@@ -1,6 +1,6 @@
-package dk.sdu.mmmi.pms.infrastructure.security.config;
+package dk.sdu.mmmi.pms.infrastructure.shared.config;
 
-import dk.sdu.mmmi.pms.infrastructure.security.authentication.JwtAuthenticationFilter;
+import dk.sdu.mmmi.pms.infrastructure.shared.authentication.JwtAuthenticationFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,20 +21,20 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * Configuration class for the security infrastructure module.
+ * Configuration class for the shared infrastructure module.
  * This class is annotated with {@link Configuration} to indicate that it provides
  * Spring configuration and {@link ComponentScan} to scan for Spring components
  * within its module.
  */
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackages = "dk.sdu.mmmi.pms.infrastructure.security")
+@ComponentScan(basePackages = "dk.sdu.mmmi.pms.infrastructure.shared")
 public class SecurityConfigInfrastructure {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserDetailsService userDetailsService;
 
     /**
-     * Constructs the security configuration with required dependencies.
+     * Constructs the shared configuration with required dependencies.
      *
      * @param jwtAuthenticationFilter the {@link JwtAuthenticationFilter} that processes and validates JWT tokens in requests
      * @param userDetailsService the {@link UserDetailsService} that loads user-specific data for authentication and authorization
@@ -45,9 +45,9 @@ public class SecurityConfigInfrastructure {
     }
 
     /**
-     * Configures the security filter chain for HTTP requests.
+     * Configures the shared filter chain for HTTP requests.
      * <p>
-     * This method defines the security rules for the application by:
+     * This method defines the shared rules for the application by:
      * <ul>
      *   <li>Disabling CSRF protection for stateless REST API</li>
      *   <li>Permitting unauthenticated access to account creation and login endpoints</li>
@@ -57,9 +57,9 @@ public class SecurityConfigInfrastructure {
      *   <li>Setting up custom handling for authentication failures</li>
      * </ul>
      *
-     * @param http the {@link HttpSecurity} object to configure security settings
+     * @param http the {@link HttpSecurity} object to configure shared settings
      * @return the configured {@link SecurityFilterChain}
-     * @throws Exception if an error occurs during security configuration
+     * @throws Exception if an error occurs during shared configuration
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.pms.infrastructure.security;
+package dk.sdu.mmmi.pms.infrastructure.shared;
 
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

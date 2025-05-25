@@ -1,9 +1,9 @@
-package dk.sdu.mmmi.pms.infrastructure.security.config;
+package dk.sdu.mmmi.pms.infrastructure.shared.config;
 
 import dk.sdu.mmmi.pms.application.shared.ModuleConfigurationSPI;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 class SecurityConfigProviderTest {
     @Test
     void getConfigurationClass_ReturnsSecurityConfigInfrastructure() {

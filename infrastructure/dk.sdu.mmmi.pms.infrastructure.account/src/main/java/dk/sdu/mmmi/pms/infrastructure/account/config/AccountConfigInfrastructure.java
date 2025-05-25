@@ -1,7 +1,7 @@
 package dk.sdu.mmmi.pms.infrastructure.account.config;
 
 import dk.sdu.mmmi.pms.application.account.AccountRepository;
-import dk.sdu.mmmi.pms.application.account.AccountValidator;
+import dk.sdu.mmmi.pms.application.account.uitl.AccountValidator;
 import dk.sdu.mmmi.pms.application.account.usecase.*;
 import dk.sdu.mmmi.pms.application.shared.PasswordEncoder;
 import org.springframework.context.annotation.Bean;

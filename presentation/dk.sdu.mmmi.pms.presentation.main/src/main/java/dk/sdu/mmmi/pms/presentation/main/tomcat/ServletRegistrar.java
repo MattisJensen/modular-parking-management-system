@@ -24,7 +24,7 @@ public class ServletRegistrar {
      * @param servletName   the unique name under which the servlet is registered
      */
     public static void registerDispatcherServlet(Context tomcatContext, AnnotationConfigWebApplicationContext springContext, String servletName) {
-        // Allow Spring to handle security filters
+        // Allow Spring to handle shared filters
         tomcatContext.addFilterDef(createSpringSecurityFilterDef("springSecurityFilterChain"));
         tomcatContext.addFilterMap(createSpringSecurityFilterMap("springSecurityFilterChain"));
 
@@ -37,7 +37,7 @@ public class ServletRegistrar {
 
     /**
      * Creates a {@link FilterDef} for the Spring Security filter chain.
-     * This filter is responsible for delegating security-related tasks to the Spring context.
+     * This filter is responsible for delegating shared-related tasks to the Spring context.
      *
      * @param filterName the name of the filter
      * @return a configured {@link FilterDef} instance

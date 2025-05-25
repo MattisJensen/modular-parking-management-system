@@ -1,6 +1,6 @@
 package dk.sdu.mmmi.pms.infrastructure.account.authentication;
 
-import dk.sdu.mmmi.pms.application.account.AccountValidator;
+import dk.sdu.mmmi.pms.application.account.uitl.AccountValidator;
 import dk.sdu.mmmi.pms.application.shared.TokenManager;
 import dk.sdu.mmmi.pms.core.account.Account;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -54,10 +54,10 @@ public class AccountValidatorImpl implements AccountValidator {
      * @return a JWT token string if authentication succeeds or "fail" if authentication fails
      */
     @Override
-    public String verify(Account account) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account.email(), account.password()));
+    public String authenticateAccount(String email, String password) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
         if (authentication.isAuthenticated()) {
-            return tokenManager.generateToken(account.email());
+            return tokenManager.generateToken(email);
         } else {
             return "fail";
         }

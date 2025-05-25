@@ -32,7 +32,7 @@
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.database</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.parkinglot</module>
         <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.parkingspot</module>
-        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.security</module>
+        <module>infrastructure/dk.sdu.mmmi.pms.infrastructure.shared</module>
 
         <!-- presentation modules -->
         <module>presentation/dk.sdu.mmmi.pms.presentation.account</module>
