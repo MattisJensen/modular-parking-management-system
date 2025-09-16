@@ -1,7 +1,7 @@
 # Modular Parking Management System
 ![Project Intention](img/DriverUsesSystem.jpg)
 
-The Modular Parking Management System is a backend prototype for efficient parking space management. Built with Java Platform Module System (JPMS), Maven and Spring, it uses Clean Architecture and strong modular boundaries for maintainability and testability.
+The Modular Parking Management System is a **backend prototype** for efficient parking space management. Built with the Java Platform Module System (JPMS), Maven and Spring, it uses Clean Architecture and strong modular boundaries for maintainability and testability.
 
 - Modular design with strict separation of concerns
 - RESTful API for bookings and parking management
